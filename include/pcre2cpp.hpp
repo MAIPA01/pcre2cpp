@@ -46,4 +46,6 @@
 
 #pragma once
 #include "pcre2cpp_types.hpp"
+#include "regex_exception.hpp"
+#include "match_result.hpp"
 #include "regex.hpp"

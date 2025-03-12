@@ -100,12 +100,19 @@
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>lib /OUT:"$(OutDir)pcre2cpp.lib" "$(OutDir)pcre2cpp.lib" "$(SolutionDir)lib\pcre2-8-static.lib" "$(SolutionDir)lib\pcre2-posix-static.lib"</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>pcre2-posix-static.lib;pcre2-8-static.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -119,6 +126,7 @@
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -127,6 +135,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>lib /OUT:"$(OutDir)pcre2cpp.lib" "$(OutDir)pcre2cpp.lib" "$(SolutionDir)lib\pcre2-8-static.lib" "$(SolutionDir)lib\pcre2-posix-static.lib"</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>pcre2-posix-static.lib;pcre2-8-static.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,6 +152,7 @@
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -149,6 +164,9 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
     </Lib>
+    <PostBuildEvent>
+      <Command>lib /OUT:"$(OutDir)pcre2cpp.lib" "$(OutDir)pcre2cpp.lib" "$(SolutionDir)lib\pcre2-8-static.lib" "$(SolutionDir)lib\pcre2-posix-static.lib"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -162,6 +180,7 @@
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -175,12 +194,19 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
     </Lib>
+    <PostBuildEvent>
+      <Command>lib /OUT:"$(OutDir)pcre2cpp.lib" "$(OutDir)pcre2cpp.lib" "$(SolutionDir)lib\pcre2-8-static.lib" "$(SolutionDir)lib\pcre2-posix-static.lib"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\match_result.hpp" />
     <ClInclude Include="..\include\pcre2cpp.hpp" />
+    <ClInclude Include="..\include\pcre2cpp_config.hpp" />
     <ClInclude Include="..\include\pcre2cpp_libs.hpp" />
     <ClInclude Include="..\include\pcre2cpp_types.hpp" />
+    <ClInclude Include="..\include\pcre2_data.hpp" />
     <ClInclude Include="..\include\regex.hpp" />
+    <ClInclude Include="..\include\regex_exception.hpp" />
     <ClInclude Include="framework.hpp" />
     <ClInclude Include="pch.hpp" />
   </ItemGroup>
@@ -191,7 +217,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="regex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

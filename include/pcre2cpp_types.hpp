@@ -45,12 +45,17 @@
  */
 
 #pragma once
+#include "pcre2cpp_config.hpp"
 #include "pcre2cpp_libs.hpp"
 
 namespace pcre2cpp {
-	class regex_exception;
+	template<size_t utf> class basic_regex_exception;
 	template<size_t utf> class basic_match_result;
 	template<size_t utf> class basic_regex;
+
+	using regex_exception = basic_regex_exception<8>;
+	using wregex_exception = basic_regex_exception<16>;
+	using regex_exception_32 = basic_regex_exception<32>;
 
 	using match_result = basic_match_result<8>;
 	using wmatch_result = basic_match_result<16>;
