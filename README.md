@@ -10,11 +10,10 @@
 
 ## Installation
 
-To use **pcre2cpp**, you need to link it statically with your project. Simply download the latest release and follow these steps:
+To use **pcre2cpp**, simply download the latest release. There are no additional dependencies required.
 
 1. Download the latest release of **pcre2cpp**.
-2. Ensure that you have the PCRE2 library linked in your project (you will need it as a dependency).
-3. Link the `pcre2cpp` library statically in your build system (e.g., `CMake` or `Make`).
+2. Link the `pcre2cpp` library statically in your build system (e.g., `CMake` or `Make`).
 
 Example for linking in `CMake`:
 ```cmake
