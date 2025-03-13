@@ -207,7 +207,6 @@
     <ClInclude Include="..\include\pcre2_data.hpp" />
     <ClInclude Include="..\include\regex.hpp" />
     <ClInclude Include="..\include\regex_exception.hpp" />
-    <ClInclude Include="framework.hpp" />
     <ClInclude Include="pch.hpp" />
   </ItemGroup>
   <ItemGroup>
