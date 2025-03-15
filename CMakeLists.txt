@@ -1,0 +1,83 @@
+cmake_minimum_required(VERSION 3.16)
+project(pcre2cpp VERSION 1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# for CPM
+set(CPM_USE_LOCAL_PACKAGES OFF)
+
+# download CPM.cmake
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/cmake/CPM.cmake")
+	file(DOWNLOAD
+		https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/CPM.cmake
+        ${CMAKE_BINARY_DIR}/cmake/CPM.cmake
+	)
+endif()
+include(${CMAKE_BINARY_DIR}/cmake/CPM.cmake)
+
+# Add mstd library
+CPMAddPackage("gh:PCRE2Project/pcre2#pcre2-10.44")
+
+# header files
+set(PROJECT_HEADERS ${PROJECT_NAME}_HEADERS)
+set(BUILD_HEADERS_PATH ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME})
+file(GLOB_RECURSE ${PROJECT_HEADERS} ${BUILD_HEADERS_PATH}/*.hpp)
+
+# make library
+add_library(${PROJECT_NAME} INTERFACE ${${PROJECT_HEADERS}})
+
+# set library alias
+set(PROJECT_NAMESPACE ${PROJECT_NAME}::)
+set(PROJECT_ALIAS ${PROJECT_NAMESPACE}${PROJECT_NAME})
+add_library(${PROJECT_ALIAS} ALIAS ${PROJECT_NAME})
+
+# set headers folder
+set(INSTALL_HEADERS_PATH include/${PROJECT_NAME})
+target_include_directories(${PROJECT_NAME} INTERFACE
+	$<BUILD_INTERFACE:${BUILD_HEADERS_PATH}>
+	$<INSTALL_INTERFACE:${INSTALL_HEADERS_PATH}>
+)
+
+# check pcre2 library
+if(pcre2_ADDED)
+	target_link_libraries(${PROJECT_NAME} INTERFACE pcre2)
+endif()
+
+# Optional compiler flags
+if(MSVC)
+	target_compile_options(${PROJECT_NAME} INTERFACE /W4 /WX /Zc:preprocessor)
+else()
+	target_compile_options(${PROJECT_NAME} INTERFACE -Wall -Wextra -Wpendantic -Werror)
+endif()
+
+# library installation
+set(PROJECT_CONFIG_FILE ${PROJECT_NAME}-config)
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_CONFIG_FILE}
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+	RUNTIME DESTINATION bin
+	INCLUDES DESTINATION ${INSTALL_HEADERS_PATH}
+)
+
+install(DIRECTORY ${BUILD_HEADERS_PATH}/ DESTINATION ${INSTALL_HEADERS_PATH})
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets)
+
+# export cmake config
+install(EXPORT ${PROJECT_CONFIG_FILE} DESTINATION cmake/${PROJECT_NAME} NAMESPACE ${PROJECT_NAMESPACE})
+export(EXPORT ${PROJECT_CONFIG_FILE} NAMESPACE ${PROJECT_NAMESPACE})
+
+# configuration version file
+set(PROJECT_CONFIG_VERSION_FILE ${PROJECT_CONFIG_FILE}-version.cmake)
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+	"${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_CONFIG_VERSION_FILE}"
+	VERSION ${PROJECT_VERSION}
+	COMPATIBILITY AnyNewerVersion
+)
+
+install(FILES
+	"${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_CONFIG_VERSION_FILE}"
+	DESTINATION cmake/${PROJECT_NAME}
+)
