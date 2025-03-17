@@ -19,7 +19,7 @@ if(NOT EXISTS ${CPM_DOWNLOAD_LOCATION})
         ${CPM_DOWNLOAD_LOCATION}
 	)
 endif()
-message(STATUS "include CPM.cmake from ${CPM_DOWNLOAD_LOCATION}")
+message(STATUS "Include CPM.cmake from ${CPM_DOWNLOAD_LOCATION}")
 include(${CPM_DOWNLOAD_LOCATION})
 
 # Add pcre2 library
@@ -29,7 +29,7 @@ set(PCRE2_BUILD_PCRE2_32 ON)
 CPMAddPackage("gh:PCRE2Project/pcre2#pcre2-10.44")
 
 if(pcre2_ADDED)
-    include_directories(${PCRE2_SOURCE_DIR}/src)
+    include_directories(${PCRE2_SOURCE_DIR}/src ${PCRE2_BINARY_DIR})
 
     message(STATUS "CMake added local pcre2: ${PCRE2_SOURCE_DIR}")
 endif()
