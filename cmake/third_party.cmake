@@ -23,6 +23,9 @@ message(STATUS "include CPM.cmake from ${CPM_DOWNLOAD_LOCATION}")
 include(${CPM_DOWNLOAD_LOCATION})
 
 # Add pcre2 library
+set(PCRE2_BUILD_PCRE2_8 ON)
+set(PCRE2_BUILD_PCRE2_16 ON)
+set(PCRE2_BUILD_PCRE2_32 ON)
 CPMAddPackage("gh:PCRE2Project/pcre2#pcre2-10.44")
 
 if(pcre2_ADDED)

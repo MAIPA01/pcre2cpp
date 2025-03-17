@@ -25,18 +25,13 @@ add_library(${PROJECT_ALIAS} ALIAS ${PROJECT_NAME})
 
 # set headers folder
 set(INSTALL_HEADERS_PATH include/${PROJECT_NAME})
-target_include_directories(${PROJECT_NAME} INTERFACE
-	$<BUILD_INTERFACE:${BUILD_HEADERS_PATH}>
-	$<INSTALL_INTERFACE:${INSTALL_HEADERS_PATH}>
+target_include_directories(${PROJECT_NAME} INTERFACE ${BUILD_HEADERS_PATH}
+	#$<BUILD_INTERFACE:${BUILD_HEADERS_PATH}>
+	#$<INSTALL_INTERFACE:${INSTALL_HEADERS_PATH}>
 )
 
 # check pcre2 library
-if(pcre2_ADDED)
-	target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${pcre2_BINARY_DIR}>)
-	find_path(PCRE2_INCLUDE_DIRS pcre2.h)
-	message(STATUS "${PCRE2_INCLUDE_DIRS}")
-	target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8)
-endif()
+target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
 
 # Optional compiler flags
 if(MSVC)
