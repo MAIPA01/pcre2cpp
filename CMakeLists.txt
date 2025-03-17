@@ -5,25 +5,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# for CPM
-set(CPM_USE_LOCAL_PACKAGES OFF)
-
-# download CPM.cmake
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/cmake/CPM.cmake")
-	file(DOWNLOAD
-		https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/CPM.cmake
-        ${CMAKE_BINARY_DIR}/cmake/CPM.cmake
-	)
-endif()
-include(${CMAKE_BINARY_DIR}/cmake/CPM.cmake)
-
-# Add mstd library
-CPMAddPackage("gh:PCRE2Project/pcre2#pcre2-10.44")
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(third_party)
 
 # header files
 set(PROJECT_HEADERS ${PROJECT_NAME}_HEADERS)
 set(BUILD_HEADERS_PATH ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME})
 file(GLOB_RECURSE ${PROJECT_HEADERS} ${BUILD_HEADERS_PATH}/*.hpp)
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${${PROJECT_HEADERS}})
 
 # make library
 add_library(${PROJECT_NAME} INTERFACE ${${PROJECT_HEADERS}})
@@ -42,6 +32,7 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 
 # check pcre2 library
 if(pcre2_ADDED)
+	target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${pcre2_BINARY_DIR}>)
 	target_link_libraries(${PROJECT_NAME} INTERFACE pcre2)
 endif()
 

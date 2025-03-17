@@ -411,3 +411,4 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 out
+third_party

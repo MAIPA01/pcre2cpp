@@ -15,6 +15,6 @@
 #pragma once
 #define PCRE2_STATIC
 #define PCRE2_CODE_UNIT_WIDTH 0
-#include <pcre2/pcre2.hpp>
+#include <pcre2.h>
 #include <string>
 #include <stdexcept>
