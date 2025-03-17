@@ -35,9 +35,9 @@ target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
 
 # Optional compiler flags
 if(MSVC)
-	target_compile_options(${PROJECT_NAME} INTERFACE /W4 /WX /Zc:preprocessor)
+	target_compile_options(${PROJECT_NAME} INTERFACE /Zc:preprocessor)
 else()
-	target_compile_options(${PROJECT_NAME} INTERFACE -Wall -Wextra -Wpendantic -Werror)
+	#target_compile_options(${PROJECT_NAME} INTERFACE -Wall -Wextra -Wpendantic -Werror)
 endif()
 
 # TODO: zrób install coœ nie dzia³a z TARGETS pcre2-8
