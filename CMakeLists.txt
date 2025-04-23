@@ -30,7 +30,7 @@ target_include_directories(${PROJECT_NAME} INTERFACE ${BUILD_HEADERS_PATH}
 )
 
 # check pcre2 library
-if(pcre2_ADDED)
+if(TARGET pcre2)
 	target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
 endif()
 
