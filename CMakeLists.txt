@@ -9,7 +9,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/third_party.cmake)
 
 # header files
 set(PROJECT_HEADERS ${PROJECT_NAME}_HEADERS)
-set(BUILD_HEADERS_PATH ${CMAKE_SOURCE_DIR}/include)
+set(BUILD_HEADERS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB_RECURSE ${PROJECT_HEADERS} ${BUILD_HEADERS_PATH}/${PROJECT_NAME}/*.hpp)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${${PROJECT_HEADERS}})
@@ -31,7 +31,6 @@ target_include_directories(${PROJECT_NAME} INTERFACE ${BUILD_HEADERS_PATH}
 
 # check pcre2 library
 if(pcre2_ADDED)
-    target_include_directories(${PROJECT_NAME} INTERFACE ${PCRE2_SOURCE_DIR}/src ${PCRE2_BINARY_DIR})
 	target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
 endif()
 
