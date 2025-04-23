@@ -29,7 +29,5 @@ set(PCRE2_BUILD_PCRE2_32 ON)
 CPMAddPackage("gh:PCRE2Project/pcre2#pcre2-10.44")
 
 if(pcre2_ADDED)
-    include_directories(${PCRE2_SOURCE_DIR}/src ${PCRE2_BINARY_DIR})
-
     message(STATUS "CMake added local pcre2: ${PCRE2_SOURCE_DIR}")
 endif()

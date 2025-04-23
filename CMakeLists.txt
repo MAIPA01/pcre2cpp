@@ -30,7 +30,10 @@ target_include_directories(${PROJECT_NAME} INTERFACE ${BUILD_HEADERS_PATH}
 )
 
 # check pcre2 library
-target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
+if(pcre2_ADDED)
+    target_include_directories(${PROJECT_NAME} INTERFACE ${PCRE2_SOURCE_DIR}/src ${PCRE2_BINARY_DIR})
+	target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
+endif()
 
 # Optional compiler flags
 if(MSVC)
