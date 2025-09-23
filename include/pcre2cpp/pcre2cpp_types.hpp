@@ -17,13 +17,23 @@
 #include "pcre2cpp_libs.hpp"
 
 namespace pcre2cpp {
+	template<size_t utf> class basic_pcre2cpp_exception;
 	template<size_t utf> class basic_regex_exception;
+	template<size_t utf> class basic_match_result_exception;
 	template<size_t utf> class basic_match_result;
 	template<size_t utf> class basic_regex;
+
+	using pcre2cpp_exception = basic_pcre2cpp_exception<8>;
+	using wpcre2cpp_exception = basic_pcre2cpp_exception<16>;
+	using pcre2cpp_exception_32 = basic_pcre2cpp_exception<32>;
 
 	using regex_exception = basic_regex_exception<8>;
 	using wregex_exception = basic_regex_exception<16>;
 	using regex_exception_32 = basic_regex_exception<32>;
+
+	using match_result_exception = basic_match_result_exception<8>;
+	using wmatch_result_exception = basic_match_result_exception<16>;
+	using match_result_exception_32 = basic_match_result_exception<32>;
 
 	using match_result = basic_match_result<8>;
 	using wmatch_result = basic_match_result<16>;

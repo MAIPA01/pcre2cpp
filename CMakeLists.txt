@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+option(BUILD_PCRE2CPP_TESTS "Build pcre2cpp tests" OFF)
+
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/third_party.cmake)
 
 # header files
@@ -40,6 +42,10 @@ if(MSVC)
 	target_compile_options(${PROJECT_NAME} INTERFACE /Zc:preprocessor)
 else()
 	#target_compile_options(${PROJECT_NAME} INTERFACE -Wall -Wextra -Wpendantic -Werror)
+endif()
+
+if(BUILD_PCRE2CPP_TESTS)
+	add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
 endif()
 
 # TODO: zrób install coœ nie dzia³a z TARGETS pcre2-8

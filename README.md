@@ -35,7 +35,15 @@ using namespace pcre2cpp;
 int main() {
     regex expression("\\d+");
     
-    if (expression.match("2")) {
+    if (expression.match("2")) { // is true
+        cout << "Matches" << endl;
+    }
+
+    if (expression.match("a")) { // is false
+        cout << "Matches" << endl;
+    }
+
+    if (expression.match("a2")) { // is true
         cout << "Matches" << endl;
     }
     
@@ -56,16 +64,18 @@ int main() {
     regex expression("\\d+");
     
     match_result result;
-    if (expression.match("aa2", result, 2)) {
-        cout << "Matches result: " << result.getValue() << " at: " 
-             << to_string(result.getOffset() + 2) << endl;
+    if (expression.match("aa2", result, 2)) { // is true
+        cout << "Matches result: " << result.get_result_value() << " at: " 
+             << to_string(result.get_result_global_offset()) << endl;
+
+        // Should print "Matches result: 2 at: 2"
     }
     
     return 0;
 }
 ```
 
-### Match at Specific Offset
+### Match at Specified Offset
 
 ```cpp
 #include <pcre2cpp/pcre2cpp.hpp>
@@ -77,13 +87,135 @@ using namespace pcre2cpp;
 int main() {
     regex expression("\\d+");
     
-    if (expression.match_at("aa2", 2)) {
-        cout << "Matches at: 2" << endl;
+    if (expression.match_at("aa2", 3, 2)) { // is true
+        cout << "Matches result: 2 at: 2" << endl;
+    }
+
+    if (expression.match_at("aa2", 3, 1)) { // is false
+        cout << "Matches result: 2 at: 2" << endl;
     }
     
     return 0;
 }
 ```
+
+### Match at Specified Offset with Result
+
+```cpp
+#include <pcre2cpp/pcre2cpp.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace pcre2cpp;
+
+int main() {
+    regex expression("\\d+");
+    
+    match_result result;
+    if (expression.match_at("aa2", 3, result, 2)) { // is true
+        cout << "Matches result: " << result.get_result_value() << " at: " 
+             << to_string(result.get_result_global_offset()) << endl;
+
+        // Should print: "Matches result: 2 at: 2"
+    }
+    
+    return 0;
+}
+```
+
+### Match with Indexed Subexpression
+
+```cpp
+#include <pcre2cpp/pcre2cpp.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace pcre2cpp;
+
+int main() {
+    regex expression("(\\d+)(a)");
+    
+    match_result result;
+    if (expression.match("ab23a", result, 1)) { // is true
+        cout << "Sub Match 0 result: " << result.get_sub_result_value(0) << " at: "
+        << result.get_sub_result_global_offset(0) << ", Sub Match 1 result: "
+        << result.get_sub_result_value(1) << " at: " 
+        << result.get_sub_result_global_offset(1) << endl;
+
+        // Should print: "Sub Match 0 result: 23 at: 2, Sub Match 1 result: a at: 4"
+    }
+    
+    return 0;
+}
+```
+
+### Match with Named Subexpression
+
+```cpp
+#include <pcre2cpp/pcre2cpp.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace pcre2cpp;
+
+int main() {
+    regex expression("(?<number>\\d+)(?<a>a)");
+    
+    match_result result;
+    if (expression.match("ab23a", result, 1)) { // is true
+        cout << "Sub Match <number> result: " << result.get_sub_result_value("number")
+        << " at: " << result.get_sub_result_global_offset("number") 
+        << ", Sub Match 1 result: " << result.get_sub_result_value("a") 
+        << " at: " << result.get_sub_result_global_offset("a") << endl;
+
+        // Should print: "Sub Match <number> result: 23 at: 2, Sub Match <a> result: a at: 4"
+    }
+    
+    return 0;
+}
+```
+
+### Match All
+
+```cpp
+#include <pcre2cpp/pcre2cpp.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace pcre2cpp;
+
+int main() {
+    regex expression("\\d+");
+    
+    std::vector<match_result> results;
+    if (expression.match_all("Ala ma 23 lata i 3 koty", 23, results)) { // is true
+        cout << "Match 0 result: " << results[0].get_result_value() 
+        << " at: " << results[0].get_result_global_offset() 
+        << ", Match 1 result: " << results[1].get_result_value() 
+        << " at: " << results[1].get_result_global_offset() << endl;
+
+        // Should print: "Match 0 result: 23 at: 7, Match 1 result: 3 at: 17"
+    }
+
+    match_result* resultsPtr;
+    size_t resultsCount;
+    if (expression.match_all("Ala ma 23 lata i 3 koty", 23, resultsPtr, resultsCount)) { // is true
+        cout << "Match 0 result: " << resultsPtr[0].get_result_value() 
+        << " at: " << resultsPtr[0].get_result_global_offset() 
+        << ", Match 1 result: " << resultsPtr[1].get_result_value() 
+        << " at: " << resultsPtr[1].get_result_global_offset() << endl;
+
+        // Should print: "Match 0 result: 23 at: 7, Match 1 result: 3 at: 17"
+
+        delete[] resultsPtr;
+    }
+    
+    return 0;
+}
+```
+
+## Offsets Graph
+![offsets graph](PCRE2CPPResult.png "Title")
 
 ## Requirements
 

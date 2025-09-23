@@ -17,3 +17,6 @@
 #include <pcre2.h>
 #include <string>
 #include <stdexcept>
+#include <vector>
+#include <unordered_map>
+#include <variant>

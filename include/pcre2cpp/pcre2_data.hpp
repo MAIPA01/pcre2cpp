@@ -19,6 +19,7 @@ namespace pcre2cpp {
 	template<size_t utf> 
 	struct _pcre2_data {};
 
+#pragma region UTF-8
 	template<>
 	struct _pcre2_data<8> {
 		using code_type = pcre2_code_8;
@@ -39,11 +40,16 @@ namespace pcre2cpp {
 		static constexpr int (*match)(const code_type*, string_ptr_type,
 			size_t, size_t, uint32_t, match_data_type*, match_ctx_type*) = pcre2_match_8;
 		static constexpr size_t* (*get_ovector_ptr)(match_data_type*) = pcre2_get_ovector_pointer_8;
+		static constexpr uint32_t(*get_ovector_count)(match_data_type*) = pcre2_get_ovector_count_8;
 		static constexpr void(*match_data_free)(match_data_type*) = pcre2_match_data_free_8;
 		static constexpr void(*code_free)(code_type*) = pcre2_code_free_8;
 		static constexpr int(*get_error_message)(int, uchar_type*, size_t) = pcre2_get_error_message_8;
+		static constexpr int(*get_info)(const code_type*, uint32_t, void*) = pcre2_pattern_info_8;
+		static constexpr int(*substring_number_from_name)(const code_type*, string_ptr_type) = pcre2_substring_number_from_name_8;
 	};
+#pragma endregion UTF-8
 
+#pragma region UTF-16
 	template<>
 	struct _pcre2_data<16> {
 		using code_type = pcre2_code_16;
@@ -64,11 +70,16 @@ namespace pcre2cpp {
 		static constexpr int (*match)(const code_type*, string_ptr_type,
 			size_t, size_t, uint32_t, match_data_type*, match_ctx_type*) = pcre2_match_16;
 		static constexpr size_t* (*get_ovector_ptr)(match_data_type*) = pcre2_get_ovector_pointer_16;
+		static constexpr uint32_t(*get_ovector_count)(match_data_type*) = pcre2_get_ovector_count_16;
 		static constexpr void(*match_data_free)(match_data_type*) = pcre2_match_data_free_16;
 		static constexpr void(*code_free)(code_type*) = pcre2_code_free_16;
 		static constexpr int(*get_error_message)(int, uchar_type*, size_t) = pcre2_get_error_message_16;
+		static constexpr int(*get_info)(const code_type*, uint32_t, void*) = pcre2_pattern_info_16;
+		static constexpr int(*substring_number_from_name)(const code_type*, string_ptr_type) = pcre2_substring_number_from_name_16;
 	};
+#pragma endregion UTF-16
 
+#pragma region UTF-32
 	template<>
 	struct _pcre2_data<32> {
 		using code_type = pcre2_code_32;
@@ -89,8 +100,12 @@ namespace pcre2cpp {
 		static constexpr int (*match)(const code_type*, string_ptr_type,
 			size_t, size_t, uint32_t, match_data_type*, match_ctx_type*) = pcre2_match_32;
 		static constexpr size_t* (*get_ovector_ptr)(match_data_type*) = pcre2_get_ovector_pointer_32;
+		static constexpr uint32_t(*get_ovector_count)(match_data_type*) = pcre2_get_ovector_count_32;
 		static constexpr void(*match_data_free)(match_data_type*) = pcre2_match_data_free_32;
 		static constexpr void(*code_free)(code_type*) = pcre2_code_free_32;
 		static constexpr int(*get_error_message)(int, uchar_type*, size_t) = pcre2_get_error_message_32;
+		static constexpr int(*get_info)(const code_type*, uint32_t, void*) = pcre2_pattern_info_32;
+		static constexpr int(*substring_number_from_name)(const code_type*, string_ptr_type) = pcre2_substring_number_from_name_32;
 	};
+#pragma endregion UTF-32
 }

@@ -13,7 +13,10 @@
  */
 
 #pragma once
+#include "pcre2cpp_config.hpp"
+#include "pcre2cpp_libs.hpp"
 #include "pcre2cpp_types.hpp"
-#include "regex_exception.hpp"
+#include "pcre2_data.hpp"
+#include "pcre2cpp_exceptions.hpp"
 #include "match_result.hpp"
 #include "regex.hpp"
