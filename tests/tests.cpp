@@ -74,6 +74,12 @@ TEST(MATCH_TESTS, MATCH_WITH_INDEXED_SUBEXPRESSION) {
     EXPECT_EQ(result.get_sub_result_global_offset(1), 4);
     EXPECT_EQ(result.get_sub_result_relative_offset(1), 3);
     EXPECT_EQ(result.get_sub_result_in_result_offset(1), 2);
+
+    EXPECT_EQ(result.get_sub_results().size(), 2);
+    EXPECT_EQ(result.get_sub_results_global_offsets().size(), 2);
+    EXPECT_EQ(result.get_sub_results_relative_offsets().size(), 2);
+    EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 2);
+    EXPECT_EQ(result.get_sub_results_values().size(), 2);
 }
 
 // MATCHES AND TRIES TO GET RESULTS FROM NAMED SUBEXPRESSION
@@ -94,6 +100,12 @@ TEST(MATCH_TESTS, MATCH_WITH_NAMED_SUBEXPRESSION) {
     EXPECT_EQ(result.get_sub_result_global_offset("a"), 4);
     EXPECT_EQ(result.get_sub_result_relative_offset("a"), 3);
     EXPECT_EQ(result.get_sub_result_in_result_offset("a"), 2);
+
+    EXPECT_EQ(result.get_sub_results().size(), 2);
+    EXPECT_EQ(result.get_sub_results_global_offsets().size(), 2);
+    EXPECT_EQ(result.get_sub_results_relative_offsets().size(), 2);
+    EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 2);
+    EXPECT_EQ(result.get_sub_results_values().size(), 2);
 }
 
 // RETURNS ALL MATCHES
@@ -126,4 +138,37 @@ TEST(MATCH_TESTS, MATCH_ALL) {
     EXPECT_EQ(results[1].get_result_value(), "3");
 
     delete[] resultsPtr;
+}
+
+// TEST COPYING
+TEST(REGEX_COPY, EXPRESSION_COPY) {
+    regex* expression = new regex("\\d+");
+    regex otherExpression = *expression;
+    delete expression;
+
+    EXPECT_TRUE(otherExpression.match("2"));
+}
+
+// TEST COPYING SUB_VALUES_TABLE
+TEST(REGEX_COPY, SUB_VALUES_TABLE_COPY) {
+    regex* expression = new regex("(?<number>\\d+)");
+
+    match_result result;
+    EXPECT_TRUE(expression->match("2", result));
+    delete expression;
+
+    EXPECT_EQ(result.get_search_offset(), 0);
+    EXPECT_EQ(result.get_result_value(), "2");
+    EXPECT_EQ(result.get_result_global_offset(), 0);
+    EXPECT_EQ(result.get_result_relative_offset(), 0);
+    EXPECT_EQ(result.get_sub_result_value("number"), "2");
+    EXPECT_EQ(result.get_sub_result_global_offset("number"), 0);
+    EXPECT_EQ(result.get_sub_result_relative_offset("number"), 0);
+    EXPECT_EQ(result.get_sub_result_in_result_offset("number"), 0);
+
+    EXPECT_EQ(result.get_sub_results().size(), 1);
+    EXPECT_EQ(result.get_sub_results_global_offsets().size(), 1);
+    EXPECT_EQ(result.get_sub_results_relative_offsets().size(), 1);
+    EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 1);
+    EXPECT_EQ(result.get_sub_results_values().size(), 1);
 }

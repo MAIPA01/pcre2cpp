@@ -21,51 +21,60 @@ namespace pcre2cpp {
 	class basic_regex {
 	private:
 		using _code_type = _pcre2_data<utf>::code_type;
+		using _code_ptr = std::shared_ptr<_code_type>;
 		using _match_data_type = _pcre2_data<utf>::match_data_type;
+		using _match_data_ptr = std::shared_ptr<_match_data_type>;
 		using _string_type = _pcre2_data<utf>::string_type;
 		using _string_char_type = _pcre2_data<utf>::string_char_type;
 		using _match_result_type = basic_match_result<utf>;
 		using _string_ptr_type = _pcre2_data<utf>::string_ptr_type;
+		using _named_sub_values_table = std::unordered_map<_string_type, size_t>;
+		using _named_sub_values_table_ptr = std::shared_ptr<_named_sub_values_table>;
 
-		size_t* _copies_num;
-		_code_type* _code;
-		_match_data_type* _match_data;
-		std::unordered_map<_string_type, size_t> _named_sub_values{};
+		_code_ptr _code = nullptr;
+		_match_data_ptr _match_data = nullptr;
+		_named_sub_values_table_ptr _named_sub_values = nullptr;
 
 	public:
 		constexpr basic_regex(const _string_char_type* pattern, size_t pattern_size,
 			regex_compile_options opts = regex_compile_options::NONE) {
-			_copies_num = new size_t(1);
 
+			// Compile Code
 			int error_code = 0;
 			size_t error_offset = 0;
-			_code = _pcre2_data<utf>::compile((_string_ptr_type)pattern,
+			_code_type* code = _pcre2_data<utf>::compile((_string_ptr_type)pattern,
 				pattern_size, (uint32_t)opts, &error_code, &error_offset, nullptr);
 
-			if (_code == nullptr) {
+			if (code == nullptr) {
 				throw basic_regex_exception<utf>(error_code, error_offset);
 			}
+			_code = std::shared_ptr<_code_type>(code, _pcre2_data<utf>::code_free);
+
+			// Get Named Sub Values
+			_named_sub_values = std::make_shared<_named_sub_values_table>();
 
 			size_t name_count = 0;
 			unsigned char* name_table = nullptr;
 			size_t name_entry_size = 0;
 
-			_pcre2_data<utf>::get_info(_code, PCRE2_INFO_NAMECOUNT, &name_count);
-			_pcre2_data<utf>::get_info(_code, PCRE2_INFO_NAMETABLE, &name_table);
-			_pcre2_data<utf>::get_info(_code, PCRE2_INFO_NAMEENTRYSIZE, &name_entry_size);
+			_pcre2_data<utf>::get_info(_code.get(), PCRE2_INFO_NAMECOUNT, &name_count);
+			_pcre2_data<utf>::get_info(_code.get(), PCRE2_INFO_NAMETABLE, &name_table);
+			_pcre2_data<utf>::get_info(_code.get(), PCRE2_INFO_NAMEENTRYSIZE, &name_entry_size);
 
 			for (size_t i = 0; i != name_count; ++i) {
 				unsigned char* entry = name_table + i * name_entry_size + 2;
-				int index = _pcre2_data<utf>::substring_number_from_name(_code, entry);
+				int index = _pcre2_data<utf>::substring_number_from_name(_code.get(), entry);
 
 				unsigned char* entry_end = entry + 1;
 				while (*entry_end != '\0' && entry_end - entry < name_entry_size - 3) {
 					entry_end += 1;
 				}
-				_named_sub_values[_string_type(entry, entry_end)] = ((size_t)index) - 1;
+				(*_named_sub_values)[_string_type(entry, entry_end)] = ((size_t)index) - 1;
 			}
 
-			_match_data = _pcre2_data<utf>::match_data_from_pattern(_code, nullptr);
+			// Create Match Data
+			_match_data_type* match_data = _pcre2_data<utf>::match_data_from_pattern(_code.get(), nullptr);
+			_match_data = std::shared_ptr<_match_data_type>(match_data, _pcre2_data<utf>::match_data_free);
 		}
 		constexpr basic_regex(const _string_type& pattern, 
 			regex_compile_options opts = regex_compile_options::NONE) 
@@ -74,44 +83,54 @@ namespace pcre2cpp {
 		constexpr basic_regex(const _string_char_type (&pattern)[N], 
 			regex_compile_options opts = regex_compile_options::NONE) 
 			: basic_regex(pattern, N - 1, opts) {}
-		constexpr basic_regex(const basic_regex<utf>& r) 
-			: _code(r._code), _match_data(r._match_data), _named_sub_values(r._named_sub_values),
-			_copies_num(r._copies_num) {
-			++(*_copies_num);
-		}
-		virtual ~basic_regex() {
-			--(*_copies_num);
-			if (*_copies_num == 0) {
-				_pcre2_data<utf>::match_data_free(_match_data);
-				_match_data = nullptr;
+		constexpr basic_regex(const basic_regex<utf>& r) noexcept = default;
+		virtual ~basic_regex() = default;
 
-				_pcre2_data<utf>::code_free(_code);
-				_code = nullptr;
-			}
+		constexpr basic_regex<utf>& operator=(const basic_regex<utf>& r) noexcept = default;
+
+#pragma region MATCH
+		constexpr bool match(const _string_char_type* text, size_t text_size,
+			regex_match_options opts, size_t offset = 0) const {
+			int match_code =
+				_pcre2_data<utf>::match(_code.get(), (_string_ptr_type)text,
+					text_size, offset, (uint32_t)opts, _match_data.get(), nullptr);
+
+			return match_code > 0 && match_code != PCRE2_ERROR_NOMATCH;
+		}
+		constexpr bool match(const _string_type& text, regex_match_options opts, size_t offset = 0) const {
+			return match(text.c_str(), text.length(), opts, offset);
+		}
+		template<size_t N>
+		constexpr bool match(const _string_char_type(&text)[N], regex_match_options opts, size_t offset = 0) const {
+			return match(text, N - 1, opts, offset);
 		}
 
-		constexpr basic_regex<utf>& operator=(const basic_regex<utf>& r) {
-			this->_code = r._code;
-			this->_match_data = r._match_data;
-			this->_named_sub_values = r._named_sub_values;
-			this->_copies_num = r._copies_num;
-			++(*_copies_num);
-			return *this;
+		constexpr bool match(const _string_char_type* text, size_t text_size, size_t offset = 0) const {
+			return match(text, text_size, regex_match_options::NONE, offset);
 		}
+		constexpr bool match(const _string_type& text, size_t offset = 0) const {
+			return match(text.c_str(), text.length(), offset);
+		}
+		template<size_t N>
+		constexpr bool match(const _string_char_type(&text)[N], size_t offset = 0) const {
+			return match(text, N - 1, offset);
+		}
+
+#pragma endregion MATCH
 
 #pragma region MATCH_WITH_RESULT
 		constexpr bool match(const _string_char_type* text, size_t text_size,
 			_match_result_type& result, regex_match_options opts, size_t offset = 0) const {
 			int match_code =
-				_pcre2_data<utf>::match(_code, (_string_ptr_type)text,
-					text_size, offset, (uint32_t)opts, _match_data, nullptr);
+				_pcre2_data<utf>::match(_code.get(), (_string_ptr_type)text,
+					text_size, offset, (uint32_t)opts, _match_data.get(), nullptr);
 
 			if (match_code > 0 && match_code != PCRE2_ERROR_NOMATCH) {
-				size_t* ovector = _pcre2_data<utf>::get_ovector_ptr(_match_data);
+				size_t* ovector = _pcre2_data<utf>::get_ovector_ptr(_match_data.get());
 				std::pair<size_t, _string_type> value = { ovector[0] - offset,
 					_string_type(text + ovector[0], ovector[1] - ovector[0]) };
 
-				size_t ovectors_count = _pcre2_data<utf>::get_ovector_count(_match_data);
+				size_t ovectors_count = _pcre2_data<utf>::get_ovector_count(_match_data.get());
 				std::vector<std::pair<size_t, _string_type>> sub_values;
 				for (size_t i = 1; i != ovectors_count; ++i) {
 					sub_values.push_back({
@@ -150,35 +169,19 @@ namespace pcre2cpp {
 		}
 #pragma endregion MATCH_WITH_RESULT
 
-#pragma region MATCH
-		constexpr bool match(const _string_char_type* text, size_t text_size,
-			regex_match_options opts, size_t offset = 0) const {
-			int match_code =
-				_pcre2_data<utf>::match(_code, (_string_ptr_type)text,
-					text_size, offset, (uint32_t)opts, _match_data, nullptr);
-
-			return match_code > 0 && match_code != PCRE2_ERROR_NOMATCH;
+#pragma region MATCH_AT
+		constexpr bool match_at(const _string_char_type* text, size_t text_size, size_t offset = 0) const {
+			_match_result_type result;
+			return match_at(text, text_size, result, offset);
 		}
-		constexpr bool match(const _string_type& text, regex_match_options opts, size_t offset = 0) const {
-			return match(text.c_str(), text.length(), opts, offset);
+		constexpr bool match_at(const _string_type& text, size_t offset = 0) const {
+			return match_at(text.c_str(), text.length(), offset);
 		}
 		template<size_t N>
-		constexpr bool match(const _string_char_type(&text)[N], regex_match_options opts, size_t offset = 0) const {
-			return match(text, N - 1, opts, offset);
+		constexpr bool match_at(const _string_char_type(&text)[N], size_t offset = 0) const {
+			return match_at(text, N - 1, offset);
 		}
-
-		constexpr bool match(const _string_char_type* text, size_t text_size, size_t offset = 0) const {
-			return match(text, text_size, regex_match_options::NONE, offset);
-		}
-		constexpr bool match(const _string_type& text, size_t offset = 0) const {
-			return match(text.c_str(), text.length(), offset);
-		}
-		template<size_t N>
-		constexpr bool match(const _string_char_type(&text)[N], size_t offset = 0) const {
-			return match(text, N - 1, offset);
-		}
-
-#pragma endregion MATCH
+#pragma endregion MATCH_AT
 
 #pragma region MATCH_AT_WITH_RESULT
 		constexpr bool match_at(const _string_char_type* text, size_t text_size,
@@ -202,20 +205,6 @@ namespace pcre2cpp {
 		}
 #pragma endregion MATCH_AT_WITH_RESULT
 
-#pragma region MATCH_AT
-		constexpr bool match_at(const _string_char_type* text, size_t text_size, size_t offset = 0) const {
-			_match_result_type result;
-			return match_at(text, text_size, result, offset);
-		}
-		constexpr bool match_at(const _string_type& text, size_t offset = 0) const {
-			return match_at(text.c_str(), text.length(), offset);
-		}
-		template<size_t N>
-		constexpr bool match_at(const _string_char_type(&text)[N], size_t offset = 0) const {
-			return match_at(text, N - 1, offset);
-		}
-#pragma endregion MATCH_AT
-
 #pragma region MATCH_ALL_WITH_RESULT
 		constexpr bool match_all(const _string_char_type* text, size_t text_size, std::vector<_match_result_type>& results, size_t offset = 0) const {
 			std::vector<_match_result_type> temp_results;
@@ -223,7 +212,7 @@ namespace pcre2cpp {
 			size_t start_offset = offset;
 			_match_result_type result;
 			while (match(text + offset, text_size - offset, result)) {
-				temp_results.push_back(_match_result_type(start_offset, { offset + result.get_result_relative_offset(), result.get_result_value() }, 
+				temp_results.push_back(_match_result_type(start_offset, std::make_pair(offset + result.get_result_relative_offset(), result.get_result_value()), 
 					result.get_sub_results(), _named_sub_values));
 				offset += result.get_result_relative_offset() + result.get_result_value().length();
 			}

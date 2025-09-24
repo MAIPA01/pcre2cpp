@@ -20,3 +20,4 @@
 #include <vector>
 #include <unordered_map>
 #include <variant>
+#include <memory>

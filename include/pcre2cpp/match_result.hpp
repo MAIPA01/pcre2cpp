@@ -24,21 +24,23 @@ namespace pcre2cpp {
 		using _string_type = _pcre2_data<utf>::string_type;
 		using _match_value = std::pair<size_t, _string_type>;
 		using _match_result_exception = basic_match_result_exception<utf>;
+		using _named_sub_values_table = std::unordered_map<_string_type, size_t>;
+		using _named_sub_values_table_ptr = std::shared_ptr<_named_sub_values_table>;
 
 		struct _value_result_data {
 			bool found = false;
 			size_t search_offset = 0;
 			_match_value result = { 0, _string_type() };
 			std::vector<_match_value> sub_results = {};
-			std::unordered_map<_string_type, size_t> named_sub_values = {};
+			_named_sub_values_table_ptr named_sub_values = {};
 		};
 
 		std::variant<int, _value_result_data> _data = _value_result_data();
 
 		constexpr size_t _get_named_sub_result_idx(const _string_type& name) const {
 			auto& named_sub_values = std::get<_value_result_data>(_data).named_sub_values;
-			auto itr = named_sub_values.find(name);
-			if (itr == named_sub_values.end()) {
+			auto itr = named_sub_values->find(name);
+			if (itr == named_sub_values->end()) {
 				_string_type message = "Subexpression with provided name '";
 				message += name;
 				message += "' not found";
@@ -59,21 +61,16 @@ namespace pcre2cpp {
 		constexpr basic_match_result(int error_code) noexcept
 			: _data(error_code) {}
 		constexpr basic_match_result(const size_t& search_offset, 
-			const std::unordered_map<_string_type, size_t> named_sub_values) noexcept 
+			const _named_sub_values_table_ptr& named_sub_values) noexcept
 			: _data(_value_result_data{ false, search_offset, { 0, _string_type() }, {}, named_sub_values }) {}
 		constexpr basic_match_result(const size_t& search_offset, const _match_value& result, 
 			const std::vector<_match_value>& sub_results, 
-			const std::unordered_map<_string_type, size_t> named_sub_values) noexcept
+			const _named_sub_values_table_ptr& named_sub_values) noexcept
 			: _data(_value_result_data{ true, search_offset, result, sub_results, named_sub_values }) { }
-		constexpr basic_match_result(const basic_match_result<utf>& mr) noexcept
-			: _data(mr._data) {
-		}
+		constexpr basic_match_result(const basic_match_result<utf>& mr) noexcept = default;
 		~basic_match_result() = default;
 
-		constexpr basic_match_result<utf>& operator=(const basic_match_result<utf>& mr) noexcept {
-			this->_data = mr._data;
-			return *this;
-		}
+		constexpr basic_match_result<utf>& operator=(const basic_match_result<utf>& mr) noexcept = default;
 
 #pragma region ERRORS
 		constexpr bool has_error() const noexcept { return std::holds_alternative<int>(_data); }
@@ -165,7 +162,7 @@ namespace pcre2cpp {
 
 			std::vector<size_t> offsets;
 			offsets.reserve(value.sub_results.size());
-			for (const auto& [offset, value] : value.sub_results) {
+			for (const auto& [offset, subvalue] : value.sub_results) {
 				offsets.push_back(value.search_offset + value.result.first + offset);
 			}
 			return offsets;
@@ -177,7 +174,7 @@ namespace pcre2cpp {
 
 			std::vector<size_t> offsets;
 			offsets.reserve(value.sub_results.size());
-			for (const auto& [offset, value] : value.sub_results) {
+			for (const auto& [offset, subvalue] : value.sub_results) {
 				offsets.push_back(value.result.first + offset);
 			}
 			return offsets;
@@ -189,7 +186,7 @@ namespace pcre2cpp {
 
 			std::vector<size_t> offsets;
 			offsets.reserve(sub_results.size());
-			for (const auto& [offset, value] : sub_results) {
+			for (const auto& [offset, subvalue] : sub_results) {
 				offsets.push_back(offset);
 			}
 			return offsets;
@@ -212,8 +209,8 @@ namespace pcre2cpp {
 
 			std::vector<_string_type> values;
 			values.reserve(sub_results.size());
-			for (const auto& [offset, value] : sub_results) {
-				values.push_back(value);
+			for (const auto& [offset, subvalue] : sub_results) {
+				values.push_back(subvalue);
 			}
 			return values;
 		}
