@@ -50,11 +50,11 @@ namespace pcre2cpp {
 
 	using regex_compile_options = uint32_t;
 
-	constexpr static regex_compile_options operator| (const regex_compile_options_bits& opt0, const regex_compile_options_bits& opt1) {
+	constexpr static regex_compile_options operator| (const regex_compile_options_bits& opt0, const regex_compile_options_bits& opt1) noexcept {
 		return static_cast<regex_compile_options>(static_cast<uint32_t>(opt0) | static_cast<uint32_t>(opt1));
 	}
 
-	constexpr static regex_compile_options operator| (const regex_compile_options& opts, const regex_compile_options_bits& opt) {
+	constexpr static regex_compile_options operator| (const regex_compile_options& opts, const regex_compile_options_bits& opt) noexcept {
 		return static_cast<regex_compile_options>(opts | static_cast<uint32_t>(opt));
 	}
 }

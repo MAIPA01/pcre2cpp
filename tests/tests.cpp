@@ -1,3 +1,4 @@
+//#define PCRE2CPP_NO_EXCEPTIONS
 #include <pcre2cpp/pcre2cpp.hpp>
 #include <gtest/gtest.h>
 
@@ -52,8 +53,8 @@ TEST(MATCH_TESTS, MATCH_AT_SPECIFIED_OFFSET_WITH_RESULT) {
     EXPECT_FALSE(expression.match_at("aa2", 3, result, 1));
     EXPECT_EQ(result.get_search_offset(), 1);
     EXPECT_EQ(result.get_result_value(), "");
-    EXPECT_EQ(result.get_result_global_offset(), 0);
-    EXPECT_EQ(result.get_result_relative_offset(), 0);
+    EXPECT_EQ(result.get_result_global_offset(), match_result::bad_offset);
+    EXPECT_EQ(result.get_result_relative_offset(), match_result::bad_offset);
 }
 
 // MATCHES AND TRIES TO GET RESULTS FROM SUBEXPRESSION

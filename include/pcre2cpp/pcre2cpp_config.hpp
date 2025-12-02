@@ -16,8 +16,8 @@
 
 #pragma region VERSION
 #define PCRE2CPP_VERSION_MAJOR 1
-#define PCRE2CPP_VERSION_MINOR 1
-#define PCRE2CPP_VERSION_PATCH 2
+#define PCRE2CPP_VERSION_MINOR 2
+#define PCRE2CPP_VERSION_PATCH 0
 
 #define _PCRE2CPP_STRINGIFY_HELPER(x) #x
 
@@ -36,7 +36,7 @@
 #pragma endregion VERSION
 
 #pragma region LAST_UPDATE
-#define PCRE2CPP_LAST_UPDATE_DAY 02
+#define PCRE2CPP_LAST_UPDATE_DAY 03
 #define PCRE2CPP_LAST_UPDATE_MONTH 12
 #define PCRE2CPP_LAST_UPDATE_YEAR 2025
 
@@ -48,3 +48,13 @@
 																	PCRE2CPP_LAST_UPDATE_MONTH, \
 																	PCRE2CPP_LAST_UPDATE_YEAR)
 #pragma endregion LAST_UPDATE
+
+#pragma region CPP_FLAGS
+
+#ifdef PCRE2CPP_NO_EXCEPTIONS
+	#define PCRE2CPP_NOEXCEPT noexcept
+#else
+	#define PCRE2CPP_NOEXCEPT
+#endif
+
+#pragma endregion

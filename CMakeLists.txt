@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.16)
-project(pcre2cpp VERSION 1.1.2 LANGUAGES CXX)
+project(pcre2cpp VERSION 1.2.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-option(BUILD_PCRE2CPP_TESTS "Build pcre2cpp tests" OFF)
+option(BUILD_PCRE2CPP_TESTS         "Build pcre2cpp tests"          OFF)
+option(PCRE2CPP_ENABLE_EXCEPTIONS   "Enable Exceptions in pcre2cpp" ON )
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/third_party.cmake)
 
@@ -42,6 +43,10 @@ if(MSVC)
 	target_compile_options(${PROJECT_NAME} INTERFACE /Zc:preprocessor)
 else()
 	#target_compile_options(${PROJECT_NAME} INTERFACE -Wall -Wextra -Wpendantic -Werror)
+endif()
+
+if(NOT PCRE2CPP_ENABLE_EXCEPTIONS)
+    target_compile_definitions(${PROJECT_NAME} INTERFACE PCRE2CPP_NO_EXCEPTIONS)
 endif()
 
 # Optimizations

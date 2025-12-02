@@ -33,11 +33,11 @@ namespace pcre2cpp {
 
 	using regex_match_options = uint32_t;
 
-	constexpr static regex_match_options operator| (const regex_match_options_bits& opt0, const regex_match_options_bits& opt1) {
+	constexpr static regex_match_options operator| (const regex_match_options_bits& opt0, const regex_match_options_bits& opt1) noexcept {
 		return static_cast<regex_match_options>(static_cast<uint32_t>(opt0) | static_cast<uint32_t>(opt1));
 	}
 
-	constexpr static regex_match_options operator| (const regex_match_options& opts, const regex_match_options_bits& opt) {
+	constexpr static regex_match_options operator| (const regex_match_options& opts, const regex_match_options_bits& opt) noexcept {
 		return static_cast<regex_match_options>(opts | static_cast<uint32_t>(opt));
 	}
 }
