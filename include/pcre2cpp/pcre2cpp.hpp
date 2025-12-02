@@ -17,6 +17,8 @@
 #include "pcre2cpp_libs.hpp"
 #include "pcre2cpp_types.hpp"
 #include "pcre2_data.hpp"
+#include "regex_compile_options.hpp"
+#include "regex_match_options.hpp"
 #include "pcre2cpp_exceptions.hpp"
 #include "match_result.hpp"
 #include "regex.hpp"

@@ -15,6 +15,8 @@
 #pragma once
 #include "pcre2cpp_types.hpp"
 #include "pcre2_data.hpp"
+#include "regex_compile_options.hpp"
+#include "regex_match_options.hpp"
 
 namespace pcre2cpp {
 	template<size_t utf>
@@ -36,14 +38,14 @@ namespace pcre2cpp {
 		_named_sub_values_table_ptr _named_sub_values = nullptr;
 
 	public:
-		constexpr basic_regex(const _string_char_type* pattern, size_t pattern_size,
-			regex_compile_options opts = regex_compile_options::NONE) {
+		constexpr explicit basic_regex(const _string_char_type* pattern, size_t pattern_size,
+			regex_compile_options opts = static_cast<regex_compile_options>(regex_compile_options_bits::NONE)) {
 
 			// Compile Code
 			int error_code = 0;
 			size_t error_offset = 0;
-			_code_type* code = _pcre2_data<utf>::compile((_string_ptr_type)pattern,
-				pattern_size, (uint32_t)opts, &error_code, &error_offset, nullptr);
+			_code_type* code = _pcre2_data<utf>::compile(reinterpret_cast<_string_ptr_type>(pattern),
+				pattern_size, opts, &error_code, &error_offset, nullptr);
 
 			if (code == nullptr) {
 				throw basic_regex_exception<utf>(error_code, error_offset);
@@ -69,61 +71,49 @@ namespace pcre2cpp {
 				while (*entry_end != '\0' && entry_end - entry < name_entry_size - 3) {
 					entry_end += 1;
 				}
-				(*_named_sub_values)[_string_type(entry, entry_end)] = ((size_t)index) - 1;
+				(*_named_sub_values)[_string_type(entry, entry_end)] = static_cast<size_t>(index) - 1;
 			}
 
 			// Create Match Data
 			_match_data_type* match_data = _pcre2_data<utf>::match_data_from_pattern(_code.get(), nullptr);
 			_match_data = std::shared_ptr<_match_data_type>(match_data, _pcre2_data<utf>::match_data_free);
 		}
-		constexpr basic_regex(const _string_type& pattern, 
-			regex_compile_options opts = regex_compile_options::NONE) 
+		constexpr explicit basic_regex(const _string_type& pattern, 
+			regex_compile_options opts = static_cast<regex_compile_options>(regex_compile_options_bits::NONE))
 			: basic_regex(pattern.c_str(), pattern.length(), opts) {}
 		template<size_t N>
-		constexpr basic_regex(const _string_char_type (&pattern)[N], 
-			regex_compile_options opts = regex_compile_options::NONE) 
+		constexpr explicit basic_regex(const _string_char_type(&pattern)[N],
+			regex_compile_options opts = static_cast<regex_compile_options>(regex_compile_options_bits::NONE))
 			: basic_regex(pattern, N - 1, opts) {}
+
 		constexpr basic_regex(const basic_regex<utf>& r) noexcept = default;
+		
 		virtual ~basic_regex() = default;
 
 		constexpr basic_regex<utf>& operator=(const basic_regex<utf>& r) noexcept = default;
 
 #pragma region MATCH
-		constexpr bool match(const _string_char_type* text, size_t text_size,
-			regex_match_options opts, size_t offset = 0) const {
+		constexpr bool match(const _string_char_type* text, size_t text_size, size_t offset = 0,
+			regex_match_options opts = static_cast<regex_match_options>(regex_match_options_bits::NONE)) const {
 			int match_code =
-				_pcre2_data<utf>::match(_code.get(), (_string_ptr_type)text,
-					text_size, offset, (uint32_t)opts, _match_data.get(), nullptr);
+				_pcre2_data<utf>::match(_code.get(), reinterpret_cast<_string_ptr_type>(text),
+					text_size, offset, opts, _match_data.get(), nullptr);
 
 			return match_code > 0 && match_code != PCRE2_ERROR_NOMATCH;
 		}
-		constexpr bool match(const _string_type& text, regex_match_options opts, size_t offset = 0) const {
-			return match(text.c_str(), text.length(), opts, offset);
+		constexpr bool match(const _string_type& text, size_t offset = 0, 
+			regex_match_options opts = static_cast<regex_match_options>(regex_match_options_bits::NONE)) const {
+			return match(text.c_str(), text.length(), offset, opts);
 		}
-		template<size_t N>
-		constexpr bool match(const _string_char_type(&text)[N], regex_match_options opts, size_t offset = 0) const {
-			return match(text, N - 1, opts, offset);
-		}
-
-		constexpr bool match(const _string_char_type* text, size_t text_size, size_t offset = 0) const {
-			return match(text, text_size, regex_match_options::NONE, offset);
-		}
-		constexpr bool match(const _string_type& text, size_t offset = 0) const {
-			return match(text.c_str(), text.length(), offset);
-		}
-		template<size_t N>
-		constexpr bool match(const _string_char_type(&text)[N], size_t offset = 0) const {
-			return match(text, N - 1, offset);
-		}
-
 #pragma endregion MATCH
 
 #pragma region MATCH_WITH_RESULT
 		constexpr bool match(const _string_char_type* text, size_t text_size,
-			_match_result_type& result, regex_match_options opts, size_t offset = 0) const {
+			_match_result_type& result, size_t offset = 0, 
+			regex_match_options opts = static_cast<regex_match_options>(regex_match_options_bits::NONE)) const {
 			int match_code =
-				_pcre2_data<utf>::match(_code.get(), (_string_ptr_type)text,
-					text_size, offset, (uint32_t)opts, _match_data.get(), nullptr);
+				_pcre2_data<utf>::match(_code.get(), reinterpret_cast<_string_ptr_type>(text),
+					text_size, offset, static_cast<uint32_t>(opts), _match_data.get(), nullptr);
 
 			if (match_code > 0 && match_code != PCRE2_ERROR_NOMATCH) {
 				size_t* ovector = _pcre2_data<utf>::get_ovector_ptr(_match_data.get());
@@ -147,25 +137,8 @@ namespace pcre2cpp {
 			return false;
 		}
 		constexpr bool match(const _string_type& text, _match_result_type& result, 
-			regex_match_options opts, size_t offset = 0) const {
-			return match(text.c_str(), text.length(), result, opts, offset);
-		}
-		template<size_t N>
-		constexpr bool match(const _string_char_type (&text)[N], _match_result_type& result,
-			regex_match_options opts, size_t offset = 0) const {
-			return match(text, N - 1, result, opts, offset);
-		}
-
-		constexpr bool match(const _string_char_type* text, size_t text_size,
-			_match_result_type& result, size_t offset = 0) const {
-			return match(text, text_size, result, regex_match_options::NONE, offset);
-		}
-		constexpr bool match(const _string_type& text, _match_result_type& result, size_t offset = 0) const {
-			return match(text.c_str(), text.length(), result, offset);
-		}
-		template<size_t N>
-		constexpr bool match(const _string_char_type(&text)[N], _match_result_type& result, size_t offset = 0) const {
-			return match(text, N - 1, result, offset);
+			size_t offset = 0, regex_match_options opts = static_cast<regex_match_options>(regex_match_options_bits::NONE)) const {
+			return match(text.c_str(), text.length(), result, offset, opts);
 		}
 #pragma endregion MATCH_WITH_RESULT
 
@@ -176,10 +149,6 @@ namespace pcre2cpp {
 		}
 		constexpr bool match_at(const _string_type& text, size_t offset = 0) const {
 			return match_at(text.c_str(), text.length(), offset);
-		}
-		template<size_t N>
-		constexpr bool match_at(const _string_char_type(&text)[N], size_t offset = 0) const {
-			return match_at(text, N - 1, offset);
 		}
 #pragma endregion MATCH_AT
 
@@ -198,10 +167,6 @@ namespace pcre2cpp {
 		}
 		constexpr bool match_at(const _string_type& text, _match_result_type& result, size_t offset = 0) const {
 			return match_at(text.c_str(), text.length(), result, offset);
-		}
-		template<size_t N>
-		constexpr bool match_at(const _string_char_type(&text)[N], _match_result_type& result, size_t offset = 0) const {
-			return match_at(text, N - 1, result, offset);
 		}
 #pragma endregion MATCH_AT_WITH_RESULT
 
@@ -224,10 +189,6 @@ namespace pcre2cpp {
 		constexpr bool match_all(const _string_type& text, std::vector<_match_result_type>& results, size_t offset = 0) const {
 			return match_all(text.c_str(), text.length(), results, offset);
 		}
-		template<size_t N>
-		constexpr bool match_all(const _string_char_type(&text)[N], std::vector<_match_result_type>& results, size_t offset = 0) const {
-			return match_all(text, N - 1, results, offset);
-		}
 
 		constexpr bool match_all(const _string_char_type* text, size_t text_size, _match_result_type*& results, size_t& results_count, size_t offset = 0) const {
 			std::vector<_match_result_type> temp_results;
@@ -243,10 +204,6 @@ namespace pcre2cpp {
 		}
 		constexpr bool match_all(const _string_type& text, _match_result_type*& results, size_t& results_count, size_t offset = 0) const {
 			return match_all(text.c_str(), text.length(), results, results_count, offset);
-		}
-		template<size_t N>
-		constexpr bool match_all(const _string_char_type(&text)[N], _match_result_type*& results, size_t& results_count, size_t offset = 0) const {
-			return match_all(text, N - 1, results, results_count, offset);
 		}
 #pragma endregion MATCH_ALL_WITH_RESULT
 	};
