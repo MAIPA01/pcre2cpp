@@ -23,18 +23,36 @@ message(STATUS "Include CPM.cmake from ${CPM_DOWNLOAD_LOCATION}")
 include(${CPM_DOWNLOAD_LOCATION})
 
 # Add pcre2 library
-set(PCRE2_BUILD_PCRE2_8 ON)
-set(PCRE2_BUILD_PCRE2_16 ON)
-set(PCRE2_BUILD_PCRE2_32 ON)
-CPMAddPackage("gh:PCRE2Project/pcre2#pcre2-10.44")
-
-if(pcre2_ADDED)
-    message(STATUS "CMake added local pcre2: ${PCRE2_SOURCE_DIR}")
+if (NOT ${PCRE2CPP_USE_EXTERNAL_PCRE2})
+    CPMAddPackage(
+            URI "gh:PCRE2Project/pcre2#pcre2-10.44"
+            OPTIONS "PCRE2_BUILD_PCRE2_8 ON"
+                    "PCRE2_BUILD_PCRE2_16 ON"
+                    "PCRE2_BUILD_PCRE2_32 ON"
+                    "PCRE2_BUILD_TESTS OFF"
+                    "PCRE2_BUILD_PCRE2GREP OFF"
+                    "PCRE2_SUPPORT_UNICODE ON"
+    )
+else()
+    set(PCRE2_BUILD_PCRE2_8 ON)
+    set(PCRE2_BUILD_PCRE2_16 ON)
+    set(PCRE2_BUILD_PCRE2_32 ON)
+    set(PCRE2_BUILD_TESTS OFF)
+    set(PCRE2_BUILD_PCRE2GREP OFF)
+    set(PCRE2_SUPPORT_UNICODE ON)
 endif()
 
-if(BUILD_PCRE2CPP_TESTS)
-    CPMAddPackage("gh:google/googletest#release-1.11.0")
-    if(googletest_ADDED)
-        message(STATUS "Cmake added local googletest: ${googletest_SOURCE_DIR}")
-    endif()
+set(PCRE2_NEWLINE "ANY")
+
+if (NOT ${PCRE2CPP_USE_EXTERNAL_MSTD})
+    CPMAddPackage(
+            URI "gh:maipa01/mstd#v1.5.0"
+            OPTIONS "MSTD_ENABLE_CXX20 ${PCRE2CPP_ENABLE_CXX20}"
+    )
+else()
+    set(MSTD_ENABLE_CXX20 ${PCRE2CPP_ENABLE_CXX20})
+endif()
+
+if(PCRE2CPP_BUILD_TESTS OR PCRE2CPP_BUILD_COVERAGE)
+    CPMAddPackage("gh:google/googletest#v1.17.0")
 endif()

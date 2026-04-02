@@ -5,7 +5,7 @@
 ## Features
 
 - Object-oriented interface to PCRE2 10.44.
-- Compatible with C++20.
+- Compatible with C++17 and C++20.
 - Easy to use regular expression matching with built-in result capturing.
 
 ## Installation
@@ -219,7 +219,7 @@ int main() {
 
 ## Requirements
 
-- C++20 or newer.
+- C++17 or newer.
 
 ## License
 

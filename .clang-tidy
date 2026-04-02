@@ -1,0 +1,71 @@
+---
+Checks: >
+   '-*,
+   #bugprone-*,
+   #cert-*,
+   #cppcoreguidelines-*,
+   #modernize-*,
+   #google-default-arguments,
+   #google-runtime-operator,
+   #hicpp-exception-baseclass,
+   #hicpp-multiway-paths-covered,
+   #misc-misplaced-const,
+   #misc-new-delete-overloads,
+   #misc-non-copyable-objects,
+   #misc-throw-by-value-catch-by-reference,
+   #misc-unconventional-assign-operator,
+   #misc-uniqueptr-reset-release,
+   #mpi-buffer-deref,
+   #mpi-type-mismatch,
+   #openmp-use-default-none,
+   #performance-*,
+   #portability-simd-intrinsics,
+   readability-*,
+   -readability-uppercase-literal-suffix,
+   -readability-braces-around-statements,
+   -readability-named-parameter
+
+CheckOptions:
+    # --- Classes, unions, enums, types ---
+    readability-identifier-naming.ClassCase:              lower_case
+    readability-identifier-naming.StructCase:             lower_case
+    readability-identifier-naming.UnionCase:              lower_case
+    readability-identifier-naming.EnumCase:               CamelCase
+    readability-identifier-naming.EnumPrefix:             ''
+    readability-identifier-naming.TypedefCase:            lower_case
+    readability-identifier-naming.ConceptCase:            lower_case
+    readability-identifier-naming.TemplateParameterCase:  CamelCase
+    readability-identifier-naming.NamespaceCase:          lower_case
+
+    # --- Variables ---
+    readability-identifier-naming.LocalVariableCase:      camelBack
+    readability-identifier-naming.GlobalVariableCase:     lower_case
+    readability-identifier-naming.ParameterCase:          camelBack
+    readability-identifier-naming.ConstantCase:           camelBack
+    readability-identifier-naming.VariableCase:           camelBack
+
+    # --- Class and struct fields ---
+    readability-identifier-naming.PublicMemberCase:       camelBack
+    readability-identifier-naming.PrivateMemberCase:      camelBack
+    readability-identifier-naming.ProtectedMemberCase:    camelBack
+    readability-identifier-naming.PrivateMemberPrefix:    '_'
+    readability-identifier-naming.PrivateMethodPrefix:    '_'
+    readability-identifier-naming.ProtectedMemberPrefix:    '_'
+    readability-identifier-naming.ProtectedMethodPrefix:    '_'
+
+    # --- Functions and methods ---
+    readability-identifier-naming.MethodCase:             lower_case
+    readability-identifier-naming.FunctionCase:           lower_case
+
+    # --- Constants, macros, enumerators ---
+    readability-identifier-naming.EnumConstantCase:       CamelCase
+    readability-identifier-naming.StaticConstantCase:     lower_case
+    readability-identifier-naming.StaticConstexprVariableCase:     lower_case
+    readability-identifier-naming.ConstexprVariableCase:  lower_case
+    readability-identifier-naming.MacroDefinitionCase:    UPPER_CASE
+    readability-identifier-naming.MacroDefinitionIgnoredRegexp:   '^_?[A-Z][A-Z0-9_]*_?$'
+
+  # --- Min identifier length ---
+    readability-identifier-length.MinimumLoopCounterNameLength: 1
+    readability-identifier-length.MinimumVariableNameLength: 1
+    readability-identifier-length.MinimumParameterNameLength: 1

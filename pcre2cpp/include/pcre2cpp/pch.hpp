@@ -12,12 +12,16 @@
  * See the LICENSE_PCRE2 file for details: https://github.com/MAIPA01/pcre2cpp/blob/main/LICENSE_PCRE2
  */
 
-#pragma once
-#define PCRE2_CODE_UNIT_WIDTH 0
-#include <pcre2.h>
-#include <string>
-#include <stdexcept>
-#include <vector>
-#include <unordered_map>
-#include <variant>
-#include <memory>
+#ifndef _PCRE2CPP_PCH_HPP_
+#define _PCRE2CPP_PCH_HPP_
+
+#include <pcre2cpp/config.hpp>
+
+#if !_PCRE2CPP_HAS_CXX17
+_PCRE2CPP_ERROR("This is only available for c++17 and greater!");
+#else
+
+	#include <pcre2cpp/libs.hpp>
+
+#endif
+#endif

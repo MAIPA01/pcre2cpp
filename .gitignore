@@ -412,3 +412,5 @@ _deps
 CMakeUserPresets.json
 out
 third_party
+/.idea
+/build
