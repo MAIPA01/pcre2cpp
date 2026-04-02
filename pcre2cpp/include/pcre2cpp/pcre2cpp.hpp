@@ -22,7 +22,6 @@
 _PCRE2CPP_ERROR("This is only available for c++17 and greater!");
 	#else
 
-		#include <pcre2cpp/config.hpp>
 		#include <pcre2cpp/exceptions/exceptions.hpp>
 		#include <pcre2cpp/libs.hpp>
 		#include <pcre2cpp/match/match_result.hpp>

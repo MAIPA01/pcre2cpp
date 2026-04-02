@@ -1,3 +1,3 @@
 @echo off
-cd .\build\x64-debug-cpp20\_deps\pcre2-build
-lib.exe /OUT:.\..\..\..\..\..\pcre2cpp.lib pcre2-8-staticd.lib pcre2-16-staticd.lib pcre2-32-staticd.lib
+cd .\build\x64-debug-cpp17\_deps
+lib.exe /OUT:.\..\..\..\..\pcre2cpp\pcre2cpp.lib pcre2-build\pcre2-8d.lib pcre2-build\pcre2-16d.lib pcre2-build\pcre2-32d.lib fmt-build\fmtd.lib
