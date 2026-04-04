@@ -26,23 +26,23 @@ def process_file(file_path, base_dir, processed_files, system_includes, file_con
             
             # Dyrektywy #include
             if line_stripped.startswith('#include'):
-                # Sprawdzanie, czy to nagłówek systemowy
-                match_system = re.match(r'#include\s*<(.+)>', line_stripped)
-                if match_system:
-                    system_includes.add(line_stripped)
                 # Sprawdzanie, czy to nagłówek projektowy
+                match_project = re.match(r'#include\s*<pcre2cpp[/\\](.*)>', line_stripped)
+                if match_project:
+                    included_file = match_project.group(1)
+                    # Tworzenie pełnej ścieżki do dołączonego pliku
+                    included_path = os.path.normpath(os.path.join(os.path.dirname(file_path), included_file))
+                    if os.path.exists(included_path):
+                        # Rekurencyjne przetwarzanie
+                        process_file(included_path, base_dir, processed_files, system_includes, file_content_list)
+                    else:
+                        # Jeśli nie ma pliku w projekcie, dodaj dyrektywę
+                        content_without_directives.append(line)
                 else:
-                    match_project = re.match(r'#include\s*"(.*)"', line_stripped)
-                    if match_project:
-                        included_file = match_project.group(1)
-                        # Tworzenie pełnej ścieżki do dołączonego pliku
-                        included_path = os.path.normpath(os.path.join(os.path.dirname(file_path), included_file))
-                        if os.path.exists(included_path):
-                            # Rekurencyjne przetwarzanie
-                            process_file(included_path, base_dir, processed_files, system_includes, file_content_list)
-                        else:
-                            # Jeśli nie ma pliku w projekcie, dodaj dyrektywę
-                            content_without_directives.append(line)
+                    # Sprawdzanie, czy to nagłówek systemowy
+                    match_system = re.match(r'#include\s*<(.+)>', line_stripped)
+                    if match_system:
+                        system_includes.add(line_stripped)
             # Ignorowanie #pragma once
             elif line_stripped.startswith('#pragma once'):
                 continue
@@ -90,9 +90,10 @@ if __name__ == "__main__":
             
             # Dodaj zawartość scalonych plików
             for rel_path, content in file_content_list:
-                outfile.write(f'#pragma region {rel_path}\n')
+                region_name = rel_path.replace("\\", "_").replace("/", "_")
+                outfile.write(f'#pragma region {region_name}\n')
                 outfile.write(content)
-                outfile.write(f'\n#pragma endregion // {rel_path}\n\n')
+                outfile.write(f'\n#pragma endregion // {region_name}\n\n')
 
         print(f'\nSukces! Plik "{args.input_file}" został scalony do "{args.output_file}".')
     except Exception as e:

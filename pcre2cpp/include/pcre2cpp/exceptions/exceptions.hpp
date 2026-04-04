@@ -36,9 +36,9 @@ namespace pcre2cpp {
 		using _uchar_type	= typename _pcre2_data_t::uchar_type;
 		using _char_type	= typename _pcre2_data_t::string_char_type;
 
-		_uchar_type error_message[256];
-			if (const int size = _pcre2_data_t::get_error_message(error_code, error_message, 256); size != PCRE2_ERROR_BADDATA) {
-				return _string_type(reinterpret_cast<_char_type*>(error_message), 256);
+		_uchar_type error_message[120];
+			if (const int size = _pcre2_data_t::get_error_message(error_code, error_message, 120); size != PCRE2_ERROR_BADDATA) {
+				return _string_type(reinterpret_cast<_char_type*>(error_message), 120);
 			}
 		return _string_type();
 	}

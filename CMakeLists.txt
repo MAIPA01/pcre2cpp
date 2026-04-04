@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(pcre2cpp VERSION 1.2.1 LANGUAGES CXX)
+project(pcre2cpp VERSION 1.2.2 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS 					"Build shared library" 			OFF)
 option(PCRE2CPP_BUILD_TESTS 				"Build tests"			 		OFF)

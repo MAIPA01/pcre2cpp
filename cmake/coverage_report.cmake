@@ -82,7 +82,7 @@ function(setup_coverage_report)
         # GET BINARY_DIR OF TARGET
         get_target_property(TARGET_BINARY_DIR ${TARGET_NAME} BINARY_DIR)
         # GET EXE FILE
-        set(EXE_FILE "${TARGET_BINARY_DIR}/${TARGET_NAME}.exe")
+        set(EXE_FILE "$<TARGET_FILE:${TARGET_NAME}>")
 
         list(APPEND TARGETS_EXECS ${EXE_FILE})
 
@@ -95,9 +95,8 @@ function(setup_coverage_report)
 
         # ADD COMMAND
         add_custom_command(TARGET ${COVERAGE_TARGET_NAME} POST_BUILD
-            COMMAND set LLVM_PROFILE_FILE=${TARGET_PROFRAW}
-            COMMAND ${EXE_FILE}
-            COMMENT "Running program to generate ${PROFRAW_TESTS}"
+            COMMAND ${CMAKE_COMMAND} -E env LLVM_PROFILE_FILE=${TARGET_PROFRAW} ${EXE_FILE}
+            COMMENT "Running ${TARGET_NAME} to generate ${PROFRAW_TESTS}"
             WORKING_DIRECTORY ${TARGET_BINARY_DIR}
             VERBATIM
         )
@@ -116,14 +115,18 @@ function(setup_coverage_report)
     get_target_property(TEST_TARGET_SOURCE_DIR ${COVERAGE_TEST_TARGET} SOURCE_DIR)
     file(RELATIVE_PATH TEST_TARGET_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} ${TEST_TARGET_SOURCE_DIR})
     file(TO_NATIVE_PATH ${TEST_TARGET_SOURCE_DIR} TEST_TARGET_SOURCE_DIR)
-    set(TEST_FILES_REGEX ".*[\\\\|\\\/]${TEST_TARGET_SOURCE_DIR}[\\\\|\\\/].*")
-    
-    list(GET TARGETS_EXECS 0 TEST_EXE)
+    set(TEST_FILES_REGEX ".*[\\\\\\\/]${TEST_TARGET_SOURCE_DIR}[\\\\\\\/].*")
+
     add_custom_command(TARGET ${COVERAGE_TARGET_NAME} POST_BUILD
-        COMMAND ${LLVM_COV} show ${TEST_EXE} -instr-profile=${PROFDATA_FILE} 
-        -format=${COVERAGE_FORMAT} -output-dir=${COVERAGE_OUTPUT_DIR} -ignore-filename-regex=${TEST_FILES_REGEX} -show-mcdc -show-line-counts 
-        -show-expansions -show-instantiations -show-regions -show-line-counts-or-regions -show-directory-coverage -use-color --show-branches percent
-        COMMENT "Generating report..."
+        COMMAND ${LLVM_COV} show ${TEST_EXE}
+        -instr-profile=${PROFDATA_FILE} 
+        -format=${COVERAGE_FORMAT} 
+        -output-dir=${COVERAGE_OUTPUT_DIR} 
+        -ignore-filename-regex=${TEST_FILES_REGEX} 
+        -show-mcdc -show-line-counts -show-expansions 
+        -show-instantiations -show-regions -show-line-counts-or-regions 
+        -show-directory-coverage -use-color --show-branches percent
+        COMMENT "Generating '${COVERAGE_FORMAT}' report..."
         WORKING_DIRECTORY ${COVERAGE_OUTPUT_DIR}
         VERBATIM
     )

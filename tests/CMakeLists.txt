@@ -1,4 +1,4 @@
-project(pcre2cpp-tests VERSION 1.2.1 LANGUAGES CXX)
+project(pcre2cpp-tests VERSION 1.2.2 LANGUAGES CXX)
 
 # source files
 set(PROJECT_TEST_SOURCES ${PROJECT_NAME}_TEST_SOURCES)

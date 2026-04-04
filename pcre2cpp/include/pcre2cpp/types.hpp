@@ -35,6 +35,8 @@ namespace pcre2cpp {
 		#endif
 
 	template<size_t utf>
+	struct basic_match_value;
+	template<size_t utf>
 	class basic_match_result;
 	template<size_t utf>
 	class basic_regex;
@@ -55,6 +57,11 @@ namespace pcre2cpp {
 	using u32match_result_exception = basic_match_result_exception<32>;
 	using match_result_exception	= u8match_result_exception;
 		#endif
+
+	using u8match_value	  = basic_match_value<8>;
+	using u16match_value  = basic_match_value<16>;
+	using u32match_value  = basic_match_value<32>;
+	using match_value	  = u8match_value;
 
 	using u8match_result  = basic_match_result<8>;
 	using u16match_result = basic_match_result<16>;

@@ -25,7 +25,7 @@ include(${CPM_DOWNLOAD_LOCATION})
 # Add pcre2 library
 if (NOT ${PCRE2CPP_USE_EXTERNAL_PCRE2})
     CPMAddPackage(
-            URI "gh:PCRE2Project/pcre2#pcre2-10.44"
+            URI "gh:PCRE2Project/pcre2#pcre2-10.47"
             OPTIONS "PCRE2_BUILD_PCRE2_8 ON"
                     "PCRE2_BUILD_PCRE2_16 ON"
                     "PCRE2_BUILD_PCRE2_32 ON"
@@ -46,11 +46,13 @@ set(PCRE2_NEWLINE "ANY")
 
 if (NOT ${PCRE2CPP_USE_EXTERNAL_MSTD})
     CPMAddPackage(
-            URI "gh:maipa01/mstd#v1.5.0"
+            URI "gh:maipa01/mstd#v1.5.1"
             OPTIONS "MSTD_ENABLE_CXX20 ${PCRE2CPP_ENABLE_CXX20}"
+                    "MSTD_DISABLE_ASSERT_ON_RELEASE ${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE}"
     )
 else()
     set(MSTD_ENABLE_CXX20 ${PCRE2CPP_ENABLE_CXX20})
+    set(MSTD_DISABLE_ASSERT_ON_RELEASE ${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE})
 endif()
 
 if(PCRE2CPP_BUILD_TESTS OR PCRE2CPP_BUILD_COVERAGE)

@@ -52,8 +52,8 @@ TEST(MATCH_TESTS, MATCH_WITH_RESULT) {
 TEST(MATCH_TESTS, MATCH_AT_SPECIFIED_OFFSET) {
 	const regex expression("\\d+");
 
-	EXPECT_TRUE(expression.match_at("aa2", 3, 2));
-	EXPECT_FALSE(expression.match_at("aa2", 3, 1));
+	EXPECT_TRUE(expression.match_at("aa2", 2));
+	EXPECT_FALSE(expression.match_at("aa2", 1));
 }
 
 // TRIES TO FIND MATCH AT GIVEN LOCATION AND RETURNS RESULT
@@ -61,13 +61,13 @@ TEST(MATCH_TESTS, MATCH_AT_SPECIFIED_OFFSET_WITH_RESULT) {
 	const regex expression("\\d+");
 
 	match_result result;
-	EXPECT_TRUE(expression.match_at("aa2", 3, result, 2));
+	EXPECT_TRUE(expression.match_at("aa2", result, 2));
 	EXPECT_EQ(result.get_search_offset(), 2);
 	EXPECT_EQ(result.get_result_value(), "2");
 	EXPECT_EQ(result.get_result_global_offset(), 2);
 	EXPECT_EQ(result.get_result_relative_offset(), 0);
 
-	EXPECT_FALSE(expression.match_at("aa2", 3, result, 1));
+	EXPECT_FALSE(expression.match_at("aa2", result, 1));
 	EXPECT_EQ(result.get_search_offset(), 1);
 	EXPECT_EQ(result.get_result_value(), "");
 	EXPECT_EQ(result.get_result_global_offset(), match_result::bad_offset);
@@ -131,7 +131,7 @@ TEST(MATCH_TESTS, MATCH_ALL) {
 	std::vector<match_result> results;
 	const regex expression("\\d+");
 
-	EXPECT_TRUE(expression.match_all("Ala ma 23 lata i 3 koty", 23, results));
+	EXPECT_TRUE(expression.match_all("Ala ma 23 lata i 3 koty", results));
 	EXPECT_EQ(results.size(), 2);
 	EXPECT_EQ(results[0].get_search_offset(), 0);
 	EXPECT_EQ(results[0].get_result_global_offset(), 7);
@@ -144,7 +144,7 @@ TEST(MATCH_TESTS, MATCH_ALL) {
 
 	match_result* resultsPtr = nullptr;
 	size_t resultsCount		 = 0;
-	EXPECT_TRUE(expression.match_all("Ala ma 23 lata i 3 koty", 23, resultsPtr, resultsCount));
+	EXPECT_TRUE(expression.match_all("Ala ma 23 lata i 3 koty", resultsPtr, resultsCount));
 	EXPECT_EQ(resultsCount, 2);
 	EXPECT_EQ(results[0].get_search_offset(), 0);
 	EXPECT_EQ(results[0].get_result_global_offset(), 7);
