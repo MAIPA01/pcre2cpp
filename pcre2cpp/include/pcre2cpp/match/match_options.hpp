@@ -24,27 +24,53 @@ _PCRE2CPP_ERROR("This is only available for c++17 and greater!");
 		#include <pcre2cpp/types.hpp>
 
 namespace pcre2cpp {
+	/**
+	 * @brief Match options
+	 * @ingroup pcre2cpp
+	 */
 	enum class match_options_bits : uint32_t {
-		None					= 0u,							   // No options set (default)
-		Anchored				= PCRE2_ANCHORED,				   // Match only at the first position
-		CopyMatchedSubject		= PCRE2_COPY_MATCHED_SUBJECT,	   // On success, make a private subject copy
-		DisableRecurseLoopCheck = PCRE2_DISABLE_RECURSELOOP_CHECK, // Only useful in rare cases; use with care
-		EndAnchored				= PCRE2_ENDANCHORED,			   // Pattern can match only at end of subject
-		NotBOL					= PCRE2_NOTBOL,					   // Subject string is not the beginning of a line
-		NotEOL					= PCRE2_NOTEOL,					   // Subject string is not the end of a line
-		NotEmpty				= PCRE2_NOTEMPTY,				   // An empty string is not a valid match
-		NotEmptyAtStart			= PCRE2_NOTEMPTY_ATSTART, // An empty string at the start of the subject is not a valid match
-		NoJIT					= PCRE2_NO_JIT,			  // Do not use JIT matching
-		NoUTFCheck =
-		  PCRE2_NO_UTF_CHECK, // Do not check the subject for UTF validity(only relevant if compile_options::UTF was set at compile time)
-		PartialHard = PCRE2_PARTIAL_HARD, // Return match_error_codes::Partial for a partial match even if there is a full match
-		PartialSoft = PCRE2_PARTIAL_SOFT  // Return match_error_codes::Partial for a partial match if no full matches are found
+		/// @brief No options set (default)
+		None					= 0u,
+		/// @brief Match only at the first position
+		Anchored				= PCRE2_ANCHORED,
+		/// @brief On success, make a private subject copy
+		CopyMatchedSubject		= PCRE2_COPY_MATCHED_SUBJECT,
+		/// @brief Only useful in rare cases; use with care
+		DisableRecurseLoopCheck = PCRE2_DISABLE_RECURSELOOP_CHECK,
+		/// @brief Pattern can match only at end of subject
+		EndAnchored				= PCRE2_ENDANCHORED,
+		/// @brief Subject string is not the beginning of a line
+		NotBOL					= PCRE2_NOTBOL,
+		/// @brief Subject string is not the end of a line
+		NotEOL					= PCRE2_NOTEOL,
+		/// @brief An empty string is not a valid match
+		NotEmpty				= PCRE2_NOTEMPTY,
+		/// @brief An empty string at the start of the subject is not a valid match
+		NotEmptyAtStart			= PCRE2_NOTEMPTY_ATSTART,
+		/// @brief Do not use JIT matching
+		NoJIT					= PCRE2_NO_JIT,
+		/// @brief Do not check the subject for UTF validity(only relevant if compile_options::UTF was set at compile time)
+		NoUTFCheck				= PCRE2_NO_UTF_CHECK,
+		/// @brief Return match_error_codes::Partial for a partial match even if there is a full match
+		PartialHard				= PCRE2_PARTIAL_HARD,
+		/// @brief Return match_error_codes::Partial for a partial match if no full matches are found
+		PartialSoft				= PCRE2_PARTIAL_SOFT
 	};
 
+	/**
+	 * @brief Match options flags group
+	 * @ingroup pcre2cpp
+	 */
 	using match_options = mstd::flags<match_options_bits>;
 
-	static _PCRE2CPP_CONSTEXPR17 match_options operator|(const match_options_bits opt0,
-	  const match_options_bits opt1) noexcept {
+	/**
+	 * @brief operator for combining match options to one flags group
+	 * @ingroup pcre2cpp
+	 * @param opt0 first match option
+	 * @param opt1 second match option
+	 * @return Match options flags group created from two match options
+	 */
+	static _PCRE2CPP_CONSTEXPR17 match_options operator|(const match_options_bits opt0, const match_options_bits opt1) noexcept {
 		return mstd::operator|(opt0, opt1);
 	}
 } // namespace pcre2cpp

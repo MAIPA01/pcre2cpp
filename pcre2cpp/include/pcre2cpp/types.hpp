@@ -25,53 +25,29 @@ _PCRE2CPP_ERROR("This is only available for c++17 and greater!");
 		#include <pcre2cpp/libs.hpp>
 
 namespace pcre2cpp {
+	enum class utf_type : uint8_t;
+
+	namespace utils {
+		template<utf_type utf>
+		struct pcre2_data;
+	}
+
 		#if _PCRE2CPP_HAS_EXCEPTIONS
-	template<size_t utf>
+	template<utf_type utf>
 	class basic_pcre2cpp_exception;
-	template<size_t utf>
+	template<utf_type utf>
 	class basic_regex_exception;
-	template<size_t utf>
+	template<utf_type utf>
 	class basic_match_result_exception;
 		#endif
 
-	template<size_t utf>
+	template<utf_type utf>
 	struct basic_match_value;
-	template<size_t utf>
+	struct sub_match_value;
+	template<utf_type utf>
 	class basic_match_result;
-	template<size_t utf>
+	template<utf_type utf>
 	class basic_regex;
-
-		#if _PCRE2CPP_HAS_EXCEPTIONS
-	using u8pcre2cpp_exception		= basic_pcre2cpp_exception<8>;
-	using u16pcre2cpp_exception		= basic_pcre2cpp_exception<16>;
-	using u32pcre2cpp_exception		= basic_pcre2cpp_exception<32>;
-	using pcre2cpp_exception		= u8pcre2cpp_exception;
-
-	using u8regex_exception			= basic_regex_exception<8>;
-	using u16regex_exception		= basic_regex_exception<16>;
-	using u32regex_exception		= basic_regex_exception<32>;
-	using regex_exception			= u8regex_exception;
-
-	using u8match_result_exception	= basic_match_result_exception<8>;
-	using u16match_result_exception = basic_match_result_exception<16>;
-	using u32match_result_exception = basic_match_result_exception<32>;
-	using match_result_exception	= u8match_result_exception;
-		#endif
-
-	using u8match_value	  = basic_match_value<8>;
-	using u16match_value  = basic_match_value<16>;
-	using u32match_value  = basic_match_value<32>;
-	using match_value	  = u8match_value;
-
-	using u8match_result  = basic_match_result<8>;
-	using u16match_result = basic_match_result<16>;
-	using u32match_result = basic_match_result<32>;
-	using match_result	  = u8match_result;
-
-	using u8regex		  = basic_regex<8>;
-	using u16regex		  = basic_regex<16>;
-	using u32regex		  = basic_regex<32>;
-	using regex			  = u8regex;
 } // namespace pcre2cpp
 	#endif
 #endif

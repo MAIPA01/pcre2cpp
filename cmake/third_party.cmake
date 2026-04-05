@@ -24,6 +24,8 @@ include(${CPM_DOWNLOAD_LOCATION})
 
 # Add pcre2 library
 if (NOT ${PCRE2CPP_USE_EXTERNAL_PCRE2})
+    set(CMAKE_C_COMPILE_OPTIONS_VISIBILITY "-fvisibility=") # Oszustwo dla skryptu PCRE2
+
     CPMAddPackage(
             URI "gh:PCRE2Project/pcre2#pcre2-10.47"
             OPTIONS "PCRE2_BUILD_PCRE2_8 ON"
@@ -32,6 +34,8 @@ if (NOT ${PCRE2CPP_USE_EXTERNAL_PCRE2})
                     "PCRE2_BUILD_TESTS OFF"
                     "PCRE2_BUILD_PCRE2GREP OFF"
                     "PCRE2_SUPPORT_UNICODE ON"
+                    "CMAKE_C_VISIBILITY_PRESET hidden"
+                    "CMAKE_VISIBILITY_INLINES_HIDDEN ON"
     )
 else()
     set(PCRE2_BUILD_PCRE2_8 ON)

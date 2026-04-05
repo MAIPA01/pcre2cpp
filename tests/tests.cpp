@@ -4,7 +4,7 @@
 using namespace pcre2cpp;
 
 // FINDS MATCH AT ANY LOCATION IN STRING
-TEST(MATCH_TESTS, BASIC_MATCH) {
+TEST(MATCH_TESTS, BASIC_MATCH_UTF8) {
 	const regex expression("\\d+");
 
 	EXPECT_TRUE(expression.match("2"));
@@ -36,12 +36,16 @@ TEST(MATCH_TESTS, MATCH_WITH_RESULT) {
 
 	match_result result;
 	EXPECT_TRUE(expression.match("aa2", result, 2));
+	EXPECT_TRUE(result.has_result());
+	EXPECT_TRUE(result.has_value());
 	EXPECT_EQ(result.get_search_offset(), 2);
 	EXPECT_EQ(result.get_result_value(), "2");
 	EXPECT_EQ(result.get_result_global_offset(), 2);
 	EXPECT_EQ(result.get_result_relative_offset(), 0);
 
 	EXPECT_TRUE(expression.match("aa2", result));
+	EXPECT_TRUE(result.has_result());
+	EXPECT_TRUE(result.has_value());
 	EXPECT_EQ(result.get_search_offset(), 0);
 	EXPECT_EQ(result.get_result_value(), "2");
 	EXPECT_EQ(result.get_result_global_offset(), 2);
@@ -62,12 +66,16 @@ TEST(MATCH_TESTS, MATCH_AT_SPECIFIED_OFFSET_WITH_RESULT) {
 
 	match_result result;
 	EXPECT_TRUE(expression.match_at("aa2", result, 2));
+	EXPECT_TRUE(result.has_result());
+	EXPECT_TRUE(result.has_value());
 	EXPECT_EQ(result.get_search_offset(), 2);
 	EXPECT_EQ(result.get_result_value(), "2");
 	EXPECT_EQ(result.get_result_global_offset(), 2);
 	EXPECT_EQ(result.get_result_relative_offset(), 0);
 
 	EXPECT_FALSE(expression.match_at("aa2", result, 1));
+	EXPECT_TRUE(result.has_result());
+	EXPECT_FALSE(result.has_value());
 	EXPECT_EQ(result.get_search_offset(), 1);
 	EXPECT_EQ(result.get_result_value(), "");
 	EXPECT_EQ(result.get_result_global_offset(), match_result::bad_offset);
@@ -93,7 +101,7 @@ TEST(MATCH_TESTS, MATCH_WITH_INDEXED_SUBEXPRESSION) {
 	EXPECT_EQ(result.get_sub_result_relative_offset(1), 3);
 	EXPECT_EQ(result.get_sub_result_in_result_offset(1), 2);
 
-	EXPECT_EQ(result.get_sub_results().size(), 2);
+	EXPECT_EQ(result.get_sub_results_count(), 2);
 	EXPECT_EQ(result.get_sub_results_global_offsets().size(), 2);
 	EXPECT_EQ(result.get_sub_results_relative_offsets().size(), 2);
 	EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 2);
@@ -110,20 +118,32 @@ TEST(MATCH_TESTS, MATCH_WITH_NAMED_SUBEXPRESSION) {
 	EXPECT_EQ(result.get_result_value(), "23a");
 	EXPECT_EQ(result.get_result_global_offset(), 2);
 	EXPECT_EQ(result.get_result_relative_offset(), 1);
+	EXPECT_TRUE(result.has_sub_value("number"));
 	EXPECT_EQ(result.get_sub_result_value("number"), "23");
 	EXPECT_EQ(result.get_sub_result_global_offset("number"), 2);
 	EXPECT_EQ(result.get_sub_result_relative_offset("number"), 1);
 	EXPECT_EQ(result.get_sub_result_in_result_offset("number"), 0);
+	EXPECT_TRUE(result.has_sub_value("a"));
 	EXPECT_EQ(result.get_sub_result_value("a"), "a");
 	EXPECT_EQ(result.get_sub_result_global_offset("a"), 4);
 	EXPECT_EQ(result.get_sub_result_relative_offset("a"), 3);
 	EXPECT_EQ(result.get_sub_result_in_result_offset("a"), 2);
 
-	EXPECT_EQ(result.get_sub_results().size(), 2);
+	EXPECT_EQ(result.get_sub_results_count(), 2);
 	EXPECT_EQ(result.get_sub_results_global_offsets().size(), 2);
 	EXPECT_EQ(result.get_sub_results_relative_offsets().size(), 2);
 	EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 2);
 	EXPECT_EQ(result.get_sub_results_values().size(), 2);
+}
+
+// CHECK IF THERE IS SUB VALUE
+TEST(MATCH_TESTS, MATCH_WITH_NAMED_SUBEXPRESSION_OPT_VALUE) {
+	const regex expression("(?<number>\\d+)(?<a>a)?");
+
+	match_result result;
+	EXPECT_TRUE(expression.match("ab23", result, 1));
+	EXPECT_TRUE(result.has_sub_value("number"));
+	EXPECT_FALSE(result.has_sub_value("a"));
 }
 
 // RETURNS ALL MATCHES
@@ -141,21 +161,6 @@ TEST(MATCH_TESTS, MATCH_ALL) {
 	EXPECT_EQ(results[1].get_result_global_offset(), 17);
 	EXPECT_EQ(results[1].get_result_relative_offset(), 17);
 	EXPECT_EQ(results[1].get_result_value(), "3");
-
-	match_result* resultsPtr = nullptr;
-	size_t resultsCount		 = 0;
-	EXPECT_TRUE(expression.match_all("Ala ma 23 lata i 3 koty", resultsPtr, resultsCount));
-	EXPECT_EQ(resultsCount, 2);
-	EXPECT_EQ(results[0].get_search_offset(), 0);
-	EXPECT_EQ(results[0].get_result_global_offset(), 7);
-	EXPECT_EQ(results[0].get_result_relative_offset(), 7);
-	EXPECT_EQ(results[0].get_result_value(), "23");
-	EXPECT_EQ(results[1].get_search_offset(), 0);
-	EXPECT_EQ(results[1].get_result_global_offset(), 17);
-	EXPECT_EQ(results[1].get_result_relative_offset(), 17);
-	EXPECT_EQ(results[1].get_result_value(), "3");
-
-	delete[] resultsPtr;
 }
 
 // TEST COPYING
