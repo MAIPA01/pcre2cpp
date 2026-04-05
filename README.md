@@ -1,6 +1,6 @@
 # pcre2cpp
 
-**pcre2cpp** is a C++ wrapper for the PCRE2 (Perl Compatible Regular Expressions) library written in C. It provides an object-oriented interface for the original PCRE2 library, while maintaining the same functionality and behavior.
+**pcre2cpp** is a C++ wrapper for the PCRE2 (Perl Compatible Regular Expressions) library written in C. It provides an object-oriented interface for the original PCRE2 library, while maintaining the same functionality and behavior. [DOCS](https://maipa01.github.io/pcre2cpp/html)
 
 ## Features
 
