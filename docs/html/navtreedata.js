@@ -27,7 +27,22 @@ var NAVTREE =
   [ "PCRE2 C++ Wrapper", "index.html", [
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
+    ] ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Typedefs", "functions_type.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
@@ -42,7 +57,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"d1/d3f/match__result_8hpp.html"
+"annotated.html",
+"dd/de3/types_8hpp.html#a8fd6621d6e80966ec4033d8cae1e2eb8"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

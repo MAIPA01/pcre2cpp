@@ -1,0 +1,9 @@
+<map id="pcre2cpp::utils::pcre2_data&lt; utf &gt;" name="pcre2cpp::utils::pcre2_data&lt; utf &gt;">
+<area shape="rect" id="Node000001" title="Translation container from pcre2 library to pcre2cpp." alt="" coords="5,72,152,115"/>
+<area shape="rect" id="Node000002" href="$df/d1d/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__16_01_4.html" title="Specialization of Translation container from pcre2 library to pcre2cpp for UTF&#45;16." alt="" coords="334,5,513,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,65,175,61,256,46,336,36,331,38,257,51,176,67,162,70"/>
+<area shape="rect" id="Node000003" href="$d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html" title="Specialization of Translation container from pcre2 library to pcre2cpp for UTF&#45;32." alt="" coords="334,72,513,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,91,335,91,332,95,167,96"/>
+<area shape="rect" id="Node000004" href="$d6/d82/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__8_01_4.html" title="Specialization of Translation container from pcre2 library to pcre2cpp for UTF&#45;8." alt="" coords="337,139,510,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,117,176,120,259,136,340,150,334,150,258,141,175,125,162,122"/>
+</map>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PCRE2 C++ Wrapper: pcre2cpp/include/pcre2cpp/pcre2cpp.hpp File Reference</title>
+<title>PCRE2 C++ Wrapper: pcre2cpp/pcre2cpp.hpp File Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PCRE2 C++ Wrapper<span id="projectnumber">&#160;1.2.3</span>
+   <div id="projectname">PCRE2 C++ Wrapper<span id="projectnumber">&#160;1.2.4</span>
    </div>
    <div id="projectbrief">pcre2cpp</div>
   </td>
@@ -92,19 +92,332 @@ $(function(){initNavTree('dd/d5c/pcre2cpp_8hpp.html','../../',''); });
   <div class="headertitle"><div class="title">pcre2cpp.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="../../d8/dfd/config_8hpp_source.html">pcre2cpp/config.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;fmt/format.h&gt;</code><br />
+<code>#include &lt;fmt/xchar.h&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;mstd/mstd.hpp&gt;</code><br />
+<code>#include &lt;pcre2.h&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;variant&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/dfd/config_8hpp_source.html">pcre2cpp/config.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/de3/types_8hpp_source.html">pcre2cpp/types.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/d57/pcre2__data_8hpp_source.html">pcre2cpp/utils/pcre2_data.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../da/d49/exceptions_8hpp_source.html">pcre2cpp/exceptions/exceptions.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d5/d7b/match__error__codes_8hpp_source.html">pcre2cpp/match/match_error_codes.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../da/daa/match__options_8hpp_source.html">pcre2cpp/match/match_options.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d1/d3f/match__result_8hpp_source.html">pcre2cpp/match/match_result.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dc/d5c/compile__options_8hpp_source.html">pcre2cpp/regex/compile_options.hpp</a>&gt;</code><br />
 </div>
 <p><a href="../../dd/d5c/pcre2cpp_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_20_3E" id="r_pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data&lt; utf &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translation container from pcre2 library to <a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a>.  <a href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_5Ftype_3A_3AUTF_5F8_20_3E" id="r_pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_5Ftype_3A_3AUTF_5F8_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d82/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__8_01_4.html">pcre2cpp::utils::pcre2_data&lt; utf_type::UTF_8 &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Translation container from pcre2 library to <a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> for UTF-8.  <a href="../../d6/d82/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__8_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_5Ftype_3A_3AUTF_5F16_20_3E" id="r_pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_5Ftype_3A_3AUTF_5F16_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__16_01_4.html">pcre2cpp::utils::pcre2_data&lt; utf_type::UTF_16 &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Translation container from pcre2 library to <a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> for UTF-16.  <a href="../../df/d1d/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__16_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_5Ftype_3A_3AUTF_5F32_20_3E" id="r_pcre2cpp_3A_3Autils_3A_3Apcre2_5Fdata_3C_20utf_5Ftype_3A_3AUTF_5F32_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html">pcre2cpp::utils::pcre2_data&lt; utf_type::UTF_32 &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Translation container from pcre2 library to <a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> for UTF-32.  <a href="../../d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Abasic_5Fmatch_5Fvalue_3C_20utf_20_3E" id="r_pcre2cpp_3A_3Abasic_5Fmatch_5Fvalue_3C_20utf_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d63/structpcre2cpp_1_1basic__match__value.html">pcre2cpp::basic_match_value&lt; utf &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match value container.  <a href="../../df/d63/structpcre2cpp_1_1basic__match__value.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Asub_5Fmatch_5Fvalue" id="r_pcre2cpp_3A_3Asub_5Fmatch_5Fvalue"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df2/structpcre2cpp_1_1sub__match__value.html">pcre2cpp::sub_match_value</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sub match value container.  <a href="../../d4/df2/structpcre2cpp_1_1sub__match__value.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Abasic_5Fmatch_5Fresult_3C_20utf_20_3E" id="r_pcre2cpp_3A_3Abasic_5Fmatch_5Fresult_3C_20utf_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d9f/classpcre2cpp_1_1basic__match__result.html">pcre2cpp::basic_match_result&lt; utf &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container to result data of match function.  <a href="../../d1/d9f/classpcre2cpp_1_1basic__match__result.html#details">More...</a><br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Abasic_5Fregex_3C_20utf_20_3E" id="r_pcre2cpp_3A_3Abasic_5Fregex_3C_20utf_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d88/classpcre2cpp_1_1basic__regex.html">pcre2cpp::basic_regex&lt; utf &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic PCRE2 Regex container.  <a href="../../de/d88/classpcre2cpp_1_1basic__regex.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:pcre2cpp" id="r_pcre2cpp"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html">pcre2cpp</a></td></tr>
+<tr class="memdesc:de/d73/namespacepcre2cpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main namespace of <a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> library. <br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Auitls" id="r_pcre2cpp_3A_3Auitls"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d1d/namespacepcre2cpp_1_1uitls.html">pcre2cpp::uitls</a></td></tr>
+<tr class="memdesc:dd/d1d/namespacepcre2cpp_1_1uitls"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility namespace of <a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> library. <br /></td></tr>
+<tr class="memitem:pcre2cpp_3A_3Autils" id="r_pcre2cpp_3A_3Autils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d3f/namespacepcre2cpp_1_1utils.html">pcre2cpp::utils</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a455e2c4b5721e9c419e41e2c74adab40" id="r_a455e2c4b5721e9c419e41e2c74adab40"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a455e2c4b5721e9c419e41e2c74adab40">_PCRE2CPP_CONFIG_HPP_</a></td></tr>
+<tr class="memitem:gabda68c6580972d4290ad01c35eadbfbd" id="r_gabda68c6580972d4290ad01c35eadbfbd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gabda68c6580972d4290ad01c35eadbfbd">PCRE2CPP_VERSION_MAJOR</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:gabda68c6580972d4290ad01c35eadbfbd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> version major number  <br /></td></tr>
+<tr class="memitem:gada1f3fbadef1fa2de12e8bcc0598da07" id="r_gada1f3fbadef1fa2de12e8bcc0598da07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gada1f3fbadef1fa2de12e8bcc0598da07">PCRE2CPP_VERSION_MINOR</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:gada1f3fbadef1fa2de12e8bcc0598da07"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> version minor number  <br /></td></tr>
+<tr class="memitem:ga5e283e7f58987b583e3f5729196bfd08" id="r_ga5e283e7f58987b583e3f5729196bfd08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08">PCRE2CPP_VERSION_PATCH</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:ga5e283e7f58987b583e3f5729196bfd08"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> version patch number  <br /></td></tr>
+<tr class="memitem:ga297bd01f46d397c7033e8330ac4b8114" id="r_ga297bd01f46d397c7033e8330ac4b8114"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga297bd01f46d397c7033e8330ac4b8114">_PCRE2CPP_STRINGIFY_HELPER</a>(x)</td></tr>
+<tr class="memdesc:ga297bd01f46d397c7033e8330ac4b8114"><td class="mdescLeft">&#160;</td><td class="mdescRight">stringify helper  <br /></td></tr>
+<tr class="memitem:gadb07b92a3b350970678e04ebb3671bb7" id="r_gadb07b92a3b350970678e04ebb3671bb7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gadb07b92a3b350970678e04ebb3671bb7">_PCRE2CPP_VERSION_TO_STRING</a>(major,  minor,  patch)</td></tr>
+<tr class="memdesc:gadb07b92a3b350970678e04ebb3671bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts version numbers to string  <br /></td></tr>
+<tr class="memitem:gaad0bb6339ce738bb4c4dd3e50c64ab0b" id="r_gaad0bb6339ce738bb4c4dd3e50c64ab0b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gaad0bb6339ce738bb4c4dd3e50c64ab0b">_PCRE2CPP_VERSION_TO_INT</a>(major,  minor,  patch)</td></tr>
+<tr class="memdesc:gaad0bb6339ce738bb4c4dd3e50c64ab0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts version number to int  <br /></td></tr>
+<tr class="memitem:gaac140f8044df8adc6693c3bf370d3256" id="r_gaac140f8044df8adc6693c3bf370d3256"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gaac140f8044df8adc6693c3bf370d3256">PCRE2CPP_VERSION_STRING</a>&#160;&#160;&#160;        <a class="el" href="../../db/d81/group__utils.html#gadb07b92a3b350970678e04ebb3671bb7">_PCRE2CPP_VERSION_TO_STRING</a>(<a class="el" href="../../dd/d06/group__pcre2cpp.html#gabda68c6580972d4290ad01c35eadbfbd">PCRE2CPP_VERSION_MAJOR</a>, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gada1f3fbadef1fa2de12e8bcc0598da07">PCRE2CPP_VERSION_MINOR</a>, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08">PCRE2CPP_VERSION_PATCH</a>)</td></tr>
+<tr class="memdesc:gaac140f8044df8adc6693c3bf370d3256"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> version string  <br /></td></tr>
+<tr class="memitem:ga77da89ec53d1417b73358aae5971d308" id="r_ga77da89ec53d1417b73358aae5971d308"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga77da89ec53d1417b73358aae5971d308">PCRE2CPP_VERSION_INT</a>&#160;&#160;&#160;<a class="el" href="../../db/d81/group__utils.html#gaad0bb6339ce738bb4c4dd3e50c64ab0b">_PCRE2CPP_VERSION_TO_INT</a>(<a class="el" href="../../dd/d06/group__pcre2cpp.html#gabda68c6580972d4290ad01c35eadbfbd">PCRE2CPP_VERSION_MAJOR</a>, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gada1f3fbadef1fa2de12e8bcc0598da07">PCRE2CPP_VERSION_MINOR</a>, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08">PCRE2CPP_VERSION_PATCH</a>)</td></tr>
+<tr class="memdesc:ga77da89ec53d1417b73358aae5971d308"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> version int  <br /></td></tr>
+<tr class="memitem:gafdba3d33e870ffe5f722740fbf23d745" id="r_gafdba3d33e870ffe5f722740fbf23d745"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gafdba3d33e870ffe5f722740fbf23d745">PCRE2CPP_VERSION</a>&#160;&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gaac140f8044df8adc6693c3bf370d3256">PCRE2CPP_VERSION_STRING</a></td></tr>
+<tr class="memdesc:gafdba3d33e870ffe5f722740fbf23d745"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> version string  <br /></td></tr>
+<tr class="memitem:gaf6cc71e92869d518d77af8d423ceba9b" id="r_gaf6cc71e92869d518d77af8d423ceba9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b">PCRE2CPP_LAST_UPDATE_DAY</a>&#160;&#160;&#160;07</td></tr>
+<tr class="memdesc:gaf6cc71e92869d518d77af8d423ceba9b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> last update day  <br /></td></tr>
+<tr class="memitem:ga87bccc8e2f4cc413bd01853bbd0f763e" id="r_ga87bccc8e2f4cc413bd01853bbd0f763e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga87bccc8e2f4cc413bd01853bbd0f763e">PCRE2CPP_LAST_UPDATE_MONTH</a>&#160;&#160;&#160;04</td></tr>
+<tr class="memdesc:ga87bccc8e2f4cc413bd01853bbd0f763e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> last update month  <br /></td></tr>
+<tr class="memitem:ga8b933fc1a558558beba82d5daa8b2aac" id="r_ga8b933fc1a558558beba82d5daa8b2aac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga8b933fc1a558558beba82d5daa8b2aac">PCRE2CPP_LAST_UPDATE_YEAR</a>&#160;&#160;&#160;2026</td></tr>
+<tr class="memdesc:ga8b933fc1a558558beba82d5daa8b2aac"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> last update year  <br /></td></tr>
+<tr class="memitem:ga1e90e9bedbf6b82e907d641b24878d98" id="r_ga1e90e9bedbf6b82e907d641b24878d98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga1e90e9bedbf6b82e907d641b24878d98">_PCRE2CPP_LAST_UPDATE_DATE_HELPER</a>(day,  month,  year)</td></tr>
+<tr class="memdesc:ga1e90e9bedbf6b82e907d641b24878d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts last update date to string  <br /></td></tr>
+<tr class="memitem:ga4282e4003c50589a1d8af1b3eb264b97" id="r_ga4282e4003c50589a1d8af1b3eb264b97"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga4282e4003c50589a1d8af1b3eb264b97">PCRE2CPP_LAST_UPDATE_DATE</a>&#160;&#160;&#160;        <a class="el" href="../../db/d81/group__utils.html#ga1e90e9bedbf6b82e907d641b24878d98">_PCRE2CPP_LAST_UPDATE_DATE_HELPER</a>(<a class="el" href="../../dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b">PCRE2CPP_LAST_UPDATE_DAY</a>, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ga87bccc8e2f4cc413bd01853bbd0f763e">PCRE2CPP_LAST_UPDATE_MONTH</a>, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ga8b933fc1a558558beba82d5daa8b2aac">PCRE2CPP_LAST_UPDATE_YEAR</a>)</td></tr>
+<tr class="memdesc:ga4282e4003c50589a1d8af1b3eb264b97"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> last update date string  <br /></td></tr>
+<tr class="memitem:gace5cf1c3ca08c65bef8ecaccb3d60576" id="r_gace5cf1c3ca08c65bef8ecaccb3d60576"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gace5cf1c3ca08c65bef8ecaccb3d60576">_PCRE2CPP_HAS_CXX17</a>&#160;&#160;&#160;__cplusplus &gt;= 201703l</td></tr>
+<tr class="memdesc:gace5cf1c3ca08c65bef8ecaccb3d60576"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if compiler has c++ version greater or equal to c++17  <br /></td></tr>
+<tr class="memitem:gaf6a372374f096ccd28e830c49157c712" id="r_gaf6a372374f096ccd28e830c49157c712"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gaf6a372374f096ccd28e830c49157c712">_PCRE2CPP_HAS_CXX20</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:gaf6a372374f096ccd28e830c49157c712"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if compiler has c++ version greater or equal to c++20 and if user enabled c++20 features using PCRE2CPP_ENABLE_CXX20  <br /></td></tr>
+<tr class="memitem:gafe250fd0d5814bcee8cce7640e093f13" id="r_gafe250fd0d5814bcee8cce7640e093f13"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gafe250fd0d5814bcee8cce7640e093f13">_PCRE2CPP_HAS_EXCEPTIONS</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:gafe250fd0d5814bcee8cce7640e093f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if exceptions are enabled  <br /></td></tr>
+<tr class="memitem:ga73db043f307a06b5d047a847a7a9a0f6" id="r_ga73db043f307a06b5d047a847a7a9a0f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga73db043f307a06b5d047a847a7a9a0f6">_PCRE2CPP_HAS_ASSERTS</a>&#160;&#160;&#160;<a class="el" href="../../db/d81/group__utils.html#gace5cf1c3ca08c65bef8ecaccb3d60576">_PCRE2CPP_HAS_CXX17</a></td></tr>
+<tr class="memdesc:ga73db043f307a06b5d047a847a7a9a0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if asserts are enabled  <br /></td></tr>
+<tr class="memitem:a8adb31fa6d168e9d6a61d7c705d353dc" id="r_a8adb31fa6d168e9d6a61d7c705d353dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8adb31fa6d168e9d6a61d7c705d353dc">_PCRE2CPP_NOEXCEPT</a></td></tr>
+<tr class="memitem:gad3233031f6c66ae426332067d4172a7f" id="r_gad3233031f6c66ae426332067d4172a7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gad3233031f6c66ae426332067d4172a7f">_PCRE2CPP_HAS_UTF8</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:gad3233031f6c66ae426332067d4172a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if support for UTF-8 is enabled  <br /></td></tr>
+<tr class="memitem:acff91275abcc225454675d6dfc39a58d" id="r_acff91275abcc225454675d6dfc39a58d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acff91275abcc225454675d6dfc39a58d">PCRE2_CODE_UNIT_WIDTH</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memitem:gad9cb4a282f2e779611ed26738bc4e2d5" id="r_gad9cb4a282f2e779611ed26738bc4e2d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gad9cb4a282f2e779611ed26738bc4e2d5">_PCRE2CPP_HAS_UTF16</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:gad9cb4a282f2e779611ed26738bc4e2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if support for UTF-16 is enabled  <br /></td></tr>
+<tr class="memitem:a9880c642d8c515bb764b6ee3022f6a68" id="r_a9880c642d8c515bb764b6ee3022f6a68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9880c642d8c515bb764b6ee3022f6a68">PCRE2_CODE_UNIT_WIDTH</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:ga787b84cdfd7591a4cef5a23f30fcfdf8" id="r_ga787b84cdfd7591a4cef5a23f30fcfdf8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga787b84cdfd7591a4cef5a23f30fcfdf8">_PCRE2CPP_HAS_UTF32</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ga787b84cdfd7591a4cef5a23f30fcfdf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if support for UTF-32 is enabled  <br /></td></tr>
+<tr class="memitem:a2b46e354ccc72cbb3da29097779ecea0" id="r_a2b46e354ccc72cbb3da29097779ecea0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b46e354ccc72cbb3da29097779ecea0">PCRE2_CODE_UNIT_WIDTH</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:ga0bc827cac1d40c8ed8f7e375e97a8dc5" id="r_ga0bc827cac1d40c8ed8f7e375e97a8dc5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga0bc827cac1d40c8ed8f7e375e97a8dc5">_PCRE2CPP_CONSTEXPR17</a></td></tr>
+<tr class="memdesc:ga0bc827cac1d40c8ed8f7e375e97a8dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">constexpr for c++17 and higher  <br /></td></tr>
+<tr class="memitem:ga4b1d955031d6fdb437a52d9e08942a9e" id="r_ga4b1d955031d6fdb437a52d9e08942a9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga4b1d955031d6fdb437a52d9e08942a9e">_PCRE2CPP_CONSTEXPR20</a></td></tr>
+<tr class="memdesc:ga4b1d955031d6fdb437a52d9e08942a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">constexpr keyword for c++20 and higher  <br /></td></tr>
+<tr class="memitem:gafc6c204d3871297a1306ecbd296013a4" id="r_gafc6c204d3871297a1306ecbd296013a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gafc6c204d3871297a1306ecbd296013a4">_PCRE2CPP_REQUIRES</a>(condition)</td></tr>
+<tr class="memdesc:gafc6c204d3871297a1306ecbd296013a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">requires keyword for c++20 and higher  <br /></td></tr>
+<tr class="memitem:gab02f8c2c1f8a5564aa7c453658d19f42" id="r_gab02f8c2c1f8a5564aa7c453658d19f42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gab02f8c2c1f8a5564aa7c453658d19f42">_PCRE2CPP_MESSAGE</a>(MESSAGE)</td></tr>
+<tr class="memdesc:gab02f8c2c1f8a5564aa7c453658d19f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">compiler message  <br /></td></tr>
+<tr class="memitem:gacd41aa311e82c257bbdd47a6b11a8548" id="r_gacd41aa311e82c257bbdd47a6b11a8548"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gacd41aa311e82c257bbdd47a6b11a8548">_PCRE2CPP_WARNING</a>(MESSAGE)</td></tr>
+<tr class="memdesc:gacd41aa311e82c257bbdd47a6b11a8548"><td class="mdescLeft">&#160;</td><td class="mdescRight">compiler warning  <br /></td></tr>
+<tr class="memitem:ga5ae9562fad97f74625c48016f38c3f6d" id="r_ga5ae9562fad97f74625c48016f38c3f6d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#ga5ae9562fad97f74625c48016f38c3f6d">_PCRE2CPP_ERROR</a>(MESSAGE)</td></tr>
+<tr class="memdesc:ga5ae9562fad97f74625c48016f38c3f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">compiler error  <br /></td></tr>
+<tr class="memitem:a3a635ff6edb77dc0ea386e5d486ea1fe" id="r_a3a635ff6edb77dc0ea386e5d486ea1fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a635ff6edb77dc0ea386e5d486ea1fe">_PCRE2CPP_LIBS_HPP_</a></td></tr>
+<tr class="memitem:ab24901c2aefda94790cd6f253b8ffb03" id="r_ab24901c2aefda94790cd6f253b8ffb03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab24901c2aefda94790cd6f253b8ffb03">_PCRE2CPP_TYPES_HPP_</a></td></tr>
+<tr class="memitem:a79b4b78651ec5913dbb1edf3d755f29c" id="r_a79b4b78651ec5913dbb1edf3d755f29c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79b4b78651ec5913dbb1edf3d755f29c">_PCRE2CPP_PCRE2_DATA_HPP_</a></td></tr>
+<tr class="memitem:a24726aa32dc01ea5282850902e86834b" id="r_a24726aa32dc01ea5282850902e86834b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24726aa32dc01ea5282850902e86834b">_PCRE2CPP_EXCEPTIONS_HPP_</a></td></tr>
+<tr class="memitem:aa871d6c33b991297590945febc136613" id="r_aa871d6c33b991297590945febc136613"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa871d6c33b991297590945febc136613">_PCRE2CPP_REGEX_MATCH_OPTIONS_HPP_</a></td></tr>
+<tr class="memitem:ab57ec7c95a624008b3c59e714e81772f" id="r_ab57ec7c95a624008b3c59e714e81772f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab57ec7c95a624008b3c59e714e81772f">_PCRE2CPP_MATCH_RESULT_HPP_</a></td></tr>
+<tr class="memitem:a606dfc61f055c4cfcc0219e80d7c69de" id="r_a606dfc61f055c4cfcc0219e80d7c69de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a606dfc61f055c4cfcc0219e80d7c69de">_PCRE2CPP_COMPILE_OPTIONS_HPP_</a></td></tr>
+<tr class="memitem:ae8d73373091755510d4c7f03d600af4b" id="r_ae8d73373091755510d4c7f03d600af4b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8d73373091755510d4c7f03d600af4b">_PCRE2CPP_REGEX_HPP_</a></td></tr>
+<tr class="memitem:a476315277670dd626c6af04de7cc6f37" id="r_a476315277670dd626c6af04de7cc6f37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a476315277670dd626c6af04de7cc6f37">_PCRE2CPP_ASSERT_HPP_</a></td></tr>
+<tr class="memitem:gaf4ef134c89cc9ebd62881c4dc9e26645" id="r_gaf4ef134c89cc9ebd62881c4dc9e26645"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d81/group__utils.html#gaf4ef134c89cc9ebd62881c4dc9e26645">pcre2cpp_assert</a>(expression, ...)</td></tr>
+<tr class="memdesc:gaf4ef134c89cc9ebd62881c4dc9e26645"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../de/d73/namespacepcre2cpp.html" title="Main namespace of pcre2cpp library.">pcre2cpp</a> assert  <br /></td></tr>
 <tr class="memitem:a1cf675a56e60fc5a481fdb65a7d34eb0" id="r_a1cf675a56e60fc5a481fdb65a7d34eb0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cf675a56e60fc5a481fdb65a7d34eb0">_PCRE2CPP_PCRE2CPP_HPP_</a></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a8fd6621d6e80966ec4033d8cae1e2eb8" id="r_a8fd6621d6e80966ec4033d8cae1e2eb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fd6621d6e80966ec4033d8cae1e2eb8">_PCRE2CPP_ERROR</a> (&quot;This is only available for c++17 and greater!&quot;)</td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a28223fc04abf5a2d764463d2a559c587" id="r_a28223fc04abf5a2d764463d2a559c587"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d3f/namespacepcre2cpp_1_1utils.html#a28223fc04abf5a2d764463d2a559c587">pcre2cpp::utils::u8pcre2_data</a> = <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2_data</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a>&gt;</td></tr>
+<tr class="memitem:aae51c79a41827a9b9e741ce6fda48fce" id="r_aae51c79a41827a9b9e741ce6fda48fce"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d3f/namespacepcre2cpp_1_1utils.html#aae51c79a41827a9b9e741ce6fda48fce">pcre2cpp::utils::u16pcre2_data</a> = <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2_data</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a788ccb14850ed382971bd7b88c30c819">utf_type::UTF_16</a>&gt;</td></tr>
+<tr class="memitem:a64432998f0df52fa29cfb6f453f092c5" id="r_a64432998f0df52fa29cfb6f453f092c5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d3f/namespacepcre2cpp_1_1utils.html#a64432998f0df52fa29cfb6f453f092c5">pcre2cpp::utils::u32pcre2_data</a> = <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2_data</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a8b8b5b0a5bc112041110e240c745f2c2">utf_type::UTF_32</a>&gt;</td></tr>
+<tr class="memitem:gabe86e86e728243ce442a03ac193f83df" id="r_gabe86e86e728243ce442a03ac193f83df"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gabe86e86e728243ce442a03ac193f83df">pcre2cpp::match_options</a> = mstd::flags&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gaafb5f7081cbcd3782820f01dfdeb79ad">match_options_bits</a>&gt;</td></tr>
+<tr class="memdesc:gabe86e86e728243ce442a03ac193f83df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match options flags group.  <br /></td></tr>
+<tr class="memitem:af700de6acc62b92370dcbb00c7f4485a" id="r_af700de6acc62b92370dcbb00c7f4485a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#af700de6acc62b92370dcbb00c7f4485a">pcre2cpp::u8match_value</a> = <a class="el" href="../../df/d63/structpcre2cpp_1_1basic__match__value.html">basic_match_value</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a>&gt;</td></tr>
+<tr class="memitem:acc3d62fe6b9798a1f34a0a0682c07bf6" id="r_acc3d62fe6b9798a1f34a0a0682c07bf6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#acc3d62fe6b9798a1f34a0a0682c07bf6">pcre2cpp::u16match_value</a> = <a class="el" href="../../df/d63/structpcre2cpp_1_1basic__match__value.html">basic_match_value</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a788ccb14850ed382971bd7b88c30c819">utf_type::UTF_16</a>&gt;</td></tr>
+<tr class="memitem:af61380e1a07b26fc10f79b05cd1a977f" id="r_af61380e1a07b26fc10f79b05cd1a977f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#af61380e1a07b26fc10f79b05cd1a977f">pcre2cpp::u32match_value</a> = <a class="el" href="../../df/d63/structpcre2cpp_1_1basic__match__value.html">basic_match_value</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a8b8b5b0a5bc112041110e240c745f2c2">utf_type::UTF_32</a>&gt;</td></tr>
+<tr class="memitem:aa80b8979f39cda3666b5277239f873e5" id="r_aa80b8979f39cda3666b5277239f873e5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#aa80b8979f39cda3666b5277239f873e5">pcre2cpp::match_value</a> = <a class="el" href="../../de/d73/namespacepcre2cpp.html#af700de6acc62b92370dcbb00c7f4485a">u8match_value</a></td></tr>
+<tr class="memitem:a19fa57549764735e71c0271bf4cc32a5" id="r_a19fa57549764735e71c0271bf4cc32a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a19fa57549764735e71c0271bf4cc32a5">pcre2cpp::u8match_result</a> = <a class="el" href="../../d1/d9f/classpcre2cpp_1_1basic__match__result.html">basic_match_result</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a>&gt;</td></tr>
+<tr class="memitem:a5a70b5b4ef74445557832b417f64d45c" id="r_a5a70b5b4ef74445557832b417f64d45c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a5a70b5b4ef74445557832b417f64d45c">pcre2cpp::u16match_result</a> = <a class="el" href="../../d1/d9f/classpcre2cpp_1_1basic__match__result.html">basic_match_result</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a788ccb14850ed382971bd7b88c30c819">utf_type::UTF_16</a>&gt;</td></tr>
+<tr class="memitem:a30ca561d778a1367bc811067306b9f74" id="r_a30ca561d778a1367bc811067306b9f74"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a30ca561d778a1367bc811067306b9f74">pcre2cpp::u32match_result</a> = <a class="el" href="../../d1/d9f/classpcre2cpp_1_1basic__match__result.html">basic_match_result</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a8b8b5b0a5bc112041110e240c745f2c2">utf_type::UTF_32</a>&gt;</td></tr>
+<tr class="memitem:a5d0b2a2ff80096e901883bc0da959611" id="r_a5d0b2a2ff80096e901883bc0da959611"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a5d0b2a2ff80096e901883bc0da959611">pcre2cpp::match_result</a> = <a class="el" href="../../de/d73/namespacepcre2cpp.html#a19fa57549764735e71c0271bf4cc32a5">u8match_result</a></td></tr>
+<tr class="memitem:gac9c7bfaa64bbc6dbf13819ed97e71117" id="r_gac9c7bfaa64bbc6dbf13819ed97e71117"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gac9c7bfaa64bbc6dbf13819ed97e71117">pcre2cpp::compile_options</a> = mstd::flags&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#ga70cb3a5c72a5a7b50a9bb8edf324ccef">compile_options_bits</a>&gt;</td></tr>
+<tr class="memdesc:gac9c7bfaa64bbc6dbf13819ed97e71117"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile options flags group.  <br /></td></tr>
+<tr class="memitem:af0780fa74e3aadaff1e978ac6d14463c" id="r_af0780fa74e3aadaff1e978ac6d14463c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#af0780fa74e3aadaff1e978ac6d14463c">pcre2cpp::u8regex</a> = <a class="el" href="../../de/d88/classpcre2cpp_1_1basic__regex.html">basic_regex</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a>&gt;</td></tr>
+<tr class="memitem:a14fa559cd6ae81b98003dbed89b68b4c" id="r_a14fa559cd6ae81b98003dbed89b68b4c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a14fa559cd6ae81b98003dbed89b68b4c">pcre2cpp::u16regex</a> = <a class="el" href="../../de/d88/classpcre2cpp_1_1basic__regex.html">basic_regex</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a788ccb14850ed382971bd7b88c30c819">utf_type::UTF_16</a>&gt;</td></tr>
+<tr class="memitem:a57657079f8fa06d1d4d2a2f83211a232" id="r_a57657079f8fa06d1d4d2a2f83211a232"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a57657079f8fa06d1d4d2a2f83211a232">pcre2cpp::u32regex</a> = <a class="el" href="../../de/d88/classpcre2cpp_1_1basic__regex.html">basic_regex</a>&lt;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a8b8b5b0a5bc112041110e240c745f2c2">utf_type::UTF_32</a>&gt;</td></tr>
+<tr class="memitem:a4cd2f5ed8bfeb116411d984fd0291d07" id="r_a4cd2f5ed8bfeb116411d984fd0291d07"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d73/namespacepcre2cpp.html#a4cd2f5ed8bfeb116411d984fd0291d07">pcre2cpp::regex</a> = <a class="el" href="../../de/d73/namespacepcre2cpp.html#af0780fa74e3aadaff1e978ac6d14463c">u8regex</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga52061c89ca5578ce7acb7fa7aee22f73" id="r_ga52061c89ca5578ce7acb7fa7aee22f73"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga52061c89ca5578ce7acb7fa7aee22f73">pcre2cpp::utf_type</a> : uint8_t { <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">pcre2cpp::utf_type::UTF_8</a> = 8
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a788ccb14850ed382971bd7b88c30c819">pcre2cpp::utf_type::UTF_16</a> = 16
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a8b8b5b0a5bc112041110e240c745f2c2">pcre2cpp::utf_type::UTF_32</a> = 32
+ }</td></tr>
+<tr class="memdesc:ga52061c89ca5578ce7acb7fa7aee22f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum with supported utf types.  <a href="../../dd/d06/group__pcre2cpp.html#ga52061c89ca5578ce7acb7fa7aee22f73">More...</a><br /></td></tr>
+<tr class="memitem:gaafb5f7081cbcd3782820f01dfdeb79ad" id="r_gaafb5f7081cbcd3782820f01dfdeb79ad"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#gaafb5f7081cbcd3782820f01dfdeb79ad">pcre2cpp::match_options_bits</a> : uint32_t { <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada6adf97f83acf6453d4a6a4b1070f3754">pcre2cpp::match_options_bits::None</a> = 0u
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adac49640afe1366cd0158d41c440d817cf">pcre2cpp::match_options_bits::Anchored</a> = PCRE2_ANCHORED
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adaab2373b91fe8cfd8b8c1bf007e622f78">pcre2cpp::match_options_bits::CopyMatchedSubject</a> = PCRE2_COPY_MATCHED_SUBJECT
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adae53d297f3f000505950ae7474a048004">pcre2cpp::match_options_bits::DisableRecurseLoopCheck</a> = PCRE2_DISABLE_RECURSELOOP_CHECK
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adadd709b157f09671899762e9dd7155b62">pcre2cpp::match_options_bits::EndAnchored</a> = PCRE2_ENDANCHORED
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada34977b8f0c567b67793701ab90ba2b86">pcre2cpp::match_options_bits::NotBOL</a> = PCRE2_NOTBOL
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada08647d299b163c333b2f57f1ac60d436">pcre2cpp::match_options_bits::NotEOL</a> = PCRE2_NOTEOL
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada35a23da2a57442452cbee5aaf0330fa5">pcre2cpp::match_options_bits::NotEmpty</a> = PCRE2_NOTEMPTY
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adad1d77188ec696a85e09655b655195cde">pcre2cpp::match_options_bits::NotEmptyAtStart</a> = PCRE2_NOTEMPTY_ATSTART
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adaf978b49c744210be1f4b0a4d2b6269bd">pcre2cpp::match_options_bits::NoJIT</a> = PCRE2_NO_JIT
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adaaee1614f734b359ffd80c0dda779d9e6">pcre2cpp::match_options_bits::NoUTFCheck</a> = PCRE2_NO_UTF_CHECK
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada23c624f0616536fc1706aad73a4c1a06">pcre2cpp::match_options_bits::PartialHard</a> = PCRE2_PARTIAL_HARD
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada4ae2de6293b8555dcc3e3a60e7b17eff">pcre2cpp::match_options_bits::PartialSoft</a> = PCRE2_PARTIAL_SOFT
+<br />
+ }</td></tr>
+<tr class="memdesc:gaafb5f7081cbcd3782820f01dfdeb79ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match options.  <a href="../../dd/d06/group__pcre2cpp.html#gaafb5f7081cbcd3782820f01dfdeb79ad">More...</a><br /></td></tr>
+<tr class="memitem:ga70cb3a5c72a5a7b50a9bb8edf324ccef" id="r_ga70cb3a5c72a5a7b50a9bb8edf324ccef"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d06/group__pcre2cpp.html#ga70cb3a5c72a5a7b50a9bb8edf324ccef">pcre2cpp::compile_options_bits</a> : uint32_t { <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa6adf97f83acf6453d4a6a4b1070f3754">pcre2cpp::compile_options_bits::None</a> = 0u
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefac49640afe1366cd0158d41c440d817cf">pcre2cpp::compile_options_bits::Anchored</a> = PCRE2_ANCHORED
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa0adc3f0a796711ceb368223dbed68701">pcre2cpp::compile_options_bits::AllowEmptyClass</a> = PCRE2_ALLOW_EMPTY_CLASS
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefac076f334a7e8d6dc54432762c1fd8a59">pcre2cpp::compile_options_bits::AltBSUX</a> = PCRE2_ALT_BSUX
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa5232c2456beadcfa6b201fd7cb8f390c">pcre2cpp::compile_options_bits::AltCircumflex</a> = PCRE2_ALT_CIRCUMFLEX
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa48b1aab09782545653343bc430f3aa61">pcre2cpp::compile_options_bits::AltVerbNames</a> = PCRE2_ALT_VERBNAMES
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa3fa54ed8b29e330fc5f56559d0860500">pcre2cpp::compile_options_bits::AutoCallout</a> = PCRE2_AUTO_CALLOUT
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa07b5e619290f6bd0130daede6b688cd8">pcre2cpp::compile_options_bits::Caseless</a> = PCRE2_CASELESS
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa06d3e71d69cf5a0469ccf48be4a7c90c">pcre2cpp::compile_options_bits::DollarEndonly</a> = PCRE2_DOLLAR_ENDONLY
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa21ff4ff0bd8e9bb361669d5094f2df74">pcre2cpp::compile_options_bits::DotAll</a> = PCRE2_DOTALL
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefac8f2baca418fb60e57c4880cdadf068f">pcre2cpp::compile_options_bits::DupNames</a> = PCRE2_DUPNAMES
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefadd709b157f09671899762e9dd7155b62">pcre2cpp::compile_options_bits::EndAnchored</a> = PCRE2_ENDANCHORED
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefaf23578fcd2a868168854ab714e7de537">pcre2cpp::compile_options_bits::Extended</a> = PCRE2_EXTENDED
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefac664c82e0fd8f0d17a959ac48e4a6198">pcre2cpp::compile_options_bits::FirstLine</a> = PCRE2_FIRSTLINE
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefad7da1b76e5799f53a399b7a96ba67437">pcre2cpp::compile_options_bits::Literal</a> = PCRE2_LITERAL
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefabe26b8da8301b92be3927724fb425e75">pcre2cpp::compile_options_bits::MatchInvalidUTF</a> = PCRE2_MATCH_INVALID_UTF
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa06cdfd2cf699cd3d415dd776a625c6a5">pcre2cpp::compile_options_bits::MatchUnsetBackRef</a> = PCRE2_MATCH_UNSET_BACKREF
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa9ef28508538c9b6936b69e7ea8e1a7b7">pcre2cpp::compile_options_bits::Multiline</a> = PCRE2_MULTILINE
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefae6232fdeb67a025e275b2d485623f8a7">pcre2cpp::compile_options_bits::NeverBackslashC</a> = PCRE2_NEVER_BACKSLASH_C
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa3264edc965c224a3b12fe681c11a4f54">pcre2cpp::compile_options_bits::NeverUCP</a> = PCRE2_NEVER_UCP
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefac26ca720411dddf8d65f2048211d85e1">pcre2cpp::compile_options_bits::NeverUTF</a> = PCRE2_NEVER_UTF
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefab66b4d1b0b1c16bf04611b929c3164f8">pcre2cpp::compile_options_bits::NoAutoCapture</a> = PCRE2_NO_AUTO_CAPTURE
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa032ce6c78b348a50ca5b64f72325176d">pcre2cpp::compile_options_bits::NoAutoPossess</a> = PCRE2_NO_AUTO_POSSESS
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa266797ed1a4afe1b484cad02b01f9734">pcre2cpp::compile_options_bits::NoDotStarAnchor</a> = PCRE2_NO_DOTSTAR_ANCHOR
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefa56cea065aeadb37e56e943c480b46dba">pcre2cpp::compile_options_bits::NoStartOptimize</a> = PCRE2_NO_START_OPTIMIZE
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefaaee1614f734b359ffd80c0dda779d9e6">pcre2cpp::compile_options_bits::NoUTFCheck</a> = PCRE2_NO_UTF_CHECK
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefafa3bf9c02e8ed3a7324b7afce676b99d">pcre2cpp::compile_options_bits::UCP</a> = PCRE2_UCP
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefaa5c9eddd6767424e3e003eb4565bd76a">pcre2cpp::compile_options_bits::UnGreedy</a> = PCRE2_UNGREEDY
+, <br />
+&#160;&#160;<a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefabdb9c5ec38395aa18f25c7e4280f2b6f">pcre2cpp::compile_options_bits::UseOffsetLimit</a> = PCRE2_USE_OFFSET_LIMIT
+, <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefab0a0ad647d82115f6f3cf54965a69c91">pcre2cpp::compile_options_bits::UTF</a> = PCRE2_UTF
+<br />
+ }</td></tr>
+<tr class="memdesc:ga70cb3a5c72a5a7b50a9bb8edf324ccef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile options.  <a href="../../dd/d06/group__pcre2cpp.html#ga70cb3a5c72a5a7b50a9bb8edf324ccef">More...</a><br /></td></tr>
 </table>
 <a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a476315277670dd626c6af04de7cc6f37" name="a476315277670dd626c6af04de7cc6f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a476315277670dd626c6af04de7cc6f37">&#9670;&#160;</a></span>_PCRE2CPP_ASSERT_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_ASSERT_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a606dfc61f055c4cfcc0219e80d7c69de" name="a606dfc61f055c4cfcc0219e80d7c69de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606dfc61f055c4cfcc0219e80d7c69de">&#9670;&#160;</a></span>_PCRE2CPP_COMPILE_OPTIONS_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_COMPILE_OPTIONS_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a455e2c4b5721e9c419e41e2c74adab40" name="a455e2c4b5721e9c419e41e2c74adab40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a455e2c4b5721e9c419e41e2c74adab40">&#9670;&#160;</a></span>_PCRE2CPP_CONFIG_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_CONFIG_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24726aa32dc01ea5282850902e86834b" name="a24726aa32dc01ea5282850902e86834b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24726aa32dc01ea5282850902e86834b">&#9670;&#160;</a></span>_PCRE2CPP_EXCEPTIONS_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_EXCEPTIONS_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a635ff6edb77dc0ea386e5d486ea1fe" name="a3a635ff6edb77dc0ea386e5d486ea1fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a635ff6edb77dc0ea386e5d486ea1fe">&#9670;&#160;</a></span>_PCRE2CPP_LIBS_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_LIBS_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab57ec7c95a624008b3c59e714e81772f" name="ab57ec7c95a624008b3c59e714e81772f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57ec7c95a624008b3c59e714e81772f">&#9670;&#160;</a></span>_PCRE2CPP_MATCH_RESULT_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_MATCH_RESULT_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8adb31fa6d168e9d6a61d7c705d353dc" name="a8adb31fa6d168e9d6a61d7c705d353dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8adb31fa6d168e9d6a61d7c705d353dc">&#9670;&#160;</a></span>_PCRE2CPP_NOEXCEPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_NOEXCEPT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79b4b78651ec5913dbb1edf3d755f29c" name="a79b4b78651ec5913dbb1edf3d755f29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79b4b78651ec5913dbb1edf3d755f29c">&#9670;&#160;</a></span>_PCRE2CPP_PCRE2_DATA_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_PCRE2_DATA_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1cf675a56e60fc5a481fdb65a7d34eb0" name="a1cf675a56e60fc5a481fdb65a7d34eb0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1cf675a56e60fc5a481fdb65a7d34eb0">&#9670;&#160;</a></span>_PCRE2CPP_PCRE2CPP_HPP_</h2>
 
@@ -119,18 +432,84 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a8fd6621d6e80966ec4033d8cae1e2eb8" name="a8fd6621d6e80966ec4033d8cae1e2eb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fd6621d6e80966ec4033d8cae1e2eb8">&#9670;&#160;</a></span>_PCRE2CPP_ERROR()</h2>
+<a id="ae8d73373091755510d4c7f03d600af4b" name="ae8d73373091755510d4c7f03d600af4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d73373091755510d4c7f03d600af4b">&#9670;&#160;</a></span>_PCRE2CPP_REGEX_HPP_</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">_PCRE2CPP_ERROR </td>
-          <td>(</td>
-          <td class="paramtype">&quot;This is only available for c++17 and greater!&quot;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td class="memname">#define _PCRE2CPP_REGEX_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa871d6c33b991297590945febc136613" name="aa871d6c33b991297590945febc136613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa871d6c33b991297590945febc136613">&#9670;&#160;</a></span>_PCRE2CPP_REGEX_MATCH_OPTIONS_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_REGEX_MATCH_OPTIONS_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab24901c2aefda94790cd6f253b8ffb03" name="ab24901c2aefda94790cd6f253b8ffb03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab24901c2aefda94790cd6f253b8ffb03">&#9670;&#160;</a></span>_PCRE2CPP_TYPES_HPP_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCRE2CPP_TYPES_HPP_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b46e354ccc72cbb3da29097779ecea0" name="a2b46e354ccc72cbb3da29097779ecea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b46e354ccc72cbb3da29097779ecea0">&#9670;&#160;</a></span>PCRE2_CODE_UNIT_WIDTH <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PCRE2_CODE_UNIT_WIDTH&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9880c642d8c515bb764b6ee3022f6a68" name="a9880c642d8c515bb764b6ee3022f6a68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9880c642d8c515bb764b6ee3022f6a68">&#9670;&#160;</a></span>PCRE2_CODE_UNIT_WIDTH <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PCRE2_CODE_UNIT_WIDTH&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acff91275abcc225454675d6dfc39a58d" name="acff91275abcc225454675d6dfc39a58d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff91275abcc225454675d6dfc39a58d">&#9670;&#160;</a></span>PCRE2_CODE_UNIT_WIDTH <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PCRE2_CODE_UNIT_WIDTH&#160;&#160;&#160;8</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -150,7 +529,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="../../dir_f1c861f3cfd6e1fbce1e14040c571686.html">pcre2cpp</a></li><li class="navelem"><a href="../../dir_bf0675da38f414b037d67b7f2ad3611c.html">include</a></li><li class="navelem"><a href="../../dir_e42c590ce6f06ecc5d52161ede5c7f44.html">pcre2cpp</a></li><li class="navelem"><a href="../../dd/d5c/pcre2cpp_8hpp.html">pcre2cpp.hpp</a></li>
+    <li class="navelem"><a href="../../dir_f1c861f3cfd6e1fbce1e14040c571686.html">pcre2cpp</a></li><li class="navelem"><a href="../../dd/d5c/pcre2cpp_8hpp.html">pcre2cpp.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
