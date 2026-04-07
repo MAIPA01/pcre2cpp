@@ -8,6 +8,84 @@
 - Compatible with C++17 and C++20.
 - Easy to use regular expression matching with built-in result capturing.
 
+## Requirements
+
+- C++17 or newer.
+- CMAKE 3.30 or newer
+
+## Options
+
+| CMAKE Option / #define                    | Description                                    | Default |
+|:------------------------------------------|:-----------------------------------------------|:-------:|
+| **PCRE2CPP_ENABLE_CXX20**                 | Enables C++20 features                         |   OFF   |
+| **PCRE2CPP_DISABLE_ASSERT_ON_RELEASE**    | Disables assert on release builds              |   OFF   |
+| **PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS** | Changes every assert to exceptions in pcre2cpp |   OFF   |
+| **PCRE2CPP_DISABLE_UTF8**                 | Disables UTF-8 support                         |   OFF   |
+| **PCRE2CPP_DISABLE_UTF16**                | Disables UTF-16 support                        |   OFF   |
+| **PCRE2CPP_DISABLE_UTF32**                | Disables UTF-32 support                        |   OFF   |
+
+## Benchmarks
+
+### Compilation (10,000 iterations)
+| No.     | std::regex (ms) | PCRE2 (ms)  | pcre2cpp (ms) |
+|:--------|:---------------:|:-----------:|:-------------:|
+| **1.**  |     72,9598     | **16,1092** |    18,5241    |
+| **2.**  |     57,5480     | **15,6274** |    18,1612    |
+| **3.**  |     57,0869     | **15,7417** |    18,3947    |
+| **4.**  |     57,3934     | **15,6203** |    18,6631    |
+| **5.**  |     44,9840     | **15,2435** |    18,5194    |
+| **6.**  |     57,6100     | **15,5350** |    18,3712    |
+| **7.**  |     43,8009     | **15,6640** |    17,8529    |
+| **8.**  |     57,7913     | **15,6265** |    18,1389    |
+| **9.**  |     59,1878     | **15,5679** |    18,3997    |
+| **10.** |     57,9911     | **15,4088** |    18,0916    |
+
+| regex          |  Avg (ms)   |            Overhead (ms)             | Per Iteration Avg (ms) |     Per Iteration Overhead (ms)     |
+|:---------------|:-----------:|:------------------------------------:|:----------------------:|:-----------------------------------:|
+| **std::regex** |   56,6353   | $${\color{green}{\text{-38,3236}}}$$ |         0,0057         | $${\color{green}{\text{-0,0038}}}$$ |
+| **PCRE2**      | **15,6144** |   $${\color{red}{\text{2,6973}}}$$   |       **0,0016**       |  $${\color{red}{\text{0,0003}}}$$   |
+| **pcre2cpp**   |   18,3117   |                  -                   |         0,0018         |                  -                  |
+
+### Match (10,000 iterations)
+| No.     | std::regex (ms) | PCRE2 (ms) | pcre2cpp (ms) |
+|:--------|:---------------:|:----------:|:-------------:|
+| **1.**  |    200,0510     | **7,6231** |    7,6295     |
+| **2.**  |    210,2780     | **7,7943** |    8,0054     |
+| **3.**  |    197,5870     |   7,9984   |  **7,7851**   |
+| **4.**  |    198,2510     | **7,6498** |    8,0657     |
+| **5.**  |    199,3080     |   8,0307   |  **7,7707**   |
+| **6.**  |    199,4860     |   7,9415   |  **7,8639**   |
+| **7.**  |    197,2080     |   8,0802   |  **7,9928**   |
+| **8.**  |    197,3450     | **7,7989** |    8,1371     |
+| **9.**  |    200,0030     | **7,9187** |    8,2530     |
+| **10.** |    197,8760     | **7,9905** |    8,2095     |
+
+| regex          |  Avg (ms)  |             Overhead (ms)             | Per Iteration Avg (ms) |     Per Iteration Overhead (ms)     |
+|:---------------|:----------:|:-------------------------------------:|:----------------------:|:-----------------------------------:|
+| **std::regex** |  199,7393  | $${\color{green}{\text{-191,7680}}}$$ |         0,0200         | $${\color{green}{\text{-0,0192}}}$$ |
+| **PCRE2**      | **7,8826** |   $${\color{red}{\text{0,0887}}}$$    |       **0,0008**       | $${\color{green}{\text{0,0000}}}$$  |
+| **pcre2cpp**   |   7,9713   |                   -                   |       **0,0008**       |                  -                  |
+
+### Match with all results (10,000 iterations)
+| No.     | std::regex (ms) | PCRE2 (ms)  | pcre2cpp (ms) |
+|:--------|:---------------:|:-----------:|:-------------:|
+| **1.**  |    200,0060     | **9,7453**  |    11,9927    |
+| **2.**  |    196,6940     | **10,7646** |    12,5312    |
+| **3.**  |    197,8630     | **9,8459**  |    16,1080    |
+| **4.**  |    198,6790     | **9,5077**  |    12,0731    |
+| **5.**  |    198,5960     | **10,1264** |    12,7155    |
+| **6.**  |    197,2710     | **9,6796**  |    12,5729    |
+| **7.**  |    217,3730     | **23,5250** |    26,8198    |
+| **8.**  |    197,2450     | **10,1512** |    12,6728    |
+| **9.**  |    202,4240     | **9,8813**  |    12,8561    |
+| **10.** |    198,0520     | **10,0214** |    13,3514    |
+
+| regex          |  Avg (ms)   |             Overhead (ms)             | Per Iteration Avg (ms) |     Per Iteration Overhead (ms)     |
+|:---------------|:-----------:|:-------------------------------------:|:----------------------:|:-----------------------------------:|
+| **std::regex** |  200,4203   | $${\color{green}{\text{-186,0510}}}$$ |         0,0200         | $${\color{green}{\text{-0,0186}}}$$ |
+| **PCRE2**      | **11,3248** |   $${\color{red}{\text{3,0445}}}$$    |       **0,0011**       |  $${\color{red}{\text{0,0003}}}$$   |
+| **pcre2cpp**   |   14,3694   |                   -                   |         0,0014         |                  -                  |
+
 ## Installation
 
 To use **pcre2cpp**, simply download the latest release. There are no additional dependencies required.
@@ -216,10 +294,6 @@ int main() {
 
 ## Offsets Graph
 ![offsets graph](PCRE2CPPResult.png "Title")
-
-## Requirements
-
-- C++17 or newer.
 
 ## License
 

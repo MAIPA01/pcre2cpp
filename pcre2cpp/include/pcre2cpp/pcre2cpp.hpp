@@ -22,14 +22,17 @@
 _PCRE2CPP_ERROR("This is only available for c++17 and greater!");
 	#else
 
-		#include <pcre2cpp/match/match_options.hpp>
-		#include <pcre2cpp/exceptions/exceptions.hpp>
 		#include <pcre2cpp/libs.hpp>
+
+		#include <pcre2cpp/types.hpp>
+
+		#include <pcre2cpp/utils/pcre2_data.hpp>
+
+		#include <pcre2cpp/exceptions/exceptions.hpp>
+		#include <pcre2cpp/match/match_options.hpp>
 		#include <pcre2cpp/match/match_result.hpp>
 		#include <pcre2cpp/regex/compile_options.hpp>
 		#include <pcre2cpp/regex/regex.hpp>
-		#include <pcre2cpp/types.hpp>
-		#include <pcre2cpp/utils/pcre2_data.hpp>
 		#if _PCRE2CPP_HAS_ASSERTS
 			#include <pcre2cpp/utils/assert.hpp>
 		#endif

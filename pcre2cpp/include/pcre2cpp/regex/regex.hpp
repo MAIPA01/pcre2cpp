@@ -71,10 +71,25 @@ namespace pcre2cpp {
 		size_t _error_offset						  = 0;
 
 		static _PCRE2CPP_CONSTEXPR17 _string_type _get_regex_not_initialized_error() noexcept {
+		#if _PCRE2CPP_HAS_UTF8
 				if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return "Regex was not initialized!!"; }
-				else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) { return u"Regex was not initialized!!"; }
-				else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) { return U"Regex was not initialized!!"; }
-				else { return _string_type(); }
+				else
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
+				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
+					return u"Regex was not initialized!!";
+				}
+				else
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
+				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
+					return U"Regex was not initialized!!";
+				}
+				else
+		#endif
+				{
+					return _string_type();
+				}
 		}
 
 	public:
@@ -88,7 +103,7 @@ namespace pcre2cpp {
 				if (code == nullptr) {
 		#if !_PCRE2CPP_HAS_EXCEPTIONS
 					std::string message = fmt::format("Failed to initialize code: {}",
-					  generate_error_message<utf_type::UTF_8>(_error_code, _error_offset));
+					  convert_any_utf_to_utf8<utf>(generate_error_message<utf>(_error_code, _error_offset)));
 					pcre2cpp_assert(false, "{}", message);
 					return;
 		#else
@@ -148,10 +163,25 @@ namespace pcre2cpp {
 		/// @brief returns error message if there is any compilation error
 		_PCRE2CPP_CONSTEXPR17 _string_type get_error_message() const noexcept {
 				if (is_initialized()) {
+		#if _PCRE2CPP_HAS_UTF8
 						if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return ""; }
-						else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) { return L""; }
-						else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) { return U""; }
-						else { return _string_type(); }
+						else
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
+						  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
+							return L"";
+						}
+						else
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
+						  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
+							return U"";
+						}
+						else
+		#endif
+						{
+							return _string_type();
+						}
 				}
 			return pcre2cpp::generate_error_message<utf>(_error_code, _error_offset);
 		}
@@ -256,10 +286,23 @@ namespace pcre2cpp {
 		}
 	};
 
-	using u8regex  = basic_regex<utf_type::UTF_8>;
+		#if _PCRE2CPP_HAS_UTF8
+	using u8regex = basic_regex<utf_type::UTF_8>;
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
 	using u16regex = basic_regex<utf_type::UTF_16>;
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
 	using u32regex = basic_regex<utf_type::UTF_32>;
-	using regex	   = u8regex;
+		#endif
+
+		#if _PCRE2CPP_HAS_UTF8
+	using regex = u8regex;
+		#elif _PCRE2CPP_HAS_UTF16
+	using regex = u16regex;
+		#elif _PCRE2CPP_HAS_UTF32
+	using regex = u32regex;
+		#endif
 } // namespace pcre2cpp
 	#endif
 #endif

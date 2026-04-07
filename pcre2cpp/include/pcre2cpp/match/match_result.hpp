@@ -47,10 +47,23 @@ namespace pcre2cpp {
 		_string_type value;
 	};
 
-	using u8match_value	 = basic_match_value<utf_type::UTF_8>;
+		#if _PCRE2CPP_HAS_UTF8
+	using u8match_value = basic_match_value<utf_type::UTF_8>;
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
 	using u16match_value = basic_match_value<utf_type::UTF_16>;
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
 	using u32match_value = basic_match_value<utf_type::UTF_32>;
-	using match_value	 = u8match_value;
+		#endif
+
+		#if _PCRE2CPP_HAS_UTF8
+	using match_value = u8match_value;
+		#elif _PCRE2CPP_HAS_UTF16
+	using match_value = u16match_value;
+		#elif _PCRE2CPP_HAS_UTF32
+	using match_value = u32match_value;
+		#endif
 		#pragma endregion
 
 		#pragma region SUB_MATCH_VALUE
@@ -104,28 +117,50 @@ namespace pcre2cpp {
 
 		/// @brief returns out of bounds error in correct utf format
 		static _PCRE2CPP_CONSTEXPR17 _string_type _get_out_of_bounds_string() noexcept {
+		#if _PCRE2CPP_HAS_UTF8
 				if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return "Subexpression index out of bounds or has no value"; }
-				else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
+				else
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
+				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
 					return u"Subexpression index out of bounds or has no value";
 				}
-				else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
+				else
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
+				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
 					return U"Subexpression index out of bounds or has no value";
 				}
-				else { return _string_type(); }
+				else
+		#endif
+				{
+					return _string_type();
+				}
 		}
 
 		/// @brief returns subexpression not found error in correct utf format
 		static _PCRE2CPP_CONSTEXPR17 _string_type _get_subexpression_not_found(const _string_view_type name) noexcept {
+		#if _PCRE2CPP_HAS_UTF8
 				if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) {
 					return fmt::format("Subexpression with provided name '{}' not found", name);
 				}
-				else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
+				else
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
+				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
 					return fmt::format(u"Subexpression with provided name '{}' not found", name);
 				}
-				else if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
+				else
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
+				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
 					return fmt::format(U"Subexpression with provided name '{}' not found", name);
 				}
-				else { return _string_type(); }
+				else
+		#endif
+				{
+					return _string_type();
+				}
 		}
 
 		/// @brief returns true if sub result group with given name exists in named groups table
@@ -479,10 +514,23 @@ namespace pcre2cpp {
 		#pragma endregion RESULTS
 	};
 
-	using u8match_result  = basic_match_result<utf_type::UTF_8>;
+		#if _PCRE2CPP_HAS_UTF8
+	using u8match_result = basic_match_result<utf_type::UTF_8>;
+		#endif
+		#if _PCRE2CPP_HAS_UTF16
 	using u16match_result = basic_match_result<utf_type::UTF_16>;
+		#endif
+		#if _PCRE2CPP_HAS_UTF32
 	using u32match_result = basic_match_result<utf_type::UTF_32>;
-	using match_result	  = u8match_result;
+		#endif
+
+		#if _PCRE2CPP_HAS_UTF8
+	using match_result = u8match_result;
+		#elif _PCRE2CPP_HAS_UTF16
+	using match_result = u16match_result;
+		#elif _PCRE2CPP_HAS_UTF32
+	using match_result = u32match_result;
+		#endif
 } // namespace pcre2cpp
 	#endif
 #endif

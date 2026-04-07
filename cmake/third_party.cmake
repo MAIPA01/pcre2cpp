@@ -23,27 +23,41 @@ message(STATUS "Include CPM.cmake from ${CPM_DOWNLOAD_LOCATION}")
 include(${CPM_DOWNLOAD_LOCATION})
 
 # Add pcre2 library
-if (NOT ${PCRE2CPP_USE_EXTERNAL_PCRE2})
-    set(CMAKE_C_COMPILE_OPTIONS_VISIBILITY "-fvisibility=") # Oszustwo dla skryptu PCRE2
+set(CMAKE_C_COMPILE_OPTIONS_VISIBILITY "-fvisibility=") # Trick for PCRE2
 
+if (PCRE2CPP_DISABLE_UTF8)
+    set(PCRE2_BUILD_PCRE2_8 OFF)
+else()
+    set(PCRE2_BUILD_PCRE2_8 ON)
+endif()
+
+if (PCRE2CPP_DISABLE_UTF16)
+    set(PCRE2_BUILD_PCRE2_16 OFF)
+else()
+    set(PCRE2_BUILD_PCRE2_16 ON)
+endif()
+
+if (PCRE2CPP_DISABLE_UTF32)
+    set(PCRE2_BUILD_PCRE2_32 OFF)
+else()
+    set(PCRE2_BUILD_PCRE2_32 ON)
+endif()
+
+if (NOT ${PCRE2CPP_USE_EXTERNAL_PCRE2})
     CPMAddPackage(
             URI "gh:PCRE2Project/pcre2#pcre2-10.47"
-            OPTIONS "PCRE2_BUILD_PCRE2_8 ON"
-                    "PCRE2_BUILD_PCRE2_16 ON"
-                    "PCRE2_BUILD_PCRE2_32 ON"
-                    "PCRE2_BUILD_TESTS OFF"
+            OPTIONS "PCRE2_BUILD_TESTS OFF"
                     "PCRE2_BUILD_PCRE2GREP OFF"
                     "PCRE2_SUPPORT_UNICODE ON"
                     "CMAKE_C_VISIBILITY_PRESET hidden"
                     "CMAKE_VISIBILITY_INLINES_HIDDEN ON"
     )
 else()
-    set(PCRE2_BUILD_PCRE2_8 ON)
-    set(PCRE2_BUILD_PCRE2_16 ON)
-    set(PCRE2_BUILD_PCRE2_32 ON)
     set(PCRE2_BUILD_TESTS OFF)
     set(PCRE2_BUILD_PCRE2GREP OFF)
     set(PCRE2_SUPPORT_UNICODE ON)
+    set(CMAKE_C_VISIBILITY_PRESET hidden)
+    set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
 endif()
 
 set(PCRE2_NEWLINE "ANY")

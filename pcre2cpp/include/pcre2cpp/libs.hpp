@@ -23,6 +23,7 @@ _PCRE2CPP_ERROR("This is only available for c++17 and greater!");
 	#else
 
 		#include <pcre2.h>
+
 		#include <string>
 		#if _PCRE2CPP_HAS_EXCEPTIONS
 			#include <stdexcept>

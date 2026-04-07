@@ -32,19 +32,20 @@ target_compile_features(${PROJECT_NAME} INTERFACE $<IF:$<BOOL:${PCRE2CPP_ENABLE_
 # set headers folder
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# check pcre2 library
-if(TARGET pcre2-8 AND TARGET pcre2-16 AND TARGET pcre2-32)
-    #target_include_directories(${PROJECT_NAME} INTERFACE SYSTEM ${PCRE2_SOURCE_DIR}/src ${PCRE2_BINARY_DIR})
-    target_link_libraries(${PROJECT_NAME} INTERFACE pcre2-8 pcre2-16 pcre2-32)
-endif()
-
-target_link_libraries(${PROJECT_NAME} INTERFACE mstd)
+target_link_libraries(${PROJECT_NAME} INTERFACE mstd
+                                                $<$<TARGET_EXISTS:pcre2-8>:pcre2-8>
+                                                $<$<TARGET_EXISTS:pcre2-16>:pcre2-16>
+                                                $<$<TARGET_EXISTS:pcre2-32>:pcre2-32>
+)
 
 target_precompile_headers(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/pch.hpp)
 
 target_compile_definitions(${PROJECT_NAME} INTERFACE    $<$<BOOL:${PCRE2CPP_ENABLE_CXX20}>:PCRE2CPP_ENABLE_CXX20>
                                                         $<$<BOOL:${PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS}>:PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS>
                                                         $<$<BOOL:${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE}>:PCRE2CPP_DISABLE_ASSERT_ON_RELEASE>
+                                                        $<$<BOOL:${PCRE2CPP_DISABLE_UTF8}>:PCRE2CPP_DISABLE_UTF8>
+                                                        $<$<BOOL:${PCRE2CPP_DISABLE_UTF16}>:PCRE2CPP_DISABLE_UTF16>
+                                                        $<$<BOOL:${PCRE2CPP_DISABLE_UTF32}>:PCRE2CPP_DISABLE_UTF32>
 )
 
 # Optimizations

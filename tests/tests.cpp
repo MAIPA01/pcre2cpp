@@ -3,6 +3,7 @@
 
 using namespace pcre2cpp;
 
+#if _PCRE2CPP_HAS_UTF8
 // FINDS MATCH AT ANY LOCATION IN STRING
 TEST(MATCH_TESTS, BASIC_MATCH_UTF8) {
 	const regex expression("\\d+");
@@ -11,7 +12,9 @@ TEST(MATCH_TESTS, BASIC_MATCH_UTF8) {
 	EXPECT_FALSE(expression.match("a"));
 	EXPECT_TRUE(expression.match("a2"));
 }
+#endif
 
+#if _PCRE2CPP_HAS_UTF16
 // FINDS MATCH AT ANY LOCATION IN STRING
 TEST(MATCH_TESTS, BASIC_MATCH_UTF16) {
 	const u16regex expression(u"\\d+");
@@ -20,7 +23,9 @@ TEST(MATCH_TESTS, BASIC_MATCH_UTF16) {
 	EXPECT_FALSE(expression.match(u"a"));
 	EXPECT_TRUE(expression.match(u"a2"));
 }
+#endif
 
+#if _PCRE2CPP_HAS_UTF32
 // FINDS MATCH AT ANY LOCATION IN STRING
 TEST(MATCH_TESTS, BASIC_MATCH_UTF32) {
 	const u32regex expression(U"\\d+");
@@ -29,7 +34,9 @@ TEST(MATCH_TESTS, BASIC_MATCH_UTF32) {
 	EXPECT_FALSE(expression.match(U"a"));
 	EXPECT_TRUE(expression.match(U"a2"));
 }
+#endif
 
+#if _PCRE2CPP_HAS_UTF8
 // FINDS MATCH AT ANY LOCATION IN STRING AND RETURNS RESULT
 TEST(MATCH_TESTS, MATCH_WITH_RESULT) {
 	const regex expression("\\d+");
@@ -195,3 +202,4 @@ TEST(REGEX_COPY, SUB_VALUES_TABLE_COPY) {
 	EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 1);
 	EXPECT_EQ(result.get_sub_results_values().size(), 1);
 }
+#endif

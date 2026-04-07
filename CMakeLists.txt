@@ -1,22 +1,29 @@
 cmake_minimum_required(VERSION 3.30)
-project(pcre2cpp VERSION 1.2.3 LANGUAGES CXX)
+project(pcre2cpp VERSION 1.2.4 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS 					"Build shared library" 			OFF)
 option(PCRE2CPP_BUILD_TESTS 				"Build tests"			 		OFF)
+option(PCRE2CPP_BUILD_BENCHMARK  			"Build benchmark" 				OFF)
 option(PCRE2CPP_BUILD_COVERAGE 				"Enable coverage reporting" 	OFF)
 option(PCRE2CPP_BUILD_DOCUMENTATION	 		"Build documentation"	 		OFF)
 option(PCRE2CPP_ENABLE_CLANG_TIDY 			"Enables clang-tidy checks" 	OFF)
 
 option(PCRE2CPP_USE_EXTERNAL_MSTD 			"Uses users own mstd library (tested and compatible with: 1.5.0)"		OFF)
-option(PCRE2CPP_USE_EXTERNAL_PCRE2 			"Uses users own pcre2 library (tested and compatible with: 10.44)"		OFF)
+option(PCRE2CPP_USE_EXTERNAL_PCRE2 			"Uses users own pcre2 library (tested and compatible with: 10.47)"		OFF)
 
 option(PCRE2CPP_ENABLE_CXX20 					"Enables C++20 features" 							OFF)
 option(PCRE2CPP_DISABLE_ASSERT_ON_RELEASE 		"Disables assert on release builds" 				OFF)
 option(PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS   	"Changes every assert to exceptions in pcre2cpp" 	OFF)
+option(PCRE2CPP_DISABLE_UTF8  					"Disables UTF-8 support" 							OFF)
+option(PCRE2CPP_DISABLE_UTF16					"Disables UTF-16 support" 							OFF)
+option(PCRE2CPP_DISABLE_UTF32 					"Disables UTF-32 support" 							OFF)
 
 message(STATUS "PCRE2CPP_ENABLE_CXX20: ${PCRE2CPP_ENABLE_CXX20}")
 message(STATUS "PCRE2CPP_DISABLE_ASSERT_ON_RELEASE: ${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE}")
 message(STATUS "PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS: ${PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS}")
+message(STATUS "PCRE2CPP_DISABLE_UTF8: ${PCRE2CPP_DISABLE_UTF8}")
+message(STATUS "PCRE2CPP_DISABLE_UTF16: ${PCRE2CPP_DISABLE_UTF16}")
+message(STATUS "PCRE2CPP_DISABLE_UTF32: ${PCRE2CPP_DISABLE_UTF32}")
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/third_party.cmake)
 if (PCRE2CPP_ENABLE_CLANG_TIDY)
@@ -41,6 +48,10 @@ if (PCRE2CPP_BUILD_COVERAGE)
 			OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/coverage_report
 			CLEAN_TEMP
 	)
+endif()
+
+if (PCRE2CPP_BUILD_BENCHMARK)
+	add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/benchmark)
 endif()
 
 # TODO: zrob install cos nie dziala z TARGETS pcre2-8
