@@ -9,5 +9,17 @@ var structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4 =
     [ "string_char_type", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a38c516e90c6538f5fac7c3ad3d87d3a7", null ],
     [ "string_type", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#ae88cdbd966fe2c820ef472edd56fdddf", null ],
     [ "string_view_type", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#aaea8be71d72bdc4bf133c696472424c5", null ],
-    [ "uchar_type", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a5baaf4604f4baec6116399aa6e28a727", null ]
+    [ "uchar_type", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a5baaf4604f4baec6116399aa6e28a727", null ],
+    [ "code_free", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a447fde0af95f44a604467d10fb8eb4da", null ],
+    [ "compile", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a8efb020dce5f188542cdcbcfe3eb8995", null ],
+    [ "get_error_message", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a2fd0f0dccb8be4b733c35cb4954f1374", null ],
+    [ "get_info", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#af04aa05e6f0d05ce28d8b53cd3d15167", null ],
+    [ "get_ovector_count", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#ab1f0a04606a057155b3077c47d8df68a", null ],
+    [ "get_ovector_ptr", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a1bfa620417b337ff5a05c6af3988fbcf", null ],
+    [ "match", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#aa754ba2cca3805063feec6b8a281604e", null ],
+    [ "match_data_free", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a5f8a680160c906fd9c331e17d23b5fb1", null ],
+    [ "match_data_from_pattern", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a6d85b0a7c256db65e4ce91cdfb0afedc", null ],
+    [ "substring_number_from_name", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a82af0bad91423ed38689a9f9a1957ab3", null ],
+    [ "uft", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a1368ab7e178ce4465f927cbc1443d735", null ],
+    [ "utf_size", "d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html#a2d24271ce42b6a56166e0b09eae3bd5e", null ]
 ];

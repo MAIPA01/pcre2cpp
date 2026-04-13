@@ -1,0 +1,35 @@
+<map id="pcre2cpp::basic_pcre2cpp_exception&lt; utf &gt;" name="pcre2cpp::basic_pcre2cpp_exception&lt; utf &gt;">
+<area shape="rect" id="Node000001" title="base pcre2cpp exception class" alt="" coords="331,356,504,399"/>
+<area shape="rect" id="Node000004" href="$d5/dab/classpcre2cpp_1_1basic__match__result__exception.html" title=" " alt="" coords="1078,5,1235,64"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="423,339,435,292,455,236,485,179,504,152,526,129,556,104,589,83,659,50,734,28,811,15,887,10,958,10,1080,21,1075,23,958,15,887,15,812,21,735,33,661,55,592,88,560,109,530,133,508,156,489,181,460,238,440,294,428,342"/>
+<area shape="rect" id="Node000005" href="$d5/dab/classpcre2cpp_1_1basic__match__result__exception.html" title=" " alt="" coords="1078,88,1235,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="450,343,486,314,527,288,569,269,604,258,685,241,766,227,871,212,975,194,1053,174,1077,158,1098,149,1102,146,1080,162,1055,178,976,200,872,217,767,232,687,247,605,264,571,274,529,293,489,319,454,347"/>
+<area shape="rect" id="Node000006" href="$d5/dab/classpcre2cpp_1_1basic__match__result__exception.html" title=" " alt="" coords="1078,172,1235,231"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="474,347,527,325,678,283,830,250,968,225,1080,210,1075,212,969,230,831,255,679,288,529,331,476,351"/>
+<area shape="rect" id="Node000007" href="$d6/dfe/classpcre2cpp_1_1basic__regex__exception.html" title=" " alt="" coords="1080,257,1233,316"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="519,358,528,356,723,321,809,308,920,295,1082,287,1077,289,921,300,810,313,724,327,528,361,521,363"/>
+<area shape="rect" id="Node000008" href="$d6/dfe/classpcre2cpp_1_1basic__regex__exception.html" title=" " alt="" coords="1080,360,1233,419"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="488,402,599,437,667,453,741,467,819,476,898,478,977,472,1053,455,1089,439,1119,420,1124,418,1092,443,1055,460,978,477,898,483,818,481,740,472,666,459,597,442,488,407"/>
+<area shape="rect" id="Node000009" href="$d6/dfe/classpcre2cpp_1_1basic__regex__exception.html" title=" " alt="" coords="1080,467,1233,525"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="452,407,489,435,529,458,601,483,676,501,752,512,828,517,968,515,1083,507,1077,508,969,521,828,522,752,517,675,506,599,488,527,462,486,439,452,412"/>
+<area shape="rect" id="Node000010" href="$d5/dab/classpcre2cpp_1_1basic__match__result__exception.html" title="match result exception class" alt="" coords="710,91,872,133"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="426,340,440,301,461,256,489,212,526,174,569,148,617,130,665,119,712,114,707,116,666,124,618,135,572,153,530,178,493,215,465,259,445,303,431,343"/>
+<area shape="rect" id="Node000011" href="$d6/dfe/classpcre2cpp_1_1basic__regex__exception.html" title="regex exception class" alt="" coords="715,356,867,399"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="519,375,717,376,712,378,520,380"/>
+<area shape="rect" id="Node000012" href="$df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html" title=" " alt="" coords="690,547,893,589"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="431,411,447,447,467,485,495,521,529,550,567,567,608,576,649,580,692,582,686,583,649,586,607,582,565,572,527,554,491,525,463,488,442,449,429,416"/>
+<area shape="rect" id="Node000013" href="$df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html" title=" " alt="" coords="686,613,896,656"/>
+<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="425,412,438,460,457,515,487,567,507,590,529,610,565,629,605,640,646,646,689,649,683,649,646,651,604,646,563,634,527,614,503,594,483,570,453,517,433,462,423,417"/>
+<area shape="rect" id="Node000014" href="$df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html" title=" " alt="" coords="686,680,896,723"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="421,412,430,473,447,546,461,583,479,618,501,650,530,677,565,697,604,709,645,714,688,717,683,717,645,719,603,714,563,702,526,681,497,653,474,621,456,585,442,547,424,474,419,416"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="158,364,281,391"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="296,375,333,376,328,379,298,380"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,364,109,391"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,375,159,376,155,379,126,380"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="887,89,1080,50,1076,52,889,94"/>
+<area shape="poly" id="edge11_Node000010_Node000005" title=" " alt="" coords="888,111,1081,115,1076,117,889,116"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="887,134,921,143,1080,183,1075,184,920,148,888,140"/>
+<area shape="poly" id="edge14_Node000011_Node000007" title=" " alt="" coords="882,357,1054,319,1083,313,1078,314,1055,324,883,362"/>
+<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="882,378,1083,386,1078,387,883,383"/>
+<area shape="poly" id="edge16_Node000011_Node000009" title=" " alt="" coords="874,401,1083,471,1077,472,874,407"/>
+</map>

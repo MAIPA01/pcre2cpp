@@ -1,6 +1,26 @@
 var searchData=
 [
-  ['regex_0',['regex',['../de/d73/namespacepcre2cpp.html#a4cd2f5ed8bfeb116411d984fd0291d07',1,'pcre2cpp']]],
-  ['regex_2ehpp_1',['regex.hpp',['../d6/d6f/regex_8hpp.html',1,'']]],
-  ['relative_5foffset_2',['relative_offset',['../df/d63/structpcre2cpp_1_1basic__match__value.html#af392953ab3b4659d285d02647544029c',1,'pcre2cpp::basic_match_value::relative_offset'],['../d4/df2/structpcre2cpp_1_1sub__match__value.html#a923ff5889a0c88ca0efe8dba8887eb95',1,'pcre2cpp::sub_match_value::relative_offset']]]
+  ['partial_0',['Partial',['../dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a44ffd38a6dea695cbe2b34efdcc6cf27',1,'pcre2cpp']]],
+  ['partialhard_1',['PartialHard',['../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada23c624f0616536fc1706aad73a4c1a06',1,'pcre2cpp']]],
+  ['partialsoft_2',['PartialSoft',['../dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada4ae2de6293b8555dcc3e3a60e7b17eff',1,'pcre2cpp']]],
+  ['pcre2_20c_3',['PCRE2 C++',['../dd/d06/group__pcre2cpp.html',1,'']]],
+  ['pcre2_5fdata_4',['pcre2_data',['../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html',1,'pcre2cpp::utils']]],
+  ['pcre2_5fdata_3c_20utf_5ftype_3a_3autf_5f16_20_3e_5',['pcre2_data&lt; utf_type::UTF_16 &gt;',['../df/d1d/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__16_01_4.html',1,'pcre2cpp::utils']]],
+  ['pcre2_5fdata_3c_20utf_5ftype_3a_3autf_5f32_20_3e_6',['pcre2_data&lt; utf_type::UTF_32 &gt;',['../d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html',1,'pcre2cpp::utils']]],
+  ['pcre2_5fdata_3c_20utf_5ftype_3a_3autf_5f8_20_3e_7',['pcre2_data&lt; utf_type::UTF_8 &gt;',['../d6/d82/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__8_01_4.html',1,'pcre2cpp::utils']]],
+  ['pcre2cpp_8',['pcre2cpp',['../de/d73/namespacepcre2cpp.html',1,'']]],
+  ['pcre2cpp_3a_3auitls_9',['uitls',['../dd/d1d/namespacepcre2cpp_1_1uitls.html',1,'pcre2cpp']]],
+  ['pcre2cpp_3a_3autils_10',['utils',['../d1/d3f/namespacepcre2cpp_1_1utils.html',1,'pcre2cpp']]],
+  ['pcre2cpp_5fassert_11',['pcre2cpp_assert',['../db/d81/group__utils.html#gaf4ef134c89cc9ebd62881c4dc9e26645',1,'assert.hpp']]],
+  ['pcre2cpp_5fexception_12',['pcre2cpp_exception',['../de/d73/namespacepcre2cpp.html#aa6d839aac677dca34bab1967d212b493',1,'pcre2cpp']]],
+  ['pcre2cpp_5flast_5fupdate_5fdate_13',['PCRE2CPP_LAST_UPDATE_DATE',['../dd/d06/group__pcre2cpp.html#ga4282e4003c50589a1d8af1b3eb264b97',1,'config.hpp']]],
+  ['pcre2cpp_5flast_5fupdate_5fday_14',['PCRE2CPP_LAST_UPDATE_DAY',['../dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b',1,'config.hpp']]],
+  ['pcre2cpp_5flast_5fupdate_5fmonth_15',['PCRE2CPP_LAST_UPDATE_MONTH',['../dd/d06/group__pcre2cpp.html#ga87bccc8e2f4cc413bd01853bbd0f763e',1,'config.hpp']]],
+  ['pcre2cpp_5flast_5fupdate_5fyear_16',['PCRE2CPP_LAST_UPDATE_YEAR',['../dd/d06/group__pcre2cpp.html#ga8b933fc1a558558beba82d5daa8b2aac',1,'config.hpp']]],
+  ['pcre2cpp_5fversion_17',['PCRE2CPP_VERSION',['../dd/d06/group__pcre2cpp.html#gafdba3d33e870ffe5f722740fbf23d745',1,'config.hpp']]],
+  ['pcre2cpp_5fversion_5fint_18',['PCRE2CPP_VERSION_INT',['../dd/d06/group__pcre2cpp.html#ga77da89ec53d1417b73358aae5971d308',1,'config.hpp']]],
+  ['pcre2cpp_5fversion_5fmajor_19',['PCRE2CPP_VERSION_MAJOR',['../dd/d06/group__pcre2cpp.html#gabda68c6580972d4290ad01c35eadbfbd',1,'config.hpp']]],
+  ['pcre2cpp_5fversion_5fminor_20',['PCRE2CPP_VERSION_MINOR',['../dd/d06/group__pcre2cpp.html#gada1f3fbadef1fa2de12e8bcc0598da07',1,'config.hpp']]],
+  ['pcre2cpp_5fversion_5fpatch_21',['PCRE2CPP_VERSION_PATCH',['../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08',1,'config.hpp']]],
+  ['pcre2cpp_5fversion_5fstring_22',['PCRE2CPP_VERSION_STRING',['../dd/d06/group__pcre2cpp.html#gaac140f8044df8adc6693c3bf370d3256',1,'config.hpp']]]
 ];

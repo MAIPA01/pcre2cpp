@@ -157,7 +157,7 @@ namespace pcre2cpp {
 			: std::runtime_error(convert_any_utf_to_utf8<utf>(generate_error_message<utf>(error_code, error_offset))),
 			  _message(generate_error_message<utf>(error_code, error_offset)) {}
 
-		/// @breif returns error message
+		/// @brief returns error message
 		_PCRE2CPP_CONSTEXPR17 const _string_type& get_error() const noexcept { return _message; }
 	};
 

@@ -30,12 +30,15 @@ namespace pcre2cpp {
 	 */
 	enum class utf_type : uint8_t {
 		#if _PCRE2CPP_HAS_UTF8
+		/// @brief value for UTF-8 support
 		UTF_8 = 8,
 		#endif
 		#if _PCRE2CPP_HAS_UTF16
+		/// @brief value for UTF-16 support
 		UTF_16 = 16,
 		#endif
 		#if _PCRE2CPP_HAS_UTF32
+		/// @brief value for UTF-32 support
 		UTF_32 = 32
 		#endif
 	};

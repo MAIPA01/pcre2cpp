@@ -1,7 +1,27 @@
 var searchData=
 [
-  ['pcre2_5fdata_0',['pcre2_data',['../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html',1,'pcre2cpp::utils']]],
-  ['pcre2_5fdata_3c_20utf_5ftype_3a_3autf_5f16_20_3e_1',['pcre2_data&lt; utf_type::UTF_16 &gt;',['../df/d1d/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__16_01_4.html',1,'pcre2cpp::utils']]],
-  ['pcre2_5fdata_3c_20utf_5ftype_3a_3autf_5f32_20_3e_2',['pcre2_data&lt; utf_type::UTF_32 &gt;',['../d1/d85/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__32_01_4.html',1,'pcre2cpp::utils']]],
-  ['pcre2_5fdata_3c_20utf_5ftype_3a_3autf_5f8_20_3e_3',['pcre2_data&lt; utf_type::UTF_8 &gt;',['../d6/d82/structpcre2cpp_1_1utils_1_1pcre2__data_3_01utf__type_1_1_u_t_f__8_01_4.html',1,'pcre2cpp::utils']]]
+  ['basic_5fmatch_5fresult_0',['basic_match_result',['../d1/d9f/classpcre2cpp_1_1basic__match__result.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_3c_20utf_5ftype_3a_3autf_5f16_20_3e_1',['basic_match_result&lt; utf_type::UTF_16 &gt;',['../d1/d9f/classpcre2cpp_1_1basic__match__result.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_3c_20utf_5ftype_3a_3autf_5f32_20_3e_2',['basic_match_result&lt; utf_type::UTF_32 &gt;',['../d1/d9f/classpcre2cpp_1_1basic__match__result.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_3c_20utf_5ftype_3a_3autf_5f8_20_3e_3',['basic_match_result&lt; utf_type::UTF_8 &gt;',['../d1/d9f/classpcre2cpp_1_1basic__match__result.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_5fexception_4',['basic_match_result_exception',['../d5/dab/classpcre2cpp_1_1basic__match__result__exception.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_5fexception_3c_20utf_5ftype_3a_3autf_5f16_20_3e_5',['basic_match_result_exception&lt; utf_type::UTF_16 &gt;',['../d5/dab/classpcre2cpp_1_1basic__match__result__exception.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_5fexception_3c_20utf_5ftype_3a_3autf_5f32_20_3e_6',['basic_match_result_exception&lt; utf_type::UTF_32 &gt;',['../d5/dab/classpcre2cpp_1_1basic__match__result__exception.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fresult_5fexception_3c_20utf_5ftype_3a_3autf_5f8_20_3e_7',['basic_match_result_exception&lt; utf_type::UTF_8 &gt;',['../d5/dab/classpcre2cpp_1_1basic__match__result__exception.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fvalue_8',['basic_match_value',['../df/d63/structpcre2cpp_1_1basic__match__value.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fvalue_3c_20utf_5ftype_3a_3autf_5f16_20_3e_9',['basic_match_value&lt; utf_type::UTF_16 &gt;',['../df/d63/structpcre2cpp_1_1basic__match__value.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fvalue_3c_20utf_5ftype_3a_3autf_5f32_20_3e_10',['basic_match_value&lt; utf_type::UTF_32 &gt;',['../df/d63/structpcre2cpp_1_1basic__match__value.html',1,'pcre2cpp']]],
+  ['basic_5fmatch_5fvalue_3c_20utf_5ftype_3a_3autf_5f8_20_3e_11',['basic_match_value&lt; utf_type::UTF_8 &gt;',['../df/d63/structpcre2cpp_1_1basic__match__value.html',1,'pcre2cpp']]],
+  ['basic_5fpcre2cpp_5fexception_12',['basic_pcre2cpp_exception',['../df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html',1,'pcre2cpp']]],
+  ['basic_5fpcre2cpp_5fexception_3c_20utf_5ftype_3a_3autf_5f16_20_3e_13',['basic_pcre2cpp_exception&lt; utf_type::UTF_16 &gt;',['../df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html',1,'pcre2cpp']]],
+  ['basic_5fpcre2cpp_5fexception_3c_20utf_5ftype_3a_3autf_5f32_20_3e_14',['basic_pcre2cpp_exception&lt; utf_type::UTF_32 &gt;',['../df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html',1,'pcre2cpp']]],
+  ['basic_5fpcre2cpp_5fexception_3c_20utf_5ftype_3a_3autf_5f8_20_3e_15',['basic_pcre2cpp_exception&lt; utf_type::UTF_8 &gt;',['../df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html',1,'pcre2cpp']]],
+  ['basic_5fregex_16',['basic_regex',['../de/d88/classpcre2cpp_1_1basic__regex.html',1,'pcre2cpp']]],
+  ['basic_5fregex_3c_20utf_5ftype_3a_3autf_5f16_20_3e_17',['basic_regex&lt; utf_type::UTF_16 &gt;',['../de/d88/classpcre2cpp_1_1basic__regex.html',1,'pcre2cpp']]],
+  ['basic_5fregex_3c_20utf_5ftype_3a_3autf_5f32_20_3e_18',['basic_regex&lt; utf_type::UTF_32 &gt;',['../de/d88/classpcre2cpp_1_1basic__regex.html',1,'pcre2cpp']]],
+  ['basic_5fregex_3c_20utf_5ftype_3a_3autf_5f8_20_3e_19',['basic_regex&lt; utf_type::UTF_8 &gt;',['../de/d88/classpcre2cpp_1_1basic__regex.html',1,'pcre2cpp']]],
+  ['basic_5fregex_5fexception_20',['basic_regex_exception',['../d6/dfe/classpcre2cpp_1_1basic__regex__exception.html',1,'pcre2cpp']]],
+  ['basic_5fregex_5fexception_3c_20utf_5ftype_3a_3autf_5f16_20_3e_21',['basic_regex_exception&lt; utf_type::UTF_16 &gt;',['../d6/dfe/classpcre2cpp_1_1basic__regex__exception.html',1,'pcre2cpp']]],
+  ['basic_5fregex_5fexception_3c_20utf_5ftype_3a_3autf_5f32_20_3e_22',['basic_regex_exception&lt; utf_type::UTF_32 &gt;',['../d6/dfe/classpcre2cpp_1_1basic__regex__exception.html',1,'pcre2cpp']]],
+  ['basic_5fregex_5fexception_3c_20utf_5ftype_3a_3autf_5f8_20_3e_23',['basic_regex_exception&lt; utf_type::UTF_8 &gt;',['../d6/dfe/classpcre2cpp_1_1basic__regex__exception.html',1,'pcre2cpp']]]
 ];

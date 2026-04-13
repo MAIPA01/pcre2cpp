@@ -35,7 +35,7 @@ namespace pcre2cpp {
 		Anchored		  = PCRE2_ANCHORED,
 		/// @brief Allow empty classes
 		AllowEmptyClass	  = PCRE2_ALLOW_EMPTY_CLASS,
-		/// @brief Alternative handling of \u, \U, and \x
+		/// @brief Alternative handling of \\u, \\U, and \\x
 		AltBSUX			  = PCRE2_ALT_BSUX,
 		/// @brief Alternative handling of ^ in multiline mode
 		AltCircumflex	  = PCRE2_ALT_CIRCUMFLEX,
@@ -65,7 +65,7 @@ namespace pcre2cpp {
 		MatchUnsetBackRef = PCRE2_MATCH_UNSET_BACKREF,
 		/// @brief ^ and $ match newlines within data
 		Multiline		  = PCRE2_MULTILINE,
-		/// @brief Lock out the use of \C in patterns
+		/// @brief Lock out the use of \\C in patterns
 		NeverBackslashC	  = PCRE2_NEVER_BACKSLASH_C,
 		/// @brief Lock out PCRE2_UCP, e.g.via(*UCP)
 		NeverUCP		  = PCRE2_NEVER_UCP,
@@ -81,7 +81,7 @@ namespace pcre2cpp {
 		NoStartOptimize	  = PCRE2_NO_START_OPTIMIZE,
 		/// @brief Do not check the pattern for UTF validity (only relevant if PCRE2_UTF is set)
 		NoUTFCheck		  = PCRE2_NO_UTF_CHECK,
-		/// @brief Use Unicode properties for \d, \w, etc.
+		/// @brief Use Unicode properties for \\d, \\w, etc.
 		UCP				  = PCRE2_UCP,
 		/// @brief Invert greediness of quantifiers
 		UnGreedy		  = PCRE2_UNGREEDY,

@@ -1,7 +1,30 @@
 var group__pcre2cpp =
 [
     [ "Utilities", "db/d81/group__utils.html", "db/d81/group__utils" ],
+    [ "pcre2cpp::basic_pcre2cpp_exception&lt; utf &gt;", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html", [
+      [ "_char_type", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#ab2044cf74fce43487ab642b904866bf8", null ],
+      [ "_pcre2_data_t", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#abbe676efc5db82d208c81406d9c9d891", null ],
+      [ "_string_type", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#acb411560f4c30250280833ee2d92d0d8", null ],
+      [ "_string_view_type", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#ad1b6a7b7effc50dfddc3010f15f041e2", null ],
+      [ "_uchar_type", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#a1f204a359aaf0394d6cd87342bf74863", null ],
+      [ "basic_pcre2cpp_exception", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#a48f57674f411f942471f361d491b0d98", null ],
+      [ "basic_pcre2cpp_exception", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#ad8f1739861ee5850b0d119aafa00503e", null ],
+      [ "basic_pcre2cpp_exception", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#a481516e9c14d89b1e54f13e7b634a133", null ],
+      [ "get_error", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#aec390b265cc80f1b3c89725e409022e4", null ],
+      [ "_message", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html#a1e141481a4588c18a174dc4e60901965", null ]
+    ] ],
+    [ "pcre2cpp::basic_regex_exception&lt; utf &gt;", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html", [
+      [ "_string_view_type", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html#a1460cd542296a0d55fd2402c1c30872c", null ],
+      [ "basic_regex_exception", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html#a7b6323c34c17c7864285027894cbc529", null ],
+      [ "basic_regex_exception", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html#a42593ef38ffb76c485045f87010f7a4f", null ]
+    ] ],
+    [ "pcre2cpp::basic_match_result_exception&lt; utf &gt;", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html", [
+      [ "_string_view_type", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html#aaacfbc7224d69c4cbec483be835dbd77", null ],
+      [ "basic_match_result_exception", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html#a36b2d091bfe816963eb303c27aa4e97d", null ],
+      [ "basic_match_result_exception", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html#a419fe8f3216f21a5c9b61658c1091300", null ]
+    ] ],
     [ "pcre2cpp::basic_match_value&lt; utf &gt;", "df/d63/structpcre2cpp_1_1basic__match__value.html", [
+      [ "_string_type", "df/d63/structpcre2cpp_1_1basic__match__value.html#a87e88de17c4f33f9b53218fe1e8660ca", null ],
       [ "relative_offset", "df/d63/structpcre2cpp_1_1basic__match__value.html#af392953ab3b4659d285d02647544029c", null ],
       [ "value", "df/d63/structpcre2cpp_1_1basic__match__value.html#ad3dc0aaa4dfb8747f1760fb92d069c6b", null ]
     ] ],
@@ -10,6 +33,20 @@ var group__pcre2cpp =
       [ "size", "d4/df2/structpcre2cpp_1_1sub__match__value.html#a79a42803087d5dd5f0dce34663e10277", null ]
     ] ],
     [ "pcre2cpp::basic_match_result&lt; utf &gt;", "d1/d9f/classpcre2cpp_1_1basic__match__result.html", [
+      [ "_value_result_data", "dc/da6/structpcre2cpp_1_1basic__match__result_1_1__value__result__data.html", [
+        [ "found", "dc/da6/structpcre2cpp_1_1basic__match__result_1_1__value__result__data.html#afe531623c0cca8bdfc1b34294110dc2c", null ],
+        [ "named_sub_values", "dc/da6/structpcre2cpp_1_1basic__match__result_1_1__value__result__data.html#ab0f0f0f611bbdf64e0f95a6d65d66087", null ],
+        [ "result", "dc/da6/structpcre2cpp_1_1basic__match__result_1_1__value__result__data.html#a54d9968b57c0e8ac1611be9ab09e1d75", null ],
+        [ "search_offset", "dc/da6/structpcre2cpp_1_1basic__match__result_1_1__value__result__data.html#a1eacadb3b0ab1ede35e61426f0171839", null ],
+        [ "sub_results", "dc/da6/structpcre2cpp_1_1basic__match__result_1_1__value__result__data.html#ac5a1b6978a2668b3cc4d4feba73dbf74", null ]
+      ] ],
+      [ "_match_result_exception", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a8bea0ba5108031eaa68ea1fe4522c312", null ],
+      [ "_match_value", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a7ec804c1d290ec021ec411685481f74e", null ],
+      [ "_named_sub_values_table", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#aa9e9fb4af1542b6df4ef57a74fc4365c", null ],
+      [ "_named_sub_values_table_ptr", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a6404ce884a3bb6ba41ce6a850e2d1dc3", null ],
+      [ "_pcre2_data_t", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#aee8578411d846e96ac0c72b1e639b168", null ],
+      [ "_string_type", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a1886456bbac7a9d0c5db44bcc04b2bb4", null ],
+      [ "_string_view_type", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#ae8088fe397486e4d82285251adf3cc81", null ],
       [ "basic_match_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a3a3ac7d0282c2edcec13a0a97392457c", null ],
       [ "basic_match_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a204cf542d4491836a39eaccaaa2bd6b7", null ],
       [ "basic_match_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a00c80ff59bbcc5da116125b94a1ea4d8", null ],
@@ -17,6 +54,12 @@ var group__pcre2cpp =
       [ "basic_match_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a6321a8e82f6a62832326ca0a5cd18d69", null ],
       [ "basic_match_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a155c9b2581c5edc0625005ee96ac40f5", null ],
       [ "~basic_match_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#ad8057f6892ef74178b1955c7234ea985", null ],
+      [ "_get_named_sub_result_idx", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a47fba54b0493fcf63969130dcab1bfdb", null ],
+      [ "_get_out_of_bounds_string", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a9b8931482501283d882d4ba24793dfb1", null ],
+      [ "_get_sub_value", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#ade09621ed05db48e20d982f7eed9f9b0", null ],
+      [ "_get_subexpression_not_found", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#ae656d25ea78a541f5b63cbddcd2b31c8", null ],
+      [ "_has_named_sub_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#af683a99cf92e6f3091ea71d2a1a05f2c", null ],
+      [ "_has_sub_value", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#af2f3e5cd16a7a93eed9641268d58ca6d", null ],
       [ "get_error_code", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a152c804397ba4a78d5865bbb2e6005f2", null ],
       [ "get_error_message", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a8bc041e3a160ec1d2ccf5afcfd617c4e", null ],
       [ "get_result", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a9823131cf047fbe9e2bf13b9eb3a5be5", null ],
@@ -50,13 +93,32 @@ var group__pcre2cpp =
       [ "has_sub_value", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#aebb6df2856fa7272727dd6d3f214182e", null ],
       [ "has_value", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#ad9d1081553f8b1c687f4f7e58c458fe8", null ],
       [ "operator=", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a418404e97ae0ef4160d0f89d252c8085", null ],
-      [ "operator=", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a1c8924068eb52d567b421469b357fa81", null ]
+      [ "operator=", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a1c8924068eb52d567b421469b357fa81", null ],
+      [ "throw_error", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#ab9f37a9e4cf63d60738b7d94c38984be", null ],
+      [ "_data", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a5a51f419cdee30ac168017120d302555", null ],
+      [ "bad_offset", "d1/d9f/classpcre2cpp_1_1basic__match__result.html#a85f9e3fe4554229f82a8b32149c699e4", null ]
     ] ],
     [ "pcre2cpp::basic_regex&lt; utf &gt;", "de/d88/classpcre2cpp_1_1basic__regex.html", [
+      [ "_code_ptr", "de/d88/classpcre2cpp_1_1basic__regex.html#a98b79c948ccf690c621dabf3425a146c", null ],
+      [ "_code_type", "de/d88/classpcre2cpp_1_1basic__regex.html#af926f38fdca99e7b691c9a083ef17767", null ],
+      [ "_match_data_ptr", "de/d88/classpcre2cpp_1_1basic__regex.html#abcf46824b35ccf423b180f31075d241d", null ],
+      [ "_match_data_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a03f86407e540d6c6c2933ea96a922905", null ],
+      [ "_match_result_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a7a7ee0ccf1c31fb8e9aa2cb23ed44fa5", null ],
+      [ "_match_value_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a809f9bc7290488343d228091d3f4f189", null ],
+      [ "_named_sub_values_table", "de/d88/classpcre2cpp_1_1basic__regex.html#a9fc4a313cb5064fdac9883f0607aa649", null ],
+      [ "_named_sub_values_table_ptr", "de/d88/classpcre2cpp_1_1basic__regex.html#a3b80c47943779068cdb8e9a3bdb92173", null ],
+      [ "_pcre2_data_t", "de/d88/classpcre2cpp_1_1basic__regex.html#ab83cdd91c27ac360c4297bf6ec0152e6", null ],
+      [ "_regex_exception", "de/d88/classpcre2cpp_1_1basic__regex.html#a07b1d58c7e16b3c56b544e1a93c134ff", null ],
+      [ "_sptr_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a98e0039e8b16e1830c5cf4a5b69114db", null ],
+      [ "_string_char_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a79a3c349d6a0cd94d4388624dfe1b229", null ],
+      [ "_string_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a15892010f1b3e122657c68ea22a29114", null ],
+      [ "_string_view_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a2e4aa2e48b60dd85cf1b489cde9b7d95", null ],
+      [ "_uchar_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a3514a767bc9236f2cf68e4fe23f7d569", null ],
       [ "basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#a4c06f5c30866b71baa7b5741c3e6b89a", null ],
       [ "basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#a29964fb651ab69204c378dac3253ef1e", null ],
       [ "basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#acb4b1df9ac3213052a5cc3e007d88391", null ],
       [ "~basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#ad0c96fb416b9c6637c8b7856dbdcdb52", null ],
+      [ "_get_regex_not_initialized_error", "de/d88/classpcre2cpp_1_1basic__regex.html#a8f7cb6cd4e7aa4cb8755ec0f6db4d47a", null ],
       [ "get_error_message", "de/d88/classpcre2cpp_1_1basic__regex.html#a6ef08ced0bce712d16998a38b903b247", null ],
       [ "is_initialized", "de/d88/classpcre2cpp_1_1basic__regex.html#a6321f3827d4761f66ce5ed94cebab39d", null ],
       [ "match", "de/d88/classpcre2cpp_1_1basic__regex.html#a37242cd436873677f34a37a254834bb4", null ],
@@ -65,27 +127,22 @@ var group__pcre2cpp =
       [ "match_at", "de/d88/classpcre2cpp_1_1basic__regex.html#a8f9e191ab6a55817857c730335dd0437", null ],
       [ "match_at", "de/d88/classpcre2cpp_1_1basic__regex.html#adc9dcdb085fca5ffa7f9dc4eba3a832f", null ],
       [ "operator=", "de/d88/classpcre2cpp_1_1basic__regex.html#aa0d03eb3bb318adbcd6d4243aa92e7ff", null ],
-      [ "operator=", "de/d88/classpcre2cpp_1_1basic__regex.html#aae6085a43f5b4c98a31bd7f6496d58e7", null ]
+      [ "operator=", "de/d88/classpcre2cpp_1_1basic__regex.html#aae6085a43f5b4c98a31bd7f6496d58e7", null ],
+      [ "_code", "de/d88/classpcre2cpp_1_1basic__regex.html#a2b9cb8edf40a196e7ff02a3ec171ec62", null ],
+      [ "_error_code", "de/d88/classpcre2cpp_1_1basic__regex.html#a74783415435ac11a9b43b362f873eb9b", null ],
+      [ "_error_offset", "de/d88/classpcre2cpp_1_1basic__regex.html#a86ea1875f730ea8e321d438523b9f23f", null ],
+      [ "_match_data", "de/d88/classpcre2cpp_1_1basic__regex.html#a701e5bbbd8d00572066d06d2b7380227", null ],
+      [ "_named_sub_values", "de/d88/classpcre2cpp_1_1basic__regex.html#a4fedc5cd1d3e917faf8c803763257bbf", null ]
     ] ],
     [ "PCRE2CPP_LAST_UPDATE_DATE", "dd/d06/group__pcre2cpp.html#ga4282e4003c50589a1d8af1b3eb264b97", null ],
-    [ "PCRE2CPP_LAST_UPDATE_DATE", "dd/d06/group__pcre2cpp.html#ga4282e4003c50589a1d8af1b3eb264b97", null ],
-    [ "PCRE2CPP_LAST_UPDATE_DAY", "dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b", null ],
     [ "PCRE2CPP_LAST_UPDATE_DAY", "dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b", null ],
     [ "PCRE2CPP_LAST_UPDATE_MONTH", "dd/d06/group__pcre2cpp.html#ga87bccc8e2f4cc413bd01853bbd0f763e", null ],
-    [ "PCRE2CPP_LAST_UPDATE_MONTH", "dd/d06/group__pcre2cpp.html#ga87bccc8e2f4cc413bd01853bbd0f763e", null ],
-    [ "PCRE2CPP_LAST_UPDATE_YEAR", "dd/d06/group__pcre2cpp.html#ga8b933fc1a558558beba82d5daa8b2aac", null ],
     [ "PCRE2CPP_LAST_UPDATE_YEAR", "dd/d06/group__pcre2cpp.html#ga8b933fc1a558558beba82d5daa8b2aac", null ],
     [ "PCRE2CPP_VERSION", "dd/d06/group__pcre2cpp.html#gafdba3d33e870ffe5f722740fbf23d745", null ],
-    [ "PCRE2CPP_VERSION", "dd/d06/group__pcre2cpp.html#gafdba3d33e870ffe5f722740fbf23d745", null ],
-    [ "PCRE2CPP_VERSION_INT", "dd/d06/group__pcre2cpp.html#ga77da89ec53d1417b73358aae5971d308", null ],
     [ "PCRE2CPP_VERSION_INT", "dd/d06/group__pcre2cpp.html#ga77da89ec53d1417b73358aae5971d308", null ],
     [ "PCRE2CPP_VERSION_MAJOR", "dd/d06/group__pcre2cpp.html#gabda68c6580972d4290ad01c35eadbfbd", null ],
-    [ "PCRE2CPP_VERSION_MAJOR", "dd/d06/group__pcre2cpp.html#gabda68c6580972d4290ad01c35eadbfbd", null ],
-    [ "PCRE2CPP_VERSION_MINOR", "dd/d06/group__pcre2cpp.html#gada1f3fbadef1fa2de12e8bcc0598da07", null ],
     [ "PCRE2CPP_VERSION_MINOR", "dd/d06/group__pcre2cpp.html#gada1f3fbadef1fa2de12e8bcc0598da07", null ],
     [ "PCRE2CPP_VERSION_PATCH", "dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08", null ],
-    [ "PCRE2CPP_VERSION_PATCH", "dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08", null ],
-    [ "PCRE2CPP_VERSION_STRING", "dd/d06/group__pcre2cpp.html#gaac140f8044df8adc6693c3bf370d3256", null ],
     [ "PCRE2CPP_VERSION_STRING", "dd/d06/group__pcre2cpp.html#gaac140f8044df8adc6693c3bf370d3256", null ],
     [ "pcre2cpp::compile_options", "dd/d06/group__pcre2cpp.html#gac9c7bfaa64bbc6dbf13819ed97e71117", null ],
     [ "pcre2cpp::match_options", "dd/d06/group__pcre2cpp.html#gabe86e86e728243ce442a03ac193f83df", null ],
@@ -121,6 +178,25 @@ var group__pcre2cpp =
       [ "pcre2cpp::compile_options_bits::UseOffsetLimit", "dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefabdb9c5ec38395aa18f25c7e4280f2b6f", null ],
       [ "pcre2cpp::compile_options_bits::UTF", "dd/d06/group__pcre2cpp.html#gga70cb3a5c72a5a7b50a9bb8edf324ccefab0a0ad647d82115f6f3cf54965a69c91", null ]
     ] ],
+    [ "pcre2cpp::match_error_codes", "dd/d06/group__pcre2cpp.html#ga45ae27f95be0a3a121d12f5208a6f9d9", [
+      [ "pcre2cpp::match_error_codes::None", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a6adf97f83acf6453d4a6a4b1070f3754", null ],
+      [ "pcre2cpp::match_error_codes::NoMatch", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9ac8b77721c677e0429241a9250972122d", null ],
+      [ "pcre2cpp::match_error_codes::Partial", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a44ffd38a6dea695cbe2b34efdcc6cf27", null ],
+      [ "pcre2cpp::match_error_codes::BadMagic", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9ac87c2d41af62cc035e76f90e0f889e4f", null ],
+      [ "pcre2cpp::match_error_codes::BadMode", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a3f6046f99723de092cb5e9c828d0f6b5", null ],
+      [ "pcre2cpp::match_error_codes::BadOffset", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9ad9e08c930c668cbf2c7710d3878a9151", null ],
+      [ "pcre2cpp::match_error_codes::BadOption", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a401dd6598bef8d697ee4d2aaacb2b0c9", null ],
+      [ "pcre2cpp::match_error_codes::BadUTFOffset", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9ab0c30322a6b2afc696ae863c42250e5d", null ],
+      [ "pcre2cpp::match_error_codes::Callout", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a1eaf6bb9a4bb96ff81a5d26a4cc0314c", null ],
+      [ "pcre2cpp::match_error_codes::DepthLimit", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a0190d9c5081a49c5f6620e68e2cdf14e", null ],
+      [ "pcre2cpp::match_error_codes::HeapLimit", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9acf65b75b7f59ba11e3ff1b917f969c97", null ],
+      [ "pcre2cpp::match_error_codes::Internal", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9aafbf0897a5a83fdd873dfb032ec695d3", null ],
+      [ "pcre2cpp::match_error_codes::JITStackLimit", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a4b654abb95d3e4aca85902f74f273ad8", null ],
+      [ "pcre2cpp::match_error_codes::MatchLimit", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9ac0d6c5ad361f8610d0fb2d2e24a23c36", null ],
+      [ "pcre2cpp::match_error_codes::NoMemory", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a9f13a978003af046bdd4b13f7cdac5b2", null ],
+      [ "pcre2cpp::match_error_codes::Null", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9abbb93ef26e3c101ff11cdd21cab08a94", null ],
+      [ "pcre2cpp::match_error_codes::RecurseLoop", "dd/d06/group__pcre2cpp.html#gga45ae27f95be0a3a121d12f5208a6f9d9a6a4553bd90617ab5bba5e2cdf9d3318e", null ]
+    ] ],
     [ "pcre2cpp::match_options_bits", "dd/d06/group__pcre2cpp.html#gaafb5f7081cbcd3782820f01dfdeb79ad", [
       [ "pcre2cpp::match_options_bits::None", "dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79ada6adf97f83acf6453d4a6a4b1070f3754", null ],
       [ "pcre2cpp::match_options_bits::Anchored", "dd/d06/group__pcre2cpp.html#ggaafb5f7081cbcd3782820f01dfdeb79adac49640afe1366cd0158d41c440d817cf", null ],
@@ -140,5 +216,9 @@ var group__pcre2cpp =
       [ "pcre2cpp::utf_type::UTF_8", "dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24", null ],
       [ "pcre2cpp::utf_type::UTF_16", "dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a788ccb14850ed382971bd7b88c30c819", null ],
       [ "pcre2cpp::utf_type::UTF_32", "dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73a8b8b5b0a5bc112041110e240c745f2c2", null ]
-    ] ]
+    ] ],
+    [ "pcre2cpp::convert_any_utf_to_utf8", "dd/d06/group__pcre2cpp.html#gacd705b80509fa50ff46abe56aaca4f59", null ],
+    [ "pcre2cpp::generate_error_message", "dd/d06/group__pcre2cpp.html#ga71d1e3bfa43438d7905a0421483a3bc0", null ],
+    [ "pcre2cpp::generate_error_message", "dd/d06/group__pcre2cpp.html#gac93d4e961590e7e515e0a71f54c0e9d5", null ],
+    [ "pcre2cpp::operator|", "dd/d06/group__pcre2cpp.html#ga416e0c4954bfed4e141e2fe43d00a8a6", null ]
 ];

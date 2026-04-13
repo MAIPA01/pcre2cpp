@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['_7ebasic_5fmatch_5fresult_0',['~basic_match_result',['../d1/d9f/classpcre2cpp_1_1basic__match__result.html#ad8057f6892ef74178b1955c7234ea985',1,'pcre2cpp::basic_match_result']]],
-  ['_7ebasic_5fregex_1',['~basic_regex',['../de/d88/classpcre2cpp_1_1basic__regex.html#ad0c96fb416b9c6637c8b7856dbdcdb52',1,'pcre2cpp::basic_regex']]]
+  ['operator_3d_0',['operator=',['../d1/d9f/classpcre2cpp_1_1basic__match__result.html#a1c8924068eb52d567b421469b357fa81',1,'pcre2cpp::basic_match_result::operator=(const basic_match_result &amp;other) noexcept=default'],['../d1/d9f/classpcre2cpp_1_1basic__match__result.html#a418404e97ae0ef4160d0f89d252c8085',1,'pcre2cpp::basic_match_result::operator=(basic_match_result &amp;&amp;other) noexcept=default'],['../de/d88/classpcre2cpp_1_1basic__regex.html#aae6085a43f5b4c98a31bd7f6496d58e7',1,'pcre2cpp::basic_regex::operator=(const basic_regex &amp;other) noexcept=default'],['../de/d88/classpcre2cpp_1_1basic__regex.html#aa0d03eb3bb318adbcd6d4243aa92e7ff',1,'pcre2cpp::basic_regex::operator=(basic_regex &amp;&amp;other) noexcept=default']]],
+  ['operator_7c_1',['operator|',['../dd/d06/group__pcre2cpp.html#ga416e0c4954bfed4e141e2fe43d00a8a6',1,'pcre2cpp::operator|(const match_options_bits opt0, const match_options_bits opt1) noexcept'],['../de/d73/namespacepcre2cpp.html#a3f66d244ee90a101490670454774f77b',1,'pcre2cpp::operator|(const compile_options_bits opt0, const compile_options_bits opt1) noexcept']]]
 ];
