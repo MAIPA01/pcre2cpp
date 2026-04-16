@@ -1,4 +1,4 @@
-project(pcre2cpp-tests VERSION 1.2.4 LANGUAGES CXX)
+project(pcre2cpp-tests VERSION 1.2.5 LANGUAGES CXX)
 
 # source files
 set(PROJECT_TEST_SOURCES ${PROJECT_NAME}_TEST_SOURCES)
@@ -6,11 +6,27 @@ file(GLOB_RECURSE ${PROJECT_TEST_SOURCES} CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOUR
 
 enable_testing()
 
+# region INSTALL_TESTING
+if (PCRE2CPP_INSTALL_TEST)
+    message(STATUS TESTING_INSTALL)
+
+    find_package(pcre2cpp REQUIRED
+            HINTS "${CMAKE_SOURCE_DIR}/dist"
+            COMPONENTS CXX20
+    )
+
+    add_library(pcre2cpp::all INTERFACE IMPORTED)
+    target_link_libraries(pcre2cpp::all INTERFACE pcre2cpp::CXX20 pcre2cpp::pcre2cpp)
+endif()
+# endregion
+
 # make exec
 add_executable(${PROJECT_NAME} ${${PROJECT_TEST_SOURCES}})
 add_test(${PROJECT_NAME}_TEST ${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE pcre2cpp gtest_main)
+target_link_libraries(${PROJECT_NAME} PRIVATE   $<IF:$<BOOL:${PCRE2CPP_INSTALL_TEST}>, pcre2cpp::all, pcre2cpp::pcre2cpp>
+                                                gtest_main
+)
 
 # Konfiguracja PCH
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/pch.hpp")
@@ -46,13 +62,11 @@ target_compile_options(${PROJECT_NAME} PRIVATE
             -Werror
             -fno-strict-aliasing
         >
-        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
-            $<$<BOOL:${PCRE2CPP_BUILD_COVERAGE}>:
-                --coverage
-                -fcoverage-mcdc
-                -fprofile-instr-generate
-                -fcoverage-mapping
-            >
+        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>,$<BOOL:${PCRE2CPP_BUILD_COVERAGE}>>:
+            --coverage
+            -fcoverage-mcdc
+            -fprofile-instr-generate
+            -fcoverage-mapping
         >
 )
 
@@ -67,10 +81,8 @@ target_link_options(${PROJECT_NAME} PRIVATE
             $<$<CONFIG:Release>:-flto>
             -static
         >
-        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
-            $<$<BOOL:${PCRE2CPP_BUILD_COVERAGE}>:
-                --coverage
-                -fprofile-instr-generate
-            >
+        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>,$<BOOL:${PCRE2CPP_BUILD_COVERAGE}>>:
+            --coverage
+            -fprofile-instr-generate
         >
 )

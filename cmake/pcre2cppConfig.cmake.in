@@ -1,0 +1,75 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(pcre2 REQUIRED)
+if(pcre2_FOUND)
+    add_library(@PROJECT_NAMESPACE@pcre2-8_imported INTERFACE IMPORTED)
+    if(TARGET pcre2-8)
+        target_link_libraries(@PROJECT_NAMESPACE@pcre2-8_imported INTERFACE pcre2-8)
+    else()
+        target_compile_definitions(@PROJECT_NAMESPACE@pcre2-8_imported INTERFACE PCRE2CPP_DISABLE_UTF8)
+    endif()
+
+    add_library(@PROJECT_NAMESPACE@pcre2-16_imported INTERFACE IMPORTED)
+    if(TARGET pcre2-16)
+        target_link_libraries(@PROJECT_NAMESPACE@pcre2-16_imported INTERFACE pcre2-16)
+    else()
+        target_compile_definitions(@PROJECT_NAMESPACE@pcre2-16_imported INTERFACE PCRE2CPP_DISABLE_UTF16)
+    endif()
+
+    add_library(@PROJECT_NAMESPACE@pcre2-32_imported INTERFACE IMPORTED)
+    if(TARGET pcre2-32)
+        target_link_libraries(@PROJECT_NAMESPACE@pcre2-32_imported INTERFACE pcre2-32)
+    else()
+        target_compile_definitions(@PROJECT_NAMESPACE@pcre2-32_imported INTERFACE PCRE2CPP_DISABLE_UTF32)
+    endif()
+endif()
+
+find_dependency(mstd REQUIRED)
+if(mstd_FOUND AND NOT TARGET @PROJECT_NAMESPACE@mstd_imported)
+    add_library(@PROJECT_NAMESPACE@mstd_imported INTERFACE IMPORTED)
+    target_link_libraries(@PROJECT_NAMESPACE@mstd_imported INTERFACE mstd::mstd)
+endif()
+
+set_and_check(@PROJECT_NAME@_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set(@PROJECT_NAME@_PCH_PATH "${@PROJECT_NAME@_INCLUDE_DIR}/@PROJECT_NAME@/pch.hpp")
+
+if(NOT TARGET @PROJECT_NAMESPACE@@PROJECT_NAME@)
+    include(${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake)
+endif()
+
+set(@PROJECT_NAME@_components NO_UTF8 NO_UTF16 NO_UTF32 CXX20 NO_ASSERT_ON_RELEASE EXCEPTIONS)
+
+foreach(comp ${@PROJECT_NAME@_FIND_COMPONENTS})
+    if (NOT comp IN_LIST @PROJECT_NAME@_components)
+        set(@PROJECT_NAME@_NOT_FOUND_MESSAGE "Unsupported components: ${comp}")
+        set(@PROJECT_NAME@_FOUND FALSE)
+        break()
+    endif()
+
+    set(comp_target "@PROJECT_NAMESPACE@${comp}")
+
+    if(NOT TARGET ${comp_target})
+        add_library(${comp_target} INTERFACE IMPORTED)
+
+        if (comp STREQUAL "NO_UTF8")
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_UTF8)
+        elseif(comp STREQUAL "NO_UTF16")
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_UTF16)
+        elseif(comp STREQUAL "UTF32")
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_UTF32)
+        elseif(comp STREQUAL "CXX20")
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_ENABLE_CXX20 MSTD_ENABLE_CXX20)
+            set_target_properties(${comp_target} PROPERTIES
+                INTERFACE_COMPILE_FEATURES cxx_std_20
+            )
+        elseif(comp STREQUAL "NO_ASSERT_ON_RELEASE")
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_ASSERT_ON_RELEASE MSTD_DISABLE_ASSERT_ON_RELEASE)
+        elseif(comp STREQUAL "EXCEPTIONS")
+            set_target_properties(${comp_target} PROPERTIES
+                INTERFACE_COMPILE_DEFINITIONS PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS
+            )
+        endif()
+    endif()
+endforeach()

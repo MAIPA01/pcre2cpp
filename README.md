@@ -1,11 +1,13 @@
 # pcre2cpp
 
-**pcre2cpp** is a C++ wrapper for the PCRE2 (Perl Compatible Regular Expressions) library written in C. It provides an object-oriented interface for the original PCRE2 library, while maintaining the same functionality and behavior. [DOCS](https://maipa01.github.io/pcre2cpp/html)
+**pcre2cpp** is a C++ wrapper for the PCRE2 (Perl Compatible Regular Expressions) library written in C. It provides an
+object-oriented interface for the original PCRE2 library, while maintaining the same functionality and
+behavior. [DOCS](https://maipa01.github.io/pcre2cpp/html "Documentation")
 
 ## Features
 
 - Object-oriented interface to PCRE2 10.47.
-- Compatible with C++17 and C++20.
+- Compatible with C++17 and newer.
 - Easy to use regular expression matching with built-in result capturing.
 
 ## Requirements
@@ -15,18 +17,46 @@
 
 ## Options
 
-| CMAKE Option / #define                    | Description                                    | Default |
-|:------------------------------------------|:-----------------------------------------------|:-------:|
-| **PCRE2CPP_ENABLE_CXX20**                 | Enables C++20 features                         |   OFF   |
-| **PCRE2CPP_DISABLE_ASSERT_ON_RELEASE**    | Disables assert on release builds              |   OFF   |
-| **PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS** | Changes every assert to exceptions in pcre2cpp |   OFF   |
-| **PCRE2CPP_DISABLE_UTF8**                 | Disables UTF-8 support                         |   OFF   |
-| **PCRE2CPP_DISABLE_UTF16**                | Disables UTF-16 support                        |   OFF   |
-| **PCRE2CPP_DISABLE_UTF32**                | Disables UTF-32 support                        |   OFF   |
+### Compilation defines options
+
+You can enable option using `#define option_name` or use cmake `set(option_name ON CACHE BOOL)`
+
+| Cmake option/C++ define Name            | Description                                    | Default |
+|:----------------------------------------|:-----------------------------------------------|:-------:|
+| `PCRE2CPP_ENABLE_CXX20`                 | Enables C++20 features                         |   OFF   |
+| `PCRE2CPP_DISABLE_ASSERT_ON_RELEASE`    | Disables assert on release builds              |   OFF   |
+| `PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS` | Changes every assert to exceptions in pcre2cpp |   OFF   |
+| `PCRE2CPP_DISABLE_UTF8`                 | Disables UTF-8 support                         |   OFF   |
+| `PCRE2CPP_DISABLE_UTF16`                | Disables UTF-16 support                        |   OFF   |
+| `PCRE2CPP_DISABLE_UTF32`                | Disables UTF-32 support                        |   OFF   |
+
+### External libraries options
+
+If you want to use external libraries not installed by project using CPM
+
+| Cmake option Name         | Description                                                      | Default |
+|:--------------------------|:-----------------------------------------------------------------|:-------:|
+| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.2)  |   OFF   |
+| `PCRE2CPP_PCRE2_EXTERNAL` | Uses users own pcre2 library (tested and compatible with: 10.47) |   OFF   |
+
+### Project developing options
+
+These options are used while testing or changing code in project
+
+| Cmake option Name              | Description                                            |          Default          |
+|:-------------------------------|:-------------------------------------------------------|:-------------------------:|
+| `PCRE2CPP_BUILD_TESTS`         | Build tests                                            | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_BUILD_BENCHMARK`     | Build benchmark                                        | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_BUILD_COVERAGE`      | Enable coverage reporting                              | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_BUILD_DOCUMENTATION` | Build documentation                                    | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_ENABLE_CLANG_TIDY`   | Enables clang-tidy checks                              | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_INSTALL`             | Enables installation of this project                   | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_INSTALL_TEST`        | This is only to test if installation of pcre2cpp works |            OFF            |
 
 ## Benchmarks
 
 ### Compilation (10,000 iterations)
+
 | No.     | std::regex (ms) | PCRE2 (ms)  | pcre2cpp (ms) |
 |:--------|:---------------:|:-----------:|:-------------:|
 | **1.**  |     72,9598     | **16,1092** |    18,5241    |
@@ -47,6 +77,7 @@
 | **pcre2cpp**   |   18,3117   |                  -                   |         0,0018         |                  -                  |
 
 ### Match (10,000 iterations)
+
 | No.     | std::regex (ms) | PCRE2 (ms) | pcre2cpp (ms) |
 |:--------|:---------------:|:----------:|:-------------:|
 | **1.**  |    200,0510     | **7,6231** |    7,6295     |
@@ -67,6 +98,7 @@
 | **pcre2cpp**   |   7,9713   |                   -                   |       **0,0008**       |                  -                  |
 
 ### Match with all results (10,000 iterations)
+
 | No.     | std::regex (ms) | PCRE2 (ms)  | pcre2cpp (ms) |
 |:--------|:---------------:|:-----------:|:-------------:|
 | **1.**  |    200,0060     | **9,7453**  |    11,9927    |
@@ -88,16 +120,22 @@
 
 ## Installation
 
-To use **pcre2cpp**, simply download the latest release. There are no additional dependencies required.
+After installing, you can use `find_package(pcre2cpp)`.
 
-1. Download the latest release of **pcre2cpp**.
-2. Link the `pcre2cpp` library statically in your build system (e.g., `CMake` or `Make`).
+### Components
 
-Example for linking in `CMake`:
-```cmake
-find_package(pcre2cpp REQUIRED)
-target_link_libraries(your_project_name PRIVATE pcre2cpp)
-```
+You can also include components `find_pcakage(pcre2cpp COMPONENTS comp)`. They work the same way
+as [Compilation defines options](#compilation-defines-options), but
+they provide separate components you need to include.
+
+| Component Name       | Option                                  | Target Name                    |
+|:---------------------|:----------------------------------------|:-------------------------------|
+| CXX20                | `PCRE2CPP_ENABLE_CXX20`                 | pcre2cpp::CXX20                |
+| NO_ASSERT_ON_RELEASE | `PCRE2CPP_DISABLE_ASSERT_ON_RELEASE`    | pcre2cpp::NO_ASSERT_ON_RELEASE |
+| EXCEPTIONS           | `PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS` | pcre2cpp::EXCEPTIONS           |
+| NO_UTF8              | `PCRE2CPP_DISABLE_UTF8`                 | pcre2cpp::NO_UTF8              |
+| NO_UTF16             | `PCRE2CPP_DISABLE_UTF16`                | pcre2cpp::NO_UTF16             |
+| NO_UTF32             | `PCRE2CPP_DISABLE_UTF32`                | pcre2cpp::NO_UTF32             |
 
 ## Example Usage
 
@@ -293,12 +331,15 @@ int main() {
 ```
 
 ## Offsets Graph
-![offsets graph](PCRE2CPPResult.png "Title")
+
+![offsets graph](PCRE2CPPResult.png "Offsets Graph")
 
 ## License
 
-This project is licensed under the **BSD 3-Clause License with Attribution Requirement**. For more details, check the [LICENSE](./LICENSE) file.
+This project is licensed under the **BSD 3-Clause License with Attribution Requirement**. For more details, check
+the [LICENSE](./LICENSE "License") file.
 
 ## Acknowledgments
 
-This project includes code from the [PCRE2 library](https://github.com/PhilipHazel/pcre2), distributed under the BSD License.
+This project includes code from the [PCRE2 library](https://github.com/PhilipHazel/pcre2 "PCRE2 github repo"), distributed under the BSD
+License.

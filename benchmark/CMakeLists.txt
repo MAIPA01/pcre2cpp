@@ -1,13 +1,27 @@
-project(pcre2cpp-benchmark VERSION 1.2.4 LANGUAGES CXX)
+project(pcre2cpp-benchmark VERSION 1.2.5 LANGUAGES CXX)
 
 # source files
 set(PROJECT_TEST_SOURCES ${PROJECT_NAME}_TEST_SOURCES)
 file(GLOB_RECURSE ${PROJECT_TEST_SOURCES} CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
+# region INSTALL_TESTING
+if (PCRE2CPP_INSTALL_TEST)
+    message(STATUS TESTING_INSTALL)
+
+    find_package(pcre2cpp REQUIRED
+            HINTS "${CMAKE_SOURCE_DIR}/dist"
+            COMPONENTS CXX20
+    )
+
+    add_library(pcre2cpp::all INTERFACE IMPORTED)
+    target_link_libraries(pcre2cpp::all INTERFACE pcre2cpp::pcre2cpp pcre2cpp::CXX20)
+endif()
+# endregion
+
 # make exec
 add_executable(${PROJECT_NAME} ${${PROJECT_TEST_SOURCES}})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE pcre2cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE $<IF:$<BOOL:${PCRE2CPP_INSTALL_TEST}>, pcre2cpp::all, pcre2cpp::pcre2cpp>)
 
 # Konfiguracja PCH
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/pch.hpp")

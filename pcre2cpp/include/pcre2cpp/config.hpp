@@ -52,7 +52,7 @@
 	 * @brief pcre2cpp version patch number
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_VERSION_PATCH 4
+	#define PCRE2CPP_VERSION_PATCH 5
 
 	/**
 	 * @brief stringify helper
@@ -95,7 +95,7 @@
 	 * @brief pcre2cpp last update day
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_LAST_UPDATE_DAY 07
+	#define PCRE2CPP_LAST_UPDATE_DAY 16
 	/**
 	 * @brief pcre2cpp last update month
 	 * @ingroup pcre2cpp

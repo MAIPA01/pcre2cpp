@@ -81,6 +81,7 @@ function(setup_coverage_report)
     foreach(TARGET_NAME ${EXE_TARGETS})
         # GET BINARY_DIR OF TARGET
         get_target_property(TARGET_BINARY_DIR ${TARGET_NAME} BINARY_DIR)
+
         # GET EXE FILE
         set(EXE_FILE "$<TARGET_FILE:${TARGET_NAME}>")
 
@@ -118,7 +119,7 @@ function(setup_coverage_report)
     set(TEST_FILES_REGEX ".*[\\\\\\\/]${TEST_TARGET_SOURCE_DIR}[\\\\\\\/].*")
 
     add_custom_command(TARGET ${COVERAGE_TARGET_NAME} POST_BUILD
-        COMMAND ${LLVM_COV} show ${TEST_EXE}
+        COMMAND ${LLVM_COV} show ${TARGETS_EXECS}
         -instr-profile=${PROFDATA_FILE} 
         -format=${COVERAGE_FORMAT} 
         -output-dir=${COVERAGE_OUTPUT_DIR} 
