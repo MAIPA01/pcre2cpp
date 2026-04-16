@@ -33,9 +33,7 @@ if (PCRE2CPP_ENABLE_CLANG_TIDY)
 endif()
 # endregion
 
-target_precompile_headers(${PROJECT_NAME} INTERFACE "$<BUILD_INTERFACE:${BUILD_HEADERS_DIR}/${PROJECT_NAME}/pch.hpp>"
-                                                    "$<INSTALL_INTERFACE:${pcre2cpp_PCH_PATH}>"
-)
+target_precompile_headers(${PROJECT_NAME} INTERFACE "$<BUILD_INTERFACE:${BUILD_HEADERS_DIR}/${PROJECT_NAME}/pch.hpp>")
 
 target_compile_features(${PROJECT_NAME} INTERFACE   $<BUILD_INTERFACE:$<IF:$<BOOL:${PCRE2CPP_ENABLE_CXX20}>, cxx_std_20, cxx_std_17>>)
 
@@ -73,9 +71,7 @@ target_link_libraries(${PROJECT_NAME} INTERFACE
 # endregion
 
 # set headers folder
-target_include_directories(${PROJECT_NAME} SYSTEM INTERFACE $<BUILD_INTERFACE:${BUILD_HEADERS_DIR}>
-                                                            $<INSTALL_INTERFACE:${INSTALL_HEADERS_DIR}>
-)
+target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${BUILD_HEADERS_DIR}>)
 
 # region COMPILE_DEFINITIONS
 target_compile_definitions(${PROJECT_NAME} INTERFACE    $<BUILD_INTERFACE:
@@ -161,7 +157,7 @@ if(PCRE2CPP_INSTALL)
     # Installing targets
     set(PROJECT_INSTALL_TARGETS ${PROJECT_NAME}Targets)
     install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Targets
-            INCLUDES DESTINATION ${INSTALL_HEADERS_PATH}
+            INCLUDES DESTINATION ${INSTALL_HEADERS_DIR}
     )
 
     # Generate Targets.cmake
@@ -175,12 +171,10 @@ if(PCRE2CPP_INSTALL)
     include(CMakePackageConfigHelpers)
 
     set(PROJECT_INSTALL_CONFIG ${PROJECT_NAME}Config)
-    set(INCLUDE_INSTALL_DIR ${INSTALL_HEADERS_DIR})
     configure_package_config_file(
             "${CMAKE_SOURCE_DIR}/cmake/${PROJECT_INSTALL_CONFIG}.cmake.in"
             "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_INSTALL_CONFIG}.cmake"
             INSTALL_DESTINATION cmake
-            PATH_VARS INCLUDE_INSTALL_DIR
     )
 
     # Create Version.cmake

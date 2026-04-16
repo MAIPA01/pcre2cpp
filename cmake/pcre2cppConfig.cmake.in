@@ -32,9 +32,6 @@ if(mstd_FOUND AND NOT TARGET @PROJECT_NAMESPACE@mstd_imported)
     target_link_libraries(@PROJECT_NAMESPACE@mstd_imported INTERFACE mstd::mstd)
 endif()
 
-set_and_check(@PROJECT_NAME@_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
-set(@PROJECT_NAME@_PCH_PATH "${@PROJECT_NAME@_INCLUDE_DIR}/@PROJECT_NAME@/pch.hpp")
-
 if(NOT TARGET @PROJECT_NAMESPACE@@PROJECT_NAME@)
     include(${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake)
 endif()
