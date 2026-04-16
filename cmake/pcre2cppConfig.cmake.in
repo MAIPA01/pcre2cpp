@@ -60,12 +60,16 @@ foreach(comp ${@PROJECT_NAME@_FIND_COMPONENTS})
         elseif(comp STREQUAL "UTF32")
             target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_UTF32)
         elseif(comp STREQUAL "CXX20")
-            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_ENABLE_CXX20 MSTD_ENABLE_CXX20)
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_ENABLE_CXX20
+                                                                MSTD_ENABLE_CXX20
+            )
             set_target_properties(${comp_target} PROPERTIES
                 INTERFACE_COMPILE_FEATURES cxx_std_20
             )
         elseif(comp STREQUAL "NO_ASSERT_ON_RELEASE")
-            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_ASSERT_ON_RELEASE MSTD_DISABLE_ASSERT_ON_RELEASE)
+            target_compile_definitions(${comp_target} INTERFACE PCRE2CPP_DISABLE_ASSERT_ON_RELEASE
+                                                                MSTD_DISABLE_ASSERT_ON_RELEASE
+            )
         elseif(comp STREQUAL "EXCEPTIONS")
             set_target_properties(${comp_target} PROPERTIES
                 INTERFACE_COMPILE_DEFINITIONS PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS

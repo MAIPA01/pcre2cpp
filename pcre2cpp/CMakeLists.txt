@@ -79,9 +79,13 @@ target_include_directories(${PROJECT_NAME} SYSTEM INTERFACE $<BUILD_INTERFACE:${
 
 # region COMPILE_DEFINITIONS
 target_compile_definitions(${PROJECT_NAME} INTERFACE    $<BUILD_INTERFACE:
-                                                            $<$<BOOL:${PCRE2CPP_ENABLE_CXX20}>:PCRE2CPP_ENABLE_CXX20>
+                                                            $<$<BOOL:${PCRE2CPP_ENABLE_CXX20}>: PCRE2CPP_ENABLE_CXX20
+                                                                                                MSTD_ENABLE_CXX20
+                                                            >
                                                             $<$<BOOL:${PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS}>:PCRE2CPP_CHANGE_ASSERTS_TO_EXCEPTIONS>
-                                                            $<$<BOOL:${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE}>:PCRE2CPP_DISABLE_ASSERT_ON_RELEASE>
+                                                            $<$<BOOL:${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE}>:PCRE2CPP_DISABLE_ASSERT_ON_RELEASE
+                                                                                                            MSTD_DISABLE_ASSERT_ON_RELEASE
+                                                            >
                                                             $<$<BOOL:${PCRE2CPP_DISABLE_UTF8}>:PCRE2CPP_DISABLE_UTF8>
                                                             $<$<BOOL:${PCRE2CPP_DISABLE_UTF16}>:PCRE2CPP_DISABLE_UTF16>
                                                             $<$<BOOL:${PCRE2CPP_DISABLE_UTF32}>:PCRE2CPP_DISABLE_UTF32>

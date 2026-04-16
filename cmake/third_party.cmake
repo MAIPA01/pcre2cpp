@@ -56,11 +56,7 @@ endif()
 
 # MSTD
 if (DOWNLOAD_MSTD)
-    CPMAddPackage(
-            URI "gh:maipa01/mstd#v1.5.2"
-            OPTIONS "MSTD_ENABLE_CXX20 ${PCRE2CPP_ENABLE_CXX20}"
-                    "MSTD_DISABLE_ASSERT_ON_RELEASE ${PCRE2CPP_DISABLE_ASSERT_ON_RELEASE}"
-    )
+    CPMAddPackage("gh:maipa01/mstd#v1.5.2")
 endif()
 
 # GTEST
