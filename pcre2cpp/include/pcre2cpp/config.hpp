@@ -52,7 +52,7 @@
 	 * @brief pcre2cpp version patch number
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_VERSION_PATCH 5
+	#define PCRE2CPP_VERSION_PATCH 6
 
 	/**
 	 * @brief stringify helper
@@ -95,7 +95,7 @@
 	 * @brief pcre2cpp last update day
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_LAST_UPDATE_DAY 16
+	#define PCRE2CPP_LAST_UPDATE_DAY 27
 	/**
 	 * @brief pcre2cpp last update month
 	 * @ingroup pcre2cpp
@@ -258,6 +258,18 @@
 		#define _PCRE2CPP_REQUIRES(condition)
 	#endif
 	#pragma endregion
+
+/**
+ * @def _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
+ * @brief adds constexpr to pcre2 function pointers only if pcre2 is static library
+ * @ingroup utils
+ */
+
+	#ifdef PCRE2CPP_SHARED_LIBS
+		#define _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 inline const
+	#else
+		#define _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 constexpr
+	#endif
 
 	#include <mstd/mstd.hpp>
 

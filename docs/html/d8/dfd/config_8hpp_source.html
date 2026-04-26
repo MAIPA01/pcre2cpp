@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PCRE2 C++ Wrapper<span id="projectnumber">&#160;1.2.4</span>
+   <div id="projectname">PCRE2 C++ Wrapper<span id="projectnumber">&#160;1.2.6</span>
    </div>
    <div id="projectbrief">pcre2cpp</div>
   </td>
@@ -147,7 +147,7 @@ $(function(){initNavTree('d8/dfd/config_8hpp_source.html','../../',''); });
 <div class="line"><span class="lineno">   52</span><span class="comment">     * @brief pcre2cpp version patch number</span></div>
 <div class="line"><span class="lineno">   53</span><span class="comment">     * @ingroup pcre2cpp</span></div>
 <div class="line"><span class="lineno">   54</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08">   55</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">PCRE2CPP_VERSION_PATCH</span> 4</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08">   55</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">PCRE2CPP_VERSION_PATCH</span> 6</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">/**</span></div>
 <div class="line"><span class="lineno">   58</span><span class="comment">     * @brief stringify helper</span></div>
@@ -194,7 +194,7 @@ $(function(){initNavTree('d8/dfd/config_8hpp_source.html','../../',''); });
 <div class="line"><span class="lineno">   95</span><span class="comment">     * @brief pcre2cpp last update day</span></div>
 <div class="line"><span class="lineno">   96</span><span class="comment">     * @ingroup pcre2cpp</span></div>
 <div class="line"><span class="lineno">   97</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="../../dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b">   98</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">PCRE2CPP_LAST_UPDATE_DAY</span> 07</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="../../dd/d06/group__pcre2cpp.html#gaf6cc71e92869d518d77af8d423ceba9b">   98</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">PCRE2CPP_LAST_UPDATE_DAY</span> 27</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">/**</span></div>
 <div class="line"><span class="lineno">  100</span><span class="comment">     * @brief pcre2cpp last update month</span></div>
 <div class="line"><span class="lineno">  101</span><span class="comment">     * @ingroup pcre2cpp</span></div>
@@ -362,24 +362,36 @@ $(function(){initNavTree('d8/dfd/config_8hpp_source.html','../../',''); });
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">endregion</span></div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">mstd</span><span class="preprocessor">/</span><span class="preprocessor">mstd</span><span class="preprocessor">.</span><span class="preprocessor">hpp</span><span class="preprocessor">&gt;</span></div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  265</span><span class="comment">     * @brief compiler message</span></div>
-<div class="line"><span class="lineno">  266</span><span class="comment">     * @ingroup utils</span></div>
-<div class="line"><span class="lineno">  267</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#gab02f8c2c1f8a5564aa7c453658d19f42">  268</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_MESSAGE</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span> <span class="preprocessor">_MSTD_MESSAGE</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span></div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  270</span><span class="comment">     * @brief compiler warning</span></div>
-<div class="line"><span class="lineno">  271</span><span class="comment">     * @ingroup utils</span></div>
-<div class="line"><span class="lineno">  272</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#gacd41aa311e82c257bbdd47a6b11a8548">  273</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_WARNING</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span> <span class="preprocessor">_MSTD_WARNING</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span></div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  275</span><span class="comment">     * @brief compiler error</span></div>
-<div class="line"><span class="lineno">  276</span><span class="comment">     * @ingroup utils</span></div>
-<div class="line"><span class="lineno">  277</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#ga5ae9562fad97f74625c48016f38c3f6d">  278</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_ERROR</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span> <span class="preprocessor">_MSTD_ERROR</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  263</span><span class="comment"> * @def _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</span></div>
+<div class="line"><span class="lineno">  264</span><span class="comment"> * @brief adds constexpr to pcre2 function pointers only if pcre2 is static library</span></div>
+<div class="line"><span class="lineno">  265</span><span class="comment"> * @ingroup utils</span></div>
+<div class="line"><span class="lineno">  266</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">PCRE2CPP_SHARED_LIBS</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</span> <span class="preprocessor">inline</span> <span class="preprocessor">const</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="preprocessor">#</span><span class="preprocessor">else</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">  271</a></span>        <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</span> <span class="keyword">constexpr</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">mstd</span><span class="preprocessor">/</span><span class="preprocessor">mstd</span><span class="preprocessor">.</span><span class="preprocessor">hpp</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  277</span><span class="comment">     * @brief compiler message</span></div>
+<div class="line"><span class="lineno">  278</span><span class="comment">     * @ingroup utils</span></div>
+<div class="line"><span class="lineno">  279</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#gab02f8c2c1f8a5564aa7c453658d19f42">  280</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_MESSAGE</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span> <span class="preprocessor">_MSTD_MESSAGE</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  282</span><span class="comment">     * @brief compiler warning</span></div>
+<div class="line"><span class="lineno">  283</span><span class="comment">     * @ingroup utils</span></div>
+<div class="line"><span class="lineno">  284</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#gacd41aa311e82c257bbdd47a6b11a8548">  285</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_WARNING</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span> <span class="preprocessor">_MSTD_WARNING</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  287</span><span class="comment">     * @brief compiler error</span></div>
+<div class="line"><span class="lineno">  288</span><span class="comment">     * @ingroup utils</span></div>
+<div class="line"><span class="lineno">  289</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="../../db/d81/group__utils.html#ga5ae9562fad97f74625c48016f38c3f6d">  290</a></span>    <span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">_PCRE2CPP_ERROR</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span> <span class="preprocessor">_MSTD_ERROR</span><span class="preprocessor">(</span><span class="preprocessor">MESSAGE</span><span class="preprocessor">)</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
 <div class="ttc" id="aconfig_8hpp_html_acff91275abcc225454675d6dfc39a58d"><div class="ttname"><a href="../../d8/dfd/config_8hpp.html#acff91275abcc225454675d6dfc39a58d">PCRE2_CODE_UNIT_WIDTH</a></div><div class="ttdeci">#define PCRE2_CODE_UNIT_WIDTH</div><div class="ttdef"><b>Definition</b> config.hpp:204</div></div>
 <div class="ttc" id="agroup__pcre2cpp_html_ga5e283e7f58987b583e3f5729196bfd08"><div class="ttname"><a href="../../dd/d06/group__pcre2cpp.html#ga5e283e7f58987b583e3f5729196bfd08">PCRE2CPP_VERSION_PATCH</a></div><div class="ttdeci">#define PCRE2CPP_VERSION_PATCH</div><div class="ttdoc">pcre2cpp version patch number</div><div class="ttdef"><b>Definition</b> config.hpp:55</div></div>
 <div class="ttc" id="agroup__pcre2cpp_html_ga87bccc8e2f4cc413bd01853bbd0f763e"><div class="ttname"><a href="../../dd/d06/group__pcre2cpp.html#ga87bccc8e2f4cc413bd01853bbd0f763e">PCRE2CPP_LAST_UPDATE_MONTH</a></div><div class="ttdeci">#define PCRE2CPP_LAST_UPDATE_MONTH</div><div class="ttdoc">pcre2cpp last update month</div><div class="ttdef"><b>Definition</b> config.hpp:103</div></div>

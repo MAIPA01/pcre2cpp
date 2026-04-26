@@ -30,13 +30,16 @@ You can enable option using `#define option_name` or use cmake `set(option_name 
 | `PCRE2CPP_DISABLE_UTF16`                | Disables UTF-16 support                        |   OFF   |
 | `PCRE2CPP_DISABLE_UTF32`                | Disables UTF-32 support                        |   OFF   |
 
+There is additional define if you want to use pcre2 as shared library insted of static `PCRE2CPP_SHARED_LIB`. In cmake
+project its value depends on `BUILD_SHARED_LIBS` option
+
 ### External libraries options
 
 If you want to use external libraries not installed by project using CPM
 
 | Cmake option Name         | Description                                                      | Default |
 |:--------------------------|:-----------------------------------------------------------------|:-------:|
-| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.2)  |   OFF   |
+| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.3)  |   OFF   |
 | `PCRE2CPP_PCRE2_EXTERNAL` | Uses users own pcre2 library (tested and compatible with: 10.47) |   OFF   |
 
 ### Project developing options
@@ -341,5 +344,6 @@ the [LICENSE](./LICENSE "License") file.
 
 ## Acknowledgments
 
-This project includes code from the [PCRE2 library](https://github.com/PhilipHazel/pcre2 "PCRE2 github repo"), distributed under the BSD
+This project includes code from the [PCRE2 library](https://github.com/PhilipHazel/pcre2 "PCRE2 github repo"),
+distributed under the BSD
 License.
