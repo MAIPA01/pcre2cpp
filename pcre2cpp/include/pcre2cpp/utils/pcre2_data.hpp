@@ -109,8 +109,9 @@ namespace pcre2cpp::utils {
 
 			#pragma region CODE_FUNCTIONS
 		/// @brief pointer to pcre2_compile function for utf-8
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<code_type*(sptr_type, size_t, uint32_t, int*, size_t*, compile_ctx_type*)>
-		  compile																= pcre2_compile_8;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
+		  mstd::c_func_t<code_type*(sptr_type, size_t, uint32_t, int*, size_t*, compile_ctx_type*)>
+			compile																		   = pcre2_compile_8;
 		/// @brief pointer to pcre2_code_free function for utf-8
 		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<void(code_type*)> code_free = pcre2_code_free_8;
 			#pragma endregion
@@ -127,24 +128,28 @@ namespace pcre2cpp::utils {
 		/// @brief pointer to pcre2_match function for utf-8
 		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
 		  mstd::c_func_t<int(const code_type*, sptr_type, size_t, size_t, uint32_t, match_data_type*, match_ctx_type*)>
-			match																				  = pcre2_match_8;
+			match = pcre2_match_8;
 			#pragma endregion
 
 			#pragma region OVECTOR_FUNCTIONS
 		/// @brief pointer to pcre2_get_ovector_pointer function for utf-8
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<size_t*(match_data_type*)> get_ovector_ptr	  = pcre2_get_ovector_pointer_8;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<size_t*(match_data_type*)> get_ovector_ptr =
+		  pcre2_get_ovector_pointer_8;
 		/// @brief pointer to pcre2_get_ovector_count function for utf-8
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<uint32_t(match_data_type*)> get_ovector_count = pcre2_get_ovector_count_8;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<uint32_t(match_data_type*)> get_ovector_count =
+		  pcre2_get_ovector_count_8;
 			#pragma endregion
 
 			#pragma region ERROR_FUNCTIONS
 		/// @brief pointer to pcre2_get_error_message function for utf-8
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(int, uchar_type*, size_t)> get_error_message = pcre2_get_error_message_8;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(int, uchar_type*, size_t)> get_error_message =
+		  pcre2_get_error_message_8;
 			#pragma endregion
 
 			#pragma region PATTERN_INFO_FUNCTIONS
 		/// @brief pointer to pcre2_pattern_info function for utf-8
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(const code_type*, uint32_t, void*)> get_info = pcre2_pattern_info_8;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(const code_type*, uint32_t, void*)> get_info =
+		  pcre2_pattern_info_8;
 			#pragma endregion
 
 			#pragma region SUBSTRING_FUNCTIONS
@@ -207,8 +212,9 @@ namespace pcre2cpp::utils {
 
 			#pragma region CODE_FUNCTIONS
 		/// @brief pointer to pcre2_compile function for utf-16
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<code_type*(sptr_type, size_t, uint32_t, int*, size_t*, compile_ctx_type*)>
-		  compile																= pcre2_compile_16;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
+		  mstd::c_func_t<code_type*(sptr_type, size_t, uint32_t, int*, size_t*, compile_ctx_type*)>
+			compile																		   = pcre2_compile_16;
 		/// @brief pointer to pcre2_code_free function for utf-16
 		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<void(code_type*)> code_free = pcre2_code_free_16;
 			#pragma endregion
@@ -225,24 +231,28 @@ namespace pcre2cpp::utils {
 		/// @brief pointer to pcre2_match function for utf-16
 		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
 		  mstd::c_func_t<int(const code_type*, sptr_type, size_t, size_t, uint32_t, match_data_type*, match_ctx_type*)>
-			match																				  = pcre2_match_16;
+			match = pcre2_match_16;
 			#pragma endregion
 
 			#pragma region OVECTOR_FUNCTIONS
 		/// @brief pointer to pcre2_get_ovector_pointer function for utf-16
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<size_t*(match_data_type*)> get_ovector_ptr	  = pcre2_get_ovector_pointer_16;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<size_t*(match_data_type*)> get_ovector_ptr =
+		  pcre2_get_ovector_pointer_16;
 		/// @brief pointer to pcre2_get_ovector_count function for utf-16
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<uint32_t(match_data_type*)> get_ovector_count = pcre2_get_ovector_count_16;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<uint32_t(match_data_type*)> get_ovector_count =
+		  pcre2_get_ovector_count_16;
 			#pragma endregion
 
 			#pragma region ERROR_FUNCTIONS
 		/// @brief pointer to pcre2_get_error_message function for utf-16
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(int, uchar_type*, size_t)> get_error_message = pcre2_get_error_message_16;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(int, uchar_type*, size_t)> get_error_message =
+		  pcre2_get_error_message_16;
 			#pragma endregion
 
 			#pragma region PATTERN_INFO_FUNCTIONS
 		/// @brief pointer to pcre2_pattern_info function for utf-16
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(const code_type*, uint32_t, void*)> get_info = pcre2_pattern_info_16;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(const code_type*, uint32_t, void*)> get_info =
+		  pcre2_pattern_info_16;
 			#pragma endregion
 
 			#pragma region SUBSTRING_FUNCTIONS
@@ -305,8 +315,9 @@ namespace pcre2cpp::utils {
 
 			#pragma region CODE_FUNCTIONS
 		/// @brief pointer to pcre2_compile function for utf-32
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<code_type*(sptr_type, size_t, uint32_t, int*, size_t*, compile_ctx_type*)>
-		  compile																= pcre2_compile_32;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
+		  mstd::c_func_t<code_type*(sptr_type, size_t, uint32_t, int*, size_t*, compile_ctx_type*)>
+			compile																		   = pcre2_compile_32;
 		/// @brief pointer to pcre2_code_free function for utf-32
 		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<void(code_type*)> code_free = pcre2_code_free_32;
 			#pragma endregion
@@ -323,24 +334,28 @@ namespace pcre2cpp::utils {
 		/// @brief pointer to pcre2_match function for utf-32
 		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17
 		  mstd::c_func_t<int(const code_type*, sptr_type, size_t, size_t, uint32_t, match_data_type*, match_ctx_type*)>
-			match																				  = pcre2_match_32;
+			match = pcre2_match_32;
 			#pragma endregion
 
 			#pragma region OVECTOR_FUNCTIONS
 		/// @brief pointer to pcre2_get_ovector_pointer function for utf-32
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<size_t*(match_data_type*)> get_ovector_ptr	  = pcre2_get_ovector_pointer_32;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<size_t*(match_data_type*)> get_ovector_ptr =
+		  pcre2_get_ovector_pointer_32;
 		/// @brief pointer to pcre2_get_ovector_count function for utf-32
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<uint32_t(match_data_type*)> get_ovector_count = pcre2_get_ovector_count_32;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<uint32_t(match_data_type*)> get_ovector_count =
+		  pcre2_get_ovector_count_32;
 			#pragma endregion
 
 			#pragma region ERROR_FUNCTIONS
 		/// @brief pointer to pcre2_get_error_message function for utf-32
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(int, uchar_type*, size_t)> get_error_message = pcre2_get_error_message_32;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(int, uchar_type*, size_t)> get_error_message =
+		  pcre2_get_error_message_32;
 			#pragma endregion
 
 			#pragma region PATTERN_INFO_FUNCTIONS
 		/// @brief pointer to pcre2_pattern_info function for utf-32
-		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(const code_type*, uint32_t, void*)> get_info = pcre2_pattern_info_32;
+		static _PCRE2CPP_PCRE2_FUNC_CONSTEXPR17 mstd::c_func_t<int(const code_type*, uint32_t, void*)> get_info =
+		  pcre2_pattern_info_32;
 			#pragma endregion
 
 			#pragma region SUBSTRING_FUNCTIONS
