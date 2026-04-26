@@ -85,6 +85,7 @@ target_compile_definitions(${PROJECT_NAME} INTERFACE    $<BUILD_INTERFACE:
                                                             $<$<BOOL:${PCRE2CPP_DISABLE_UTF8}>:PCRE2CPP_DISABLE_UTF8>
                                                             $<$<BOOL:${PCRE2CPP_DISABLE_UTF16}>:PCRE2CPP_DISABLE_UTF16>
                                                             $<$<BOOL:${PCRE2CPP_DISABLE_UTF32}>:PCRE2CPP_DISABLE_UTF32>
+                                                            $<$<BOOL:${BUILD_SHARED_LIBS}>:PCRE2CPP_SHARED_LIBS>
                                                         >
 )
 # endregion
