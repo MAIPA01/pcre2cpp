@@ -51,7 +51,7 @@ namespace pcre2cpp {
 		using _match_value_type			  = basic_match_value<utf>;
 		using _match_result_type		  = basic_match_result<utf>;
 		using _sptr_type				  = typename _pcre2_data_t::sptr_type;
-		using _named_sub_values_table	  = std::unordered_map<_string_type, size_t>;
+		using _named_sub_values_table	  = typename _pcre2_data_t::named_sub_values_table;
 		using _named_sub_values_table_ptr = std::shared_ptr<_named_sub_values_table>;
 		using _uchar_type				  = typename _pcre2_data_t::uchar_type;
 		#if _PCRE2CPP_HAS_EXCEPTIONS
@@ -65,51 +65,25 @@ namespace pcre2cpp {
 		/// @brief pointer to conversion table of named groups to their index
 		_named_sub_values_table_ptr _named_sub_values = nullptr;
 
-		/// @brief error code
-		int _error_code								  = 0;
-		/// @brief error offset
-		size_t _error_offset						  = 0;
-
-		static _PCRE2CPP_CONSTEXPR17 _string_type _get_regex_not_initialized_error() noexcept {
-		#if _PCRE2CPP_HAS_UTF8
-				if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return "Regex was not initialized!!"; }
-				else
-		#endif
-		#if _PCRE2CPP_HAS_UTF16
-				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
-					return u"Regex was not initialized!!";
-				}
-				else
-		#endif
-		#if _PCRE2CPP_HAS_UTF32
-				  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
-					return U"Regex was not initialized!!";
-				}
-				else
-		#endif
-				{
-					return _string_type();
-				}
-		}
-
 	public:
 		/// @brief basic regex container with pattern and compile options
 		_PCRE2CPP_CONSTEXPR20 explicit basic_regex(const _string_view_type pattern,
 		  const compile_options opts = compile_options_bits::None) _PCRE2CPP_NOEXCEPT {
 			// Compile Code
-			_code_type* code = _pcre2_data_t::compile(reinterpret_cast<_sptr_type>(pattern.data()), pattern.size(), opts,
-			  &_error_code, &_error_offset, nullptr);
+			int error_code;
+			size_t error_offset;
 
-				if (code == nullptr) {
+			_code_type* code = _pcre2_data_t::compile(reinterpret_cast<_sptr_type>(pattern.data()), pattern.size(), opts,
+			  &error_code, &error_offset, nullptr);
+
+
 		#if !_PCRE2CPP_HAS_EXCEPTIONS
-					std::string message = fmt::format("Failed to initialize code: {}",
-					  convert_any_utf_to_utf8<utf>(generate_error_message<utf>(_error_code, _error_offset)));
-					pcre2cpp_assert(false, "{}", message);
-					return;
+			pcre2cpp_assert(code != nullptr, "Failed to initialize code: {}",
+			  convert_any_utf_to_utf8<utf>(generate_error_message<utf>(error_code, error_offset)));
 		#else
-					throw _regex_exception(_error_code, _error_offset);
+				if (code == nullptr) { throw _regex_exception(error_code, error_offset); }
 		#endif
-				}
+
 
 			_code					= std::shared_ptr<_code_type>(code, _pcre2_data_t::code_free);
 
@@ -130,7 +104,8 @@ namespace pcre2cpp {
 
 					_uchar_type* entry_end = entry + 1;
 						while (*entry_end != 0 && entry_end - entry < name_entry_size - 3) { entry_end += 1; }
-					_named_sub_values->emplace(_string_type(entry, entry_end), static_cast<size_t>(index) - 1);
+					_named_sub_values->emplace(_string_view_type(reinterpret_cast<_string_char_type*>(entry), entry_end - entry),
+					  static_cast<size_t>(index) - 1);
 				}
 
 			// Create Match Data
@@ -151,55 +126,9 @@ namespace pcre2cpp {
 		/// @brief default move assign operator
 		_PCRE2CPP_CONSTEXPR17 basic_regex& operator=(basic_regex&& other) noexcept		= default;
 
-		#pragma region CHECK_INITIALIZATION
-
-		/// @brief returns true if regex was initialized
-		_PCRE2CPP_CONSTEXPR17 bool is_initialized() const noexcept { return _code != nullptr; }
-
-		#pragma endregion CHECK_INITIALIZATION
-
-		#pragma region ERROR
-
-		/// @brief returns error message if there is any compilation error
-		_PCRE2CPP_CONSTEXPR17 _string_type get_error_message() const noexcept {
-				if (is_initialized()) {
-		#if _PCRE2CPP_HAS_UTF8
-						if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return ""; }
-						else
-		#endif
-		#if _PCRE2CPP_HAS_UTF16
-						  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
-							return L"";
-						}
-						else
-		#endif
-		#if _PCRE2CPP_HAS_UTF32
-						  if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
-							return U"";
-						}
-						else
-		#endif
-						{
-							return _string_type();
-						}
-				}
-			return pcre2cpp::generate_error_message<utf>(_error_code, _error_offset);
-		}
-
-		#pragma endregion ERROR
-
 		/// @brief returns true if match was found
 		_PCRE2CPP_CONSTEXPR17 bool match(const _string_view_type text, const size_t offset = 0,
 		  const match_options opts = match_options_bits::None) const _PCRE2CPP_NOEXCEPT {
-				if (!is_initialized()) {
-		#if !_PCRE2CPP_HAS_EXCEPTIONS
-					pcre2cpp_assert(false, "Regex was not initialized!!");
-					return false;
-		#else
-					throw _regex_exception(_get_regex_not_initialized_error());
-		#endif
-				}
-
 			const int match_code = _pcre2_data_t::match(_code.get(), reinterpret_cast<_sptr_type>(text.data()), text.size(),
 			  offset, opts, _match_data.get(), nullptr);
 
@@ -209,15 +138,6 @@ namespace pcre2cpp {
 		/// @brief returns true if match was found and result is stored in result variable
 		_PCRE2CPP_CONSTEXPR20 bool match(const _string_view_type text, _match_result_type& result, const size_t offset = 0,
 		  const match_options opts = match_options_bits::None) const noexcept {
-				if (!is_initialized()) {
-		#if !_PCRE2CPP_HAS_EXCEPTIONS
-					pcre2cpp_assert(false, "Regex was not initialized!!");
-					return false;
-		#else
-					throw _regex_exception(_get_regex_not_initialized_error());
-		#endif
-				}
-
 			const int match_code = _pcre2_data_t::match(_code.get(), reinterpret_cast<_sptr_type>(text.data()), text.size(),
 			  offset, opts, _match_data.get(), nullptr);
 
@@ -226,27 +146,32 @@ namespace pcre2cpp {
 					return false;
 				}
 
-			const size_t* offsetVector		= _pcre2_data_t::get_ovector_ptr(_match_data.get());
-			const size_t matchStart			= offsetVector[0];
-			const size_t matchEnd			= offsetVector[1];
-			_match_value_type value			= { .relative_offset = matchStart - offset,
-				.value									 = _string_type(text.substr(matchStart, matchEnd - matchStart)) };
+			const size_t* offsetVector	 = _pcre2_data_t::get_ovector_ptr(_match_data.get());
+			const size_t matchStart		 = offsetVector[0];
+			const size_t matchEnd		 = offsetVector[1];
+			_match_value_type matchValue = {
+				.relative_offset = matchStart - offset,
+				.value			 = _string_type(text.substr(matchStart, matchEnd - matchStart)),
+			};
 
 			const size_t offsetVectorsCount = _pcre2_data_t::get_ovector_count(_match_data.get());
-			std::vector<std::optional<sub_match_value> > sub_values;
-			sub_values.reserve(offsetVectorsCount);
+
+			std::vector<std::optional<sub_match_value> > subMatchValues;
+			subMatchValues.reserve(offsetVectorsCount);
 				for (size_t i = 1; i != offsetVectorsCount; ++i) {
 					const size_t subMatchStart = offsetVector[i * 2];
 					const size_t subMatchEnd   = offsetVector[i * 2 + 1];
 
-						if (subMatchStart == PCRE2_UNSET || subMatchEnd == PCRE2_UNSET) { sub_values.emplace_back(); }
+						if (subMatchStart == PCRE2_UNSET || subMatchEnd == PCRE2_UNSET) { subMatchValues.emplace_back(); }
 						else {
-							sub_values.push_back(sub_match_value { .relative_offset = subMatchStart - matchStart,
-								.size												= subMatchEnd - subMatchStart });
+							subMatchValues.push_back(sub_match_value {
+								.relative_offset = subMatchStart - matchStart,
+								.size			 = subMatchEnd - subMatchStart,
+							});
 						}
 				}
 
-			result = _match_result_type(offset, value, sub_values, _named_sub_values);
+			result = _match_result_type(offset, matchValue, subMatchValues, _named_sub_values, _code);
 			return true;
 		}
 
@@ -262,7 +187,7 @@ namespace pcre2cpp {
 				if (!match(text, result, offset)) { return false; }
 
 				if (result.get_result_relative_offset() != 0) {
-					result = _match_result_type(offset, _named_sub_values);
+					result = _match_result_type(offset, _named_sub_values, _code);
 					return false;
 				}
 
@@ -276,9 +201,12 @@ namespace pcre2cpp {
 			_match_result_type result;
 				while (match(text, result, offset)) {
 					results.emplace_back(start_offset,
-					  _match_value_type { .relative_offset = offset - start_offset + result.get_result_relative_offset(),
-						  .value						   = result.get_result_value() },
-					  result.get_sub_results(), _named_sub_values);
+					  _match_value_type {
+						  .relative_offset = offset - start_offset + result.get_result_relative_offset(),
+						  .value		   = result.get_result_value(),
+					  },
+					  result.get_sub_results(), _named_sub_values, _code);
+
 					offset += result.get_result_relative_offset() + result.get_result_size();
 				}
 
@@ -296,13 +224,27 @@ namespace pcre2cpp {
 	using u32regex = basic_regex<utf_type::UTF_32>;
 		#endif
 
-		#if _PCRE2CPP_HAS_UTF8
-	using regex = u8regex;
-		#elif _PCRE2CPP_HAS_UTF16
-	using regex = u16regex;
-		#elif _PCRE2CPP_HAS_UTF32
-	using regex = u32regex;
-		#endif
+	using regex = basic_regex<default_utf_type>;
+
+	template<utf_type utf = default_utf_type>
+	bool is_pattern_valid(const typename utils::pcre2_data<utf>::string_view_type pattern,
+	  const compile_options opts = compile_options_bits::None) noexcept {
+		using pcre2_data_t = utils::pcre2_data<utf>;
+		using code_t	   = typename pcre2_data_t::code_type;
+		using sptr_t	   = pcre2_data_t::sptr_type;
+
+		// Compile Code
+		int error_code;
+		size_t error_offset;
+
+		code_t* code = pcre2_data_t::compile(reinterpret_cast<sptr_t>(pattern.data()), pattern.size(), opts, &error_code,
+		  &error_offset, nullptr);
+
+			if (code == nullptr) { return false; }
+
+		pcre2_data_t::code_free(code);
+		return true;
+	}
 } // namespace pcre2cpp
 	#endif
 #endif

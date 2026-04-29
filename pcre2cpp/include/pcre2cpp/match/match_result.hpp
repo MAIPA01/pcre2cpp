@@ -57,13 +57,7 @@ namespace pcre2cpp {
 	using u32match_value = basic_match_value<utf_type::UTF_32>;
 		#endif
 
-		#if _PCRE2CPP_HAS_UTF8
-	using match_value = u8match_value;
-		#elif _PCRE2CPP_HAS_UTF16
-	using match_value = u16match_value;
-		#elif _PCRE2CPP_HAS_UTF32
-	using match_value = u32match_value;
-		#endif
+	using match_value = basic_match_value<default_utf_type>;
 		#pragma endregion
 
 		#pragma region SUB_MATCH_VALUE
@@ -94,29 +88,36 @@ namespace pcre2cpp {
 
 	private:
 		using _pcre2_data_t		= utils::pcre2_data<utf>;
+		using _code_type		= typename _pcre2_data_t::code_type;
+		using _code_ptr			= std::shared_ptr<_code_type>;
 		using _string_type		= typename _pcre2_data_t::string_type;
 		using _string_view_type = typename _pcre2_data_t::string_view_type;
 		using _match_value		= basic_match_value<utf>;
 		#if _PCRE2CPP_HAS_EXCEPTIONS
 		using _match_result_exception = basic_match_result_exception<utf>;
 		#endif
-		using _named_sub_values_table	  = std::unordered_map<_string_type, size_t>;
+		using _named_sub_values_table	  = typename _pcre2_data_t::named_sub_values_table;
 		using _named_sub_values_table_ptr = std::shared_ptr<_named_sub_values_table>;
 
 		/// @brief Result data container
 		struct _value_result_data {
+			/// @brief keeps search offset
 			size_t search_offset									 = bad_offset;
+			/// @brief keeps whole result
 			_match_value result										 = { bad_offset, _string_type() };
+			/// @brief keeps sub results pointers
 			std::vector<std::optional<sub_match_value> > sub_results = {};
-			_named_sub_values_table_ptr named_sub_values			 = {};
-			bool found												 = false;
+			/// @brief keeps named sub values mapping
+			_named_sub_values_table_ptr named_sub_values			 = nullptr;
+			/// @brief keeps regex code data in case regex object was destroyed
+			_code_ptr code											 = nullptr;
 		};
 
 		/// @brief Result data
 		std::variant<match_error_codes, _value_result_data> _data = _value_result_data();
 
 		/// @brief returns out of bounds error in correct utf format
-		static _PCRE2CPP_CONSTEXPR17 _string_type _get_out_of_bounds_string() noexcept {
+		static _PCRE2CPP_CONSTEXPR17 _string_view_type _get_out_of_bounds_string() noexcept {
 		#if _PCRE2CPP_HAS_UTF8
 				if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return "Subexpression index out of bounds or has no value"; }
 				else
@@ -134,7 +135,7 @@ namespace pcre2cpp {
 				else
 		#endif
 				{
-					return _string_type();
+					return _string_view_type();
 				}
 		}
 
@@ -167,9 +168,9 @@ namespace pcre2cpp {
 		_PCRE2CPP_CONSTEXPR17 bool _has_named_sub_result(const _string_view_type name) const noexcept {
 			const auto& named_sub_values = std::get<_value_result_data>(_data).named_sub_values;
 		#if _PCRE2CPP_HAS_CXX20
-			return named_sub_values->contains(name.data());
+			return named_sub_values->contains(name);
 		#else
-			return named_sub_values->find(name.data()) != named_sub_values->end();
+			return named_sub_values->find(name) != named_sub_values->end();
 		#endif
 		}
 
@@ -181,28 +182,21 @@ namespace pcre2cpp {
 
 		/// @brief returns group index of group with given name
 		_PCRE2CPP_CONSTEXPR17 size_t _get_named_sub_result_idx(const _string_view_type name) const _PCRE2CPP_NOEXCEPT {
-				if (!_has_named_sub_result(name)) {
 		#if _PCRE2CPP_HAS_EXCEPTIONS
-					throw _match_result_exception(_get_subexpression_not_found(name));
+				if (!_has_named_sub_result(name)) { throw _match_result_exception(_get_subexpression_not_found(name)); }
 		#else
-					pcre2cpp_assert(false, "{}", _get_subexpression_not_found(name));
-					return bad_offset;
+			pcre2cpp_assert(_has_named_sub_result(name), "{}", _get_subexpression_not_found(name));
 		#endif
-				}
-			return std::get<_value_result_data>(_data).named_sub_values->at(name.data());
+			return std::get<_value_result_data>(_data).named_sub_values->at(name);
 		}
 
 		/// @brief returns sub value data of group with provided index
-		_PCRE2CPP_CONSTEXPR17 sub_match_value _get_sub_value(const size_t idx) const _PCRE2CPP_NOEXCEPT {
-				if (!_has_sub_value(idx)) {
+		_PCRE2CPP_CONSTEXPR17 const sub_match_value& _get_sub_value(const size_t idx) const _PCRE2CPP_NOEXCEPT {
 		#if _PCRE2CPP_HAS_EXCEPTIONS
-					throw basic_match_result_exception<utf>(_get_out_of_bounds_string());
+				if (!_has_sub_value(idx)) { throw basic_match_result_exception<utf>(_get_out_of_bounds_string()); }
 		#else
-					pcre2cpp_assert(false, "{}", _get_out_of_bounds_string());
-					return { .relative_offset = bad_offset, .size = 0 };
+			pcre2cpp_assert(_has_sub_value(idx), _get_out_of_bounds_string());
 		#endif
-				}
-
 			return std::get<_value_result_data>(_data).sub_results[idx].value();
 		}
 
@@ -215,19 +209,25 @@ namespace pcre2cpp {
 		_PCRE2CPP_CONSTEXPR17 explicit basic_match_result(const match_error_codes error_code) noexcept : _data(error_code) {}
 
 		/// @brief constructor with no value but also without error
-		_PCRE2CPP_CONSTEXPR17 basic_match_result(const size_t search_offset,
-		  const _named_sub_values_table_ptr& named_sub_values) noexcept
-			: _data(_value_result_data { .search_offset = search_offset, .named_sub_values = named_sub_values }) {}
+		_PCRE2CPP_CONSTEXPR17 basic_match_result(const size_t search_offset, const _named_sub_values_table_ptr& named_sub_values,
+		  const _code_ptr& regex_compiled_code) noexcept
+			: _data(_value_result_data {
+				  .search_offset	= search_offset,
+				  .named_sub_values = named_sub_values,
+				  .code				= regex_compiled_code,
+			  }) {}
 
 		/// @brief constructor with good result
 		_PCRE2CPP_CONSTEXPR17 basic_match_result(const size_t search_offset, const _match_value& result,
-		  const std::vector<std::optional<sub_match_value> >& sub_results,
-		  const _named_sub_values_table_ptr& named_sub_values) noexcept
-			: _data(_value_result_data { .search_offset = search_offset,
-				  .result								= result,
-				  .sub_results							= sub_results,
-				  .named_sub_values						= named_sub_values,
-				  .found								= true }) {}
+		  const std::vector<std::optional<sub_match_value> >& sub_results, const _named_sub_values_table_ptr& named_sub_values,
+		  const _code_ptr& regex_compiled_code) noexcept
+			: _data(_value_result_data {
+				  .search_offset	= search_offset,
+				  .result			= result,
+				  .sub_results		= sub_results,
+				  .named_sub_values = named_sub_values,
+				  .code				= regex_compiled_code,
+			  }) {}
 
 		/// @brief default copy constructor
 		_PCRE2CPP_CONSTEXPR17 basic_match_result(const basic_match_result& other) noexcept			  = default;
@@ -278,7 +278,7 @@ namespace pcre2cpp {
 		/// @brief returns true when result has value
 		_PCRE2CPP_CONSTEXPR17 bool has_value() const noexcept {
 				if (!has_result()) { return false; }
-			return std::get<_value_result_data>(_data).found;
+			return std::get<_value_result_data>(_data).result.relative_offset != bad_offset;
 		}
 
 		/// @brief returns true when result has sub value on given index
@@ -524,13 +524,7 @@ namespace pcre2cpp {
 	using u32match_result = basic_match_result<utf_type::UTF_32>;
 		#endif
 
-		#if _PCRE2CPP_HAS_UTF8
-	using match_result = u8match_result;
-		#elif _PCRE2CPP_HAS_UTF16
-	using match_result = u16match_result;
-		#elif _PCRE2CPP_HAS_UTF32
-	using match_result = u32match_result;
-		#endif
+	using match_result = basic_match_result<default_utf_type>;
 } // namespace pcre2cpp
 	#endif
 #endif

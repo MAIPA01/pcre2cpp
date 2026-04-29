@@ -9,13 +9,16 @@ var hierarchy =
         [ "pcre2cpp::basic_pcre2cpp_exception< utf_type::UTF_8 >", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html", null ],
         [ "pcre2cpp::basic_pcre2cpp_exception< utf_type::UTF_16 >", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html", null ],
         [ "pcre2cpp::basic_pcre2cpp_exception< utf_type::UTF_32 >", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html", null ],
+        [ "pcre2cpp::basic_pcre2cpp_exception< default_utf_type >", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html", null ],
         [ "pcre2cpp::basic_pcre2cpp_exception< utf >", "df/d62/classpcre2cpp_1_1basic__pcre2cpp__exception.html", [
           [ "pcre2cpp::basic_match_result_exception< utf_type::UTF_8 >", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html", null ],
           [ "pcre2cpp::basic_match_result_exception< utf_type::UTF_16 >", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html", null ],
           [ "pcre2cpp::basic_match_result_exception< utf_type::UTF_32 >", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html", null ],
+          [ "pcre2cpp::basic_match_result_exception< default_utf_type >", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html", null ],
           [ "pcre2cpp::basic_regex_exception< utf_type::UTF_8 >", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html", null ],
           [ "pcre2cpp::basic_regex_exception< utf_type::UTF_16 >", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html", null ],
           [ "pcre2cpp::basic_regex_exception< utf_type::UTF_32 >", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html", null ],
+          [ "pcre2cpp::basic_regex_exception< default_utf_type >", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html", null ],
           [ "pcre2cpp::basic_match_result_exception< utf >", "d5/dab/classpcre2cpp_1_1basic__match__result__exception.html", null ],
           [ "pcre2cpp::basic_regex_exception< utf >", "d6/dfe/classpcre2cpp_1_1basic__regex__exception.html", null ]
         ] ]

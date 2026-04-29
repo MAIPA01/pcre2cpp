@@ -6,7 +6,7 @@ var classpcre2cpp_1_1basic__regex =
     [ "_match_data_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a03f86407e540d6c6c2933ea96a922905", null ],
     [ "_match_result_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a7a7ee0ccf1c31fb8e9aa2cb23ed44fa5", null ],
     [ "_match_value_type", "de/d88/classpcre2cpp_1_1basic__regex.html#a809f9bc7290488343d228091d3f4f189", null ],
-    [ "_named_sub_values_table", "de/d88/classpcre2cpp_1_1basic__regex.html#a9fc4a313cb5064fdac9883f0607aa649", null ],
+    [ "_named_sub_values_table", "de/d88/classpcre2cpp_1_1basic__regex.html#af55149b2eadbcf9a2595ae7403ae3511", null ],
     [ "_named_sub_values_table_ptr", "de/d88/classpcre2cpp_1_1basic__regex.html#a3b80c47943779068cdb8e9a3bdb92173", null ],
     [ "_pcre2_data_t", "de/d88/classpcre2cpp_1_1basic__regex.html#ab83cdd91c27ac360c4297bf6ec0152e6", null ],
     [ "_regex_exception", "de/d88/classpcre2cpp_1_1basic__regex.html#a07b1d58c7e16b3c56b544e1a93c134ff", null ],
@@ -19,9 +19,6 @@ var classpcre2cpp_1_1basic__regex =
     [ "basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#a29964fb651ab69204c378dac3253ef1e", null ],
     [ "basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#acb4b1df9ac3213052a5cc3e007d88391", null ],
     [ "~basic_regex", "de/d88/classpcre2cpp_1_1basic__regex.html#ad0c96fb416b9c6637c8b7856dbdcdb52", null ],
-    [ "_get_regex_not_initialized_error", "de/d88/classpcre2cpp_1_1basic__regex.html#a8f7cb6cd4e7aa4cb8755ec0f6db4d47a", null ],
-    [ "get_error_message", "de/d88/classpcre2cpp_1_1basic__regex.html#a6ef08ced0bce712d16998a38b903b247", null ],
-    [ "is_initialized", "de/d88/classpcre2cpp_1_1basic__regex.html#a6321f3827d4761f66ce5ed94cebab39d", null ],
     [ "match", "de/d88/classpcre2cpp_1_1basic__regex.html#a37242cd436873677f34a37a254834bb4", null ],
     [ "match", "de/d88/classpcre2cpp_1_1basic__regex.html#a556735c0a61d94a6168cadb5f8e8ecd8", null ],
     [ "match_all", "de/d88/classpcre2cpp_1_1basic__regex.html#a3fd682d894d5f2abe779b770d59b58c6", null ],
@@ -30,8 +27,6 @@ var classpcre2cpp_1_1basic__regex =
     [ "operator=", "de/d88/classpcre2cpp_1_1basic__regex.html#aa0d03eb3bb318adbcd6d4243aa92e7ff", null ],
     [ "operator=", "de/d88/classpcre2cpp_1_1basic__regex.html#aae6085a43f5b4c98a31bd7f6496d58e7", null ],
     [ "_code", "de/d88/classpcre2cpp_1_1basic__regex.html#a2b9cb8edf40a196e7ff02a3ec171ec62", null ],
-    [ "_error_code", "de/d88/classpcre2cpp_1_1basic__regex.html#a74783415435ac11a9b43b362f873eb9b", null ],
-    [ "_error_offset", "de/d88/classpcre2cpp_1_1basic__regex.html#a86ea1875f730ea8e321d438523b9f23f", null ],
     [ "_match_data", "de/d88/classpcre2cpp_1_1basic__regex.html#a701e5bbbd8d00572066d06d2b7380227", null ],
     [ "_named_sub_values", "de/d88/classpcre2cpp_1_1basic__regex.html#a4fedc5cd1d3e917faf8c803763257bbf", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['is_5finitialized_0',['is_initialized',['../de/d88/classpcre2cpp_1_1basic__regex.html#a6321f3827d4761f66ce5ed94cebab39d',1,'pcre2cpp::basic_regex']]]
+  ['is_5fpattern_5fvalid_0',['is_pattern_valid',['../de/d73/namespacepcre2cpp.html#ae3d6cf541d2c300ed4ea7060ab098815',1,'pcre2cpp']]]
 ];

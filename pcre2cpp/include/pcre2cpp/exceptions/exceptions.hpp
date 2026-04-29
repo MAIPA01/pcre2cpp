@@ -98,11 +98,11 @@ namespace pcre2cpp {
 	template<utf_type utf>
 	static _PCRE2CPP_CONSTEXPR20 std::string convert_any_utf_to_utf8(const typename utils::pcre2_data<utf>::string_view_type message) noexcept {
 		#if _PCRE2CPP_HAS_UTF8
-		if _PCRE2CPP_CONSTEXPR17 (utf == pcre2cpp::utf_type::UTF_8) { return std::string(message); }
+		if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_8) { return std::string(message); }
 		else
 			#endif
 			#if _PCRE2CPP_HAS_UTF16
-			if _PCRE2CPP_CONSTEXPR17 (utf == pcre2cpp::utf_type::UTF_16) {
+			if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_16) {
 			std::string msg;
 			for (const auto& c : message) { msg += static_cast<std::string::value_type>(c); }
 			return msg;
@@ -110,7 +110,7 @@ namespace pcre2cpp {
 		else
 			#endif
 			#if _PCRE2CPP_HAS_UTF32
-			if _PCRE2CPP_CONSTEXPR17 (utf == pcre2cpp::utf_type::UTF_32) {
+			if _PCRE2CPP_CONSTEXPR17 (utf == utf_type::UTF_32) {
 			std::string msg;
 			for (const auto& c : message) { msg += static_cast<std::string::value_type>(c); }
 			return msg;
@@ -171,13 +171,7 @@ namespace pcre2cpp {
 	using u32pcre2cpp_exception = basic_pcre2cpp_exception<utf_type::UTF_32>;
 			#endif
 
-			#if _PCRE2CPP_HAS_UTF8
-	using pcre2cpp_exception = u8pcre2cpp_exception;
-			#elif _PCRE2CPP_HAS_UTF16
-	using pcre2cpp_exception = u16pcre2cpp_exception;
-			#elif _PCRE2CPP_HAS_UTF32
-	using pcre2cpp_exception = u32pcre2cpp_exception;
-			#endif
+	using pcre2cpp_exception = basic_pcre2cpp_exception<default_utf_type>;
 
 			#pragma endregion PCRE2CPP_EXCEPTION
 
@@ -214,13 +208,7 @@ namespace pcre2cpp {
 	using u32regex_exception = basic_regex_exception<utf_type::UTF_32>;
 			#endif
 
-			#if _PCRE2CPP_HAS_UTF8
-	using regex_exception = u8regex_exception;
-			#elif _PCRE2CPP_HAS_UTF16
-	using regex_exception = u16regex_exception;
-			#elif _PCRE2CPP_HAS_UTF32
-	using regex_exception = u32regex_exception;
-			#endif
+	using regex_exception = basic_regex_exception<default_utf_type>;
 
 			#pragma endregion REGEX_EXCEPTION
 
@@ -257,13 +245,7 @@ namespace pcre2cpp {
 	using u32match_result_exception = basic_match_result_exception<utf_type::UTF_32>;
 			#endif
 
-			#if _PCRE2CPP_HAS_UTF8
-	using match_result_exception = u8match_result_exception;
-			#elif _PCRE2CPP_HAS_UTF16
-	using match_result_exception = u16match_result_exception;
-			#elif _PCRE2CPP_HAS_UTF32
-	using match_result_exception = u32match_result_exception;
-			#endif
+	using match_result_exception = basic_match_result_exception<default_utf_type>;
 
 			#pragma endregion MATCH_RESULT_EXCEPTION
 		#endif
