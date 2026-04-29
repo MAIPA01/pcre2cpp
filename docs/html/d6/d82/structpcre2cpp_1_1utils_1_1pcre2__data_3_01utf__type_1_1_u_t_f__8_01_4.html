@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PCRE2 C++ Wrapper<span id="projectnumber">&#160;1.2.6</span>
+   <div id="projectname">PCRE2 C++ Wrapper<span id="projectnumber">&#160;1.2.7</span>
    </div>
    <div id="projectbrief">pcre2cpp</div>
   </td>
@@ -131,6 +131,8 @@ Public Types</h2></td></tr>
 <tr class="memdesc:aeed41659a6e8f086dce516ba945aec05"><td class="mdescLeft">&#160;</td><td class="mdescRight">cpp string view type for utf-8  <br /></td></tr>
 <tr class="memitem:ab508a17b00943653e6aab56ee096a796" id="r_ab508a17b00943653e6aab56ee096a796"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ab508a17b00943653e6aab56ee096a796">string_char_type</a> = string_type::value_type</td></tr>
 <tr class="memdesc:ab508a17b00943653e6aab56ee096a796"><td class="mdescLeft">&#160;</td><td class="mdescRight">cpp string char type for utf-8  <br /></td></tr>
+<tr class="memitem:a0a06265d3d1b31e1ac61dd70c5f1e957" id="r_a0a06265d3d1b31e1ac61dd70c5f1e957"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0a06265d3d1b31e1ac61dd70c5f1e957">named_sub_values_table</a> = std::unordered_map&lt;<a class="el" href="#aeed41659a6e8f086dce516ba945aec05">string_view_type</a>, size_t&gt;</td></tr>
+<tr class="memdesc:a0a06265d3d1b31e1ac61dd70c5f1e957"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping from subgroup name to subgroup index minus one  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -148,13 +150,13 @@ Static Public Attributes</h2></td></tr>
 <tr class="memdesc:ae69e3c0a662bab179c5d2aa64e2a99f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_match_data_free function for utf-8  <br /></td></tr>
 <tr class="memitem:acecb3a02e428c4ec561420af278b94a4" id="r_acecb3a02e428c4ec561420af278b94a4"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; int(const <a class="el" href="#ae8f1eb4cafb23c4af874c15a68170527">code_type</a> *, <a class="el" href="#ab395c858c5411c07970762a34d62ff16">sptr_type</a>, size_t, size_t, uint32_t, <a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a> *, <a class="el" href="#a12293cb763ddb97e42f34b4b874fc953">match_ctx_type</a> *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#acecb3a02e428c4ec561420af278b94a4">match</a> = pcre2_match_8</td></tr>
 <tr class="memdesc:acecb3a02e428c4ec561420af278b94a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_match function for utf-8  <br /></td></tr>
-<tr class="memitem:a22bcf8373a40694cf088106050cb63a4" id="r_a22bcf8373a40694cf088106050cb63a4"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; size_t *(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a> *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a22bcf8373a40694cf088106050cb63a4">get_ovector_ptr</a> = pcre2_get_ovector_pointer_8</td></tr>
+<tr class="memitem:a22bcf8373a40694cf088106050cb63a4" id="r_a22bcf8373a40694cf088106050cb63a4"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; size_t *(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a> *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a22bcf8373a40694cf088106050cb63a4">get_ovector_ptr</a></td></tr>
 <tr class="memdesc:a22bcf8373a40694cf088106050cb63a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_get_ovector_pointer function for utf-8  <br /></td></tr>
-<tr class="memitem:a3ad035f8e43c2ba9df18505231f21672" id="r_a3ad035f8e43c2ba9df18505231f21672"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; uint32_t(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a> *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3ad035f8e43c2ba9df18505231f21672">get_ovector_count</a> = pcre2_get_ovector_count_8</td></tr>
+<tr class="memitem:a3ad035f8e43c2ba9df18505231f21672" id="r_a3ad035f8e43c2ba9df18505231f21672"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; uint32_t(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a> *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3ad035f8e43c2ba9df18505231f21672">get_ovector_count</a></td></tr>
 <tr class="memdesc:a3ad035f8e43c2ba9df18505231f21672"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_get_ovector_count function for utf-8  <br /></td></tr>
-<tr class="memitem:a2b4a8b500e54131c818ffd5e818d70a9" id="r_a2b4a8b500e54131c818ffd5e818d70a9"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; int(int, <a class="el" href="#a252074915c05b81b2f7c2a59c5f63bee">uchar_type</a> *, size_t)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2b4a8b500e54131c818ffd5e818d70a9">get_error_message</a> = pcre2_get_error_message_8</td></tr>
+<tr class="memitem:a2b4a8b500e54131c818ffd5e818d70a9" id="r_a2b4a8b500e54131c818ffd5e818d70a9"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; int(int, <a class="el" href="#a252074915c05b81b2f7c2a59c5f63bee">uchar_type</a> *, size_t)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2b4a8b500e54131c818ffd5e818d70a9">get_error_message</a></td></tr>
 <tr class="memdesc:a2b4a8b500e54131c818ffd5e818d70a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_get_error_message function for utf-8  <br /></td></tr>
-<tr class="memitem:af26d858181527f15fc5402005ed3fd09" id="r_af26d858181527f15fc5402005ed3fd09"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; int(const <a class="el" href="#ae8f1eb4cafb23c4af874c15a68170527">code_type</a> *, uint32_t, void *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#af26d858181527f15fc5402005ed3fd09">get_info</a> = pcre2_pattern_info_8</td></tr>
+<tr class="memitem:af26d858181527f15fc5402005ed3fd09" id="r_af26d858181527f15fc5402005ed3fd09"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; int(const <a class="el" href="#ae8f1eb4cafb23c4af874c15a68170527">code_type</a> *, uint32_t, void *)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#af26d858181527f15fc5402005ed3fd09">get_info</a></td></tr>
 <tr class="memdesc:af26d858181527f15fc5402005ed3fd09"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_pattern_info function for utf-8  <br /></td></tr>
 <tr class="memitem:a4d68fa2cd8ec17fbaeeaccd6b783d267" id="r_a4d68fa2cd8ec17fbaeeaccd6b783d267"><td class="memItemLeft">static <a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt; int(const <a class="el" href="#ae8f1eb4cafb23c4af874c15a68170527">code_type</a> *, <a class="el" href="#ab395c858c5411c07970762a34d62ff16">sptr_type</a>)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4d68fa2cd8ec17fbaeeaccd6b783d267">substring_number_from_name</a></td></tr>
 <tr class="memdesc:a4d68fa2cd8ec17fbaeeaccd6b783d267"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to pcre2_substring_number_from_name function for utf-8  <br /></td></tr>
@@ -239,6 +241,22 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>pcre2 match data structure type for utf-8 </p>
+
+</div>
+</div>
+<a id="a0a06265d3d1b31e1ac61dd70c5f1e957" name="a0a06265d3d1b31e1ac61dd70c5f1e957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a06265d3d1b31e1ac61dd70c5f1e957">&#9670;&#160;</a></span>named_sub_values_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::named_sub_values_table = std::unordered_map&lt;<a class="el" href="#aeed41659a6e8f086dce516ba945aec05">string_view_type</a>, size_t&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>mapping from subgroup name to subgroup index minus one </p>
 
 </div>
 </div>
@@ -381,7 +399,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;int(int, <a class="el" href="#a252074915c05b81b2f7c2a59c5f63bee">uchar_type</a>*, size_t)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_error_message = pcre2_get_error_message_8</td>
+          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;int(int, <a class="el" href="#a252074915c05b81b2f7c2a59c5f63bee">uchar_type</a>*, size_t)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_error_message</td>
         </tr>
       </table>
   </td>
@@ -390,7 +408,9 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">                                                               =</div>
+<div class="line">pcre2_get_error_message_8</div>
+</div><!-- fragment -->
 <p>pointer to pcre2_get_error_message function for utf-8 </p>
 
 </div>
@@ -405,7 +425,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;int(const <a class="el" href="#ae8f1eb4cafb23c4af874c15a68170527">code_type</a>*, uint32_t, void*)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_info = pcre2_pattern_info_8</td>
+          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;int(const <a class="el" href="#ae8f1eb4cafb23c4af874c15a68170527">code_type</a>*, uint32_t, void*)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_info</td>
         </tr>
       </table>
   </td>
@@ -414,7 +434,9 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">                                                      =</div>
+<div class="line">pcre2_pattern_info_8</div>
+</div><!-- fragment -->
 <p>pointer to pcre2_pattern_info function for utf-8 </p>
 
 </div>
@@ -429,7 +451,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;uint32_t(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a>*)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_ovector_count = pcre2_get_ovector_count_8</td>
+          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;uint32_t(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a>*)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_ovector_count</td>
         </tr>
       </table>
   </td>
@@ -438,7 +460,9 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">                                                               =</div>
+<div class="line">pcre2_get_ovector_count_8</div>
+</div><!-- fragment -->
 <p>pointer to pcre2_get_ovector_count function for utf-8 </p>
 
 </div>
@@ -453,7 +477,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;size_t*(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a>*)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_ovector_ptr = pcre2_get_ovector_pointer_8</td>
+          <td class="memname"><a class="el" href="../../db/d81/group__utils.html#ga0b99c8d0582ff7aa398079a350b0f008">_PCRE2CPP_PCRE2_FUNC_CONSTEXPR17</a> mstd::c_func_t&lt;size_t*(<a class="el" href="#aa58e9ab1701a4cd7f614ce9df33fe68d">match_data_type</a>*)&gt; <a class="el" href="../../d9/d82/structpcre2cpp_1_1utils_1_1pcre2__data.html">pcre2cpp::utils::pcre2_data</a>&lt; <a class="el" href="../../dd/d06/group__pcre2cpp.html#gga52061c89ca5578ce7acb7fa7aee22f73ad12edd24928a1130b74c1663a4391d24">utf_type::UTF_8</a> &gt;::get_ovector_ptr</td>
         </tr>
       </table>
   </td>
@@ -462,7 +486,9 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">                                                             =</div>
+<div class="line">pcre2_get_ovector_pointer_8</div>
+</div><!-- fragment -->
 <p>pointer to pcre2_get_ovector_pointer function for utf-8 </p>
 
 </div>

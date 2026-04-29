@@ -1,9 +1,11 @@
 <map id="pcre2cpp::basic_regex&lt; utf &gt;" name="pcre2cpp::basic_regex&lt; utf &gt;">
-<area shape="rect" id="Node000001" title="Basic PCRE2 Regex container." alt="" coords="5,72,158,115"/>
+<area shape="rect" id="Node000001" title="Basic PCRE2 Regex container." alt="" coords="5,105,158,148"/>
 <area shape="rect" id="Node000002" href="$de/d88/classpcre2cpp_1_1basic__regex.html" title=" " alt="" coords="340,5,492,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,65,181,61,341,34,337,38,182,67,168,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,95,181,72,262,49,341,35,337,38,263,54,183,77,133,100"/>
 <area shape="rect" id="Node000003" href="$de/d88/classpcre2cpp_1_1basic__regex.html" title=" " alt="" coords="340,72,492,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,91,341,91,338,95,173,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,115,341,99,338,103,174,120"/>
 <area shape="rect" id="Node000004" href="$de/d88/classpcre2cpp_1_1basic__regex.html" title=" " alt="" coords="340,139,492,181"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,117,182,120,341,149,337,152,181,125,167,122"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="173,142,182,143,341,156,337,159,181,148,174,147"/>
+<area shape="rect" id="Node000005" href="$de/d88/classpcre2cpp_1_1basic__regex.html" title=" " alt="" coords="340,205,492,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="126,154,183,183,263,205,342,220,337,220,262,210,181,188,125,159"/>
 </map>
