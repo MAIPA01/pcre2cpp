@@ -52,7 +52,7 @@
 	 * @brief pcre2cpp version patch number
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_VERSION_PATCH 6
+	#define PCRE2CPP_VERSION_PATCH 7
 
 	/**
 	 * @brief stringify helper
@@ -95,7 +95,7 @@
 	 * @brief pcre2cpp last update day
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_LAST_UPDATE_DAY 27
+	#define PCRE2CPP_LAST_UPDATE_DAY 30
 	/**
 	 * @brief pcre2cpp last update month
 	 * @ingroup pcre2cpp
@@ -173,9 +173,9 @@
 	#endif
 
 	#if _PCRE2CPP_HAS_EXCEPTIONS
-		#define _PCRE2CPP_NOEXCEPT noexcept
-	#else
 		#define _PCRE2CPP_NOEXCEPT
+	#else
+		#define _PCRE2CPP_NOEXCEPT noexcept
 	#endif
 
 	#pragma region UTFS_ENABLED
@@ -200,30 +200,29 @@
 	#ifdef PCRE2CPP_DISABLE_UTF8
 		#define _PCRE2CPP_HAS_UTF8 0
 	#else
-		#define _PCRE2CPP_HAS_UTF8	  1
-		#define PCRE2_CODE_UNIT_WIDTH 8
+		#define _PCRE2CPP_HAS_UTF8 1
 	#endif
 
 	#ifdef PCRE2CPP_DISABLE_UTF16
 		#define _PCRE2CPP_HAS_UTF16 0
 	#else
 		#define _PCRE2CPP_HAS_UTF16 1
-		#ifndef PCRE2_CODE_UNIT_WIDTH
-			#define PCRE2_CODE_UNIT_WIDTH 16
-		#else
-			#define PCRE2_CODE_UNIT_WIDTH 0
-		#endif
 	#endif
 
 	#ifdef PCRE2CPP_DISABLE_UTF32
 		#define _PCRE2CPP_HAS_UTF32 0
 	#else
 		#define _PCRE2CPP_HAS_UTF32 1
-		#ifndef PCRE2_CODE_UNIT_WIDTH
-			#define PCRE2_CODE_UNIT_WIDTH 32
-		#else
-			#define PCRE2_CODE_UNIT_WIDTH 0
-		#endif
+	#endif
+
+	#if _PCRE2CPP_HAS_UTF8 && !_PCRE2CPP_HAS_UTF16 && !_PCRE2CPP_HAS_UTF32
+		#define PCRE2_CODE_UNIT_WIDTH 8
+	#elif !_PCRE2CPP_HAS_UTF8 && _PCRE2CPP_HAS_UTF16 && !_PCRE2CPP_HAS_UTF32
+		#define PCRE2_CODE_UNIT_WIDTH 16
+	#elif !_PCRE2CPP_HAS_UTF8 && !_PCRE2CPP_HAS_UTF16 && _PCRE2CPP_HAS_UTF32
+		#define PCRE2_CODE_UNIT_WIDTH 32
+	#else
+		#define PCRE2_CODE_UNIT_WIDTH 0
 	#endif
 	#pragma endregion
 

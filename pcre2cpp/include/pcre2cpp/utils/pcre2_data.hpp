@@ -42,6 +42,20 @@ namespace pcre2cpp {
 		UTF_32 = 32
 		#endif
 	};
+
+	/**
+	 * @brief default utf type for types like regex etc...
+	 * @ingroup pcre2cpp
+	 */
+	static constexpr auto default_utf_type =
+		#if _PCRE2CPP_HAS_UTF8
+	  utf_type::UTF_8
+		#elif _PCRE2CPP_HAS_UTF16
+	  utf_type::UTF_16
+		#elif _PCRE2CPP_HAS_UTF32
+	  utf_type::UTF_32
+		#endif
+	  ;
 } // namespace pcre2cpp
 
 namespace pcre2cpp::utils {
@@ -98,6 +112,11 @@ namespace pcre2cpp::utils {
 		using string_view_type						 = std::string_view;
 		/// @brief cpp string char type for utf-8
 		using string_char_type						 = string_type::value_type;
+			#pragma endregion
+
+			#pragma region SUB_MATCHES
+		/// @brief mapping from subgroup name to subgroup index minus one
+		using named_sub_values_table				 = std::unordered_map<string_view_type, size_t>;
 			#pragma endregion
 
 			#pragma region UTF_INFO
@@ -203,6 +222,11 @@ namespace pcre2cpp::utils {
 		using string_char_type						 = string_type::value_type;
 			#pragma endregion
 
+			#pragma region SUB_MATCHES
+		/// @brief mapping from subgroup name to subgroup index minus one
+		using named_sub_values_table				 = std::unordered_map<string_view_type, size_t>;
+			#pragma endregion
+
 			#pragma region UTF_INFO
 		/// @brief utf enum value for utf-16
 		static _PCRE2CPP_CONSTEXPR17 utf_type uft	 = utf_type::UTF_16;
@@ -304,6 +328,11 @@ namespace pcre2cpp::utils {
 		using string_view_type						 = std::u32string_view;
 		/// @brief cpp string char type for utf-32
 		using string_char_type						 = string_type::value_type;
+			#pragma endregion
+
+			#pragma region SUB_MATCHES
+		/// @brief mapping from subgroup name to subgroup index minus one
+		using named_sub_values_table				 = std::unordered_map<string_view_type, size_t>;
 			#pragma endregion
 
 			#pragma region UTF_INFO

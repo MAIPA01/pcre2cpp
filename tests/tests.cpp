@@ -202,4 +202,10 @@ TEST(REGEX_COPY, SUB_VALUES_TABLE_COPY) {
 	EXPECT_EQ(result.get_sub_results_in_result_offsets().size(), 1);
 	EXPECT_EQ(result.get_sub_results_values().size(), 1);
 }
+
+// TEST IS PATTERN VALID
+TEST(REGEX_VALID, VALID_PATTERN) {
+	EXPECT_TRUE(pcre2cpp::is_pattern_valid("(?<number>\\d+)"));
+	EXPECT_FALSE(pcre2cpp::is_pattern_valid("*"));
+}
 #endif
