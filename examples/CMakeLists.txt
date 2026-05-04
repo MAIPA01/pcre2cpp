@@ -1,0 +1,7 @@
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/basic_match)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/match_all)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/match_at_specified_offset)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/match_at_specified_offset_with_result)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/match_with_indexed_subexpression)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/match_with_named_subexpression)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/match_with_result)
