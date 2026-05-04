@@ -103,7 +103,7 @@ namespace pcre2cpp {
 					const int index		   = _pcre2_data_t::substring_number_from_name(_code.get(), entry);
 
 					_uchar_type* entry_end = entry + 1;
-						while (*entry_end != 0 && entry_end - entry < name_entry_size - 3) { entry_end += 1; }
+						while (*entry_end != 0 && static_cast<size_t>(entry_end - entry) < name_entry_size - 3) { entry_end += 1; }
 					_named_sub_values->emplace(_string_view_type(reinterpret_cast<_string_char_type*>(entry), entry_end - entry),
 					  static_cast<size_t>(index) - 1);
 				}

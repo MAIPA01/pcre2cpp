@@ -39,7 +39,7 @@ If you want to use external libraries not installed by project using CPM
 
 | Cmake option Name         | Description                                                      | Default |
 |:--------------------------|:-----------------------------------------------------------------|:-------:|
-| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.3)  |   OFF   |
+| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.4)  |   OFF   |
 | `PCRE2CPP_PCRE2_EXTERNAL` | Uses users own pcre2 library (tested and compatible with: 10.47) |   OFF   |
 
 ### Project developing options
@@ -52,6 +52,7 @@ These options are used while testing or changing code in project
 | `PCRE2CPP_BUILD_BENCHMARK`     | Build benchmark                                        | `${PROJECT_IS_TOP_LEVEL}` |
 | `PCRE2CPP_BUILD_COVERAGE`      | Enable coverage reporting                              | `${PROJECT_IS_TOP_LEVEL}` |
 | `PCRE2CPP_BUILD_DOCUMENTATION` | Build documentation                                    | `${PROJECT_IS_TOP_LEVEL}` |
+| `PCRE2CPP_BUILD_EXAMPLES`      | Build examples                                         | `${PROJECT_IS_TOP_LEVEL}` |
 | `PCRE2CPP_ENABLE_CLANG_TIDY`   | Enables clang-tidy checks                              | `${PROJECT_IS_TOP_LEVEL}` |
 | `PCRE2CPP_INSTALL`             | Enables installation of this project                   | `${PROJECT_IS_TOP_LEVEL}` |
 | `PCRE2CPP_INSTALL_TEST`        | This is only to test if installation of pcre2cpp works |            OFF            |
@@ -206,11 +207,11 @@ using namespace pcre2cpp;
 int main() {
     regex expression("\\d+");
     
-    if (expression.match_at("aa2", 3, 2)) { // is true
+    if (expression.match_at("aa2", 2)) { // is true
         cout << "Matches result: 2 at: 2" << endl;
     }
 
-    if (expression.match_at("aa2", 3, 1)) { // is false
+    if (expression.match_at("aa2", 1)) { // is false
         cout << "Matches result: 2 at: 2" << endl;
     }
     
@@ -231,7 +232,7 @@ int main() {
     regex expression("\\d+");
     
     match_result result;
-    if (expression.match_at("aa2", 3, result, 2)) { // is true
+    if (expression.match_at("aa2", result, 2)) { // is true
         cout << "Matches result: " << result.get_result_value() << " at: " 
              << to_string(result.get_result_global_offset()) << endl;
 
@@ -284,7 +285,7 @@ int main() {
     if (expression.match("ab23a", result, 1)) { // is true
         cout << "Sub Match <number> result: " << result.get_sub_result_value("number")
         << " at: " << result.get_sub_result_global_offset("number") 
-        << ", Sub Match 1 result: " << result.get_sub_result_value("a") 
+        << ", Sub Match <a> result: " << result.get_sub_result_value("a") 
         << " at: " << result.get_sub_result_global_offset("a") << endl;
 
         // Should print: "Sub Match <number> result: 23 at: 2, Sub Match <a> result: a at: 4"
@@ -307,26 +308,13 @@ int main() {
     regex expression("\\d+");
     
     std::vector<match_result> results;
-    if (expression.match_all("Ala ma 23 lata i 3 koty", 23, results)) { // is true
+    if (expression.match_all("Ala ma 23 lata i 3 koty", results)) { // is true
         cout << "Match 0 result: " << results[0].get_result_value() 
         << " at: " << results[0].get_result_global_offset() 
         << ", Match 1 result: " << results[1].get_result_value() 
         << " at: " << results[1].get_result_global_offset() << endl;
 
         // Should print: "Match 0 result: 23 at: 7, Match 1 result: 3 at: 17"
-    }
-
-    match_result* resultsPtr;
-    size_t resultsCount;
-    if (expression.match_all("Ala ma 23 lata i 3 koty", 23, resultsPtr, resultsCount)) { // is true
-        cout << "Match 0 result: " << resultsPtr[0].get_result_value() 
-        << " at: " << resultsPtr[0].get_result_global_offset() 
-        << ", Match 1 result: " << resultsPtr[1].get_result_value() 
-        << " at: " << resultsPtr[1].get_result_global_offset() << endl;
-
-        // Should print: "Match 0 result: 23 at: 7, Match 1 result: 3 at: 17"
-
-        delete[] resultsPtr;
     }
     
     return 0;
