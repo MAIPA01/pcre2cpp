@@ -39,7 +39,7 @@ If you want to use external libraries not installed by project using CPM
 
 | Cmake option Name         | Description                                                      | Default |
 |:--------------------------|:-----------------------------------------------------------------|:-------:|
-| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.4)  |   OFF   |
+| `PCRE2CPP_MSTD_EXTERNAL`  | Uses users own mstd library (tested and compatible with: 1.5.5)  |   OFF   |
 | `PCRE2CPP_PCRE2_EXTERNAL` | Uses users own pcre2 library (tested and compatible with: 10.47) |   OFF   |
 
 ### Project developing options
