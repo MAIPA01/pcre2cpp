@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(pcre2cpp VERSION 1.2.8 LANGUAGES CXX)
+project(pcre2cpp VERSION 1.2.9 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS 					"Build shared library" 			OFF)
 option(PCRE2CPP_BUILD_TESTS 				"Build tests"			 		${PROJECT_IS_TOP_LEVEL})
@@ -13,7 +13,7 @@ option(PCRE2CPP_ENABLE_CLANG_TIDY 			"Enables clang-tidy checks" 	${PROJECT_IS_T
 option(PCRE2CPP_INSTALL 					"Enables installation of this project"						${PROJECT_IS_TOP_LEVEL})
 option(PCRE2CPP_INSTALL_TEST				"This is only to test if installation of pcre2cpp works" 	OFF)
 
-option(PCRE2CPP_MSTD_EXTERNAL 			"Uses users own mstd library (tested and compatible with: 1.5.4)"		OFF)
+option(PCRE2CPP_MSTD_EXTERNAL 			"Uses users own mstd library (tested and compatible with: 1.5.5)"		OFF)
 option(PCRE2CPP_PCRE2_EXTERNAL 			"Uses users own pcre2 library (tested and compatible with: 10.47)"		OFF)
 
 option(PCRE2CPP_ENABLE_CXX20 					"Enables C++20 features" 							OFF)
