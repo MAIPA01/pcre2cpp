@@ -2,6 +2,7 @@ import os
 import re
 import argparse
 import sys
+from pathlib import Path
 
 def process_file(file_path, base_dir, processed_files, system_includes, file_content_list):
     """
@@ -74,6 +75,9 @@ if __name__ == "__main__":
 
     try:
         process_file(args.input_file, base_directory, processed_files, system_includes, file_content_list)
+
+        output_path = Path(args.output_file)
+        output_path.parent.mkdir(parents=True)
 
         # Zapisz do pliku wyjściowego
         with open(args.output_file, 'w', encoding='utf-8') as outfile:
