@@ -56,7 +56,7 @@ endif()
 
 # MSTD
 if (DOWNLOAD_MSTD)
-    CPMAddPackage("gh:maipa01/mstd#v1.5.5")
+    CPMAddPackage("gh:maipa01/mstd#v1.5.6")
 endif()
 
 # GTEST

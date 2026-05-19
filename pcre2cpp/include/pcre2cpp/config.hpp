@@ -47,12 +47,12 @@
 	 * @brief pcre2cpp version minor number
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_VERSION_MINOR 2
+	#define PCRE2CPP_VERSION_MINOR 3
 	/**
 	 * @brief pcre2cpp version patch number
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_VERSION_PATCH 9
+	#define PCRE2CPP_VERSION_PATCH 0
 
 	/**
 	 * @brief stringify helper
@@ -95,7 +95,7 @@
 	 * @brief pcre2cpp last update day
 	 * @ingroup pcre2cpp
 	 */
-	#define PCRE2CPP_LAST_UPDATE_DAY 14
+	#define PCRE2CPP_LAST_UPDATE_DAY 19
 	/**
 	 * @brief pcre2cpp last update month
 	 * @ingroup pcre2cpp
